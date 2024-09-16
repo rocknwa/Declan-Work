@@ -4,10 +4,10 @@ import { Button } from "./components/ui/button";
 import { RadioGroup, RadioGroupItem } from "./components/ui/radio-group";
 import { Label } from "./components/ui/label";
 import { ChevronDown, User, Building2 } from 'lucide-react';
-import DeclanWorkLogo from './assets/DeclanWorkLogo.png';
+import DeclanWorkLogo from '../public/assets/DeclanWorkLogo.png';
 import CountrySelector from './components/CountrySelector';
-import FreelancerIcon from './assets/user.png'
-import HirerIcon from './assets/manager.png'
+import FreelancerIcon from '../public/assets/user.png'
+import HirerIcon from '../public/assets/manager.png'
 
 const SignupPage = () => {
   return (
