@@ -5,8 +5,16 @@
 
 body {
   font-family: 'Open Sauce Sans', sans-serif;
+  background-color: #FAFAFA;
+  font-size: 16px;
 }
 
+h1{
+  letter-spacing: -2%;
+  font-weight: 600;
+  font-size: clamp(3rem, 2vw + 1.5rem, 4rem);
+  line-height: 79px;
+}
 
 @layer base {
   :root {
@@ -16,7 +24,11 @@ body {
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
+    --primary-400: 155 100% 47%;
+    --neutral-800: 0 0% 15%;
+    --neutral-600: 0 0% 31%;
+    --neutral-400: 0 0% 55%;
+    --grey-400: 0 0% 100%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;

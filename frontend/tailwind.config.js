@@ -24,8 +24,19 @@ export default {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
+  			neutral: {
+  				DEFAULT: 'hsl(var(--neutral-800))',
+				600: 'hsl(var(--neutral-600))',
+				300: 'hsl(var(--neutral-300))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			grey: {
+  				DEFAULT: 'hsl(var(--grey-400))', 
+  				400: 'hsl(var(--grey-400))', 
+  			},
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
+  				DEFAULT: 'hsl(var(--primary-400))',
+  				400: 'hsl(var(--primary-400))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
