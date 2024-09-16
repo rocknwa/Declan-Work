@@ -9,11 +9,18 @@ body {
   font-size: 16px;
 }
 
-h1{
-  letter-spacing: -2%;
-  font-weight: 600;
-  font-size: clamp(3rem, 2vw + 1.5rem, 4rem);
-  line-height: 79px;
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(36, 34, 34);
+  border-radius: 10px;
 }
 
 @layer base {
@@ -27,7 +34,7 @@ h1{
     --primary-400: 155 100% 47%;
     --neutral-800: 0 0% 15%;
     --neutral-600: 0 0% 31%;
-    --neutral-400: 0 0% 55%;
+    --neutral-300: 0 0% 55%;
     --grey-400: 0 0% 100%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
