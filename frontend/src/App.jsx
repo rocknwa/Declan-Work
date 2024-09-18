@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
 import SignupPage from './pages/SignUp';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/" element={<Dashboard />} />
       </Routes>
     </Router>
   );
