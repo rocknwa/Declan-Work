@@ -1,9 +1,12 @@
+import DashboardNav from '@/components/DashboardNav'
 import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
+        <section className='bg-white'>
+            <DashboardNav />
+        </section>
+    )
 }
 
 export default Dashboard
