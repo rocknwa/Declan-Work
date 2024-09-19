@@ -15,9 +15,9 @@ const AccountAddress = () => {
         <DropdownMenuTrigger asChild>
             <Button variant="outline" className="rounded-full p-1 hover:bg-[#F0F0F0]" size="sm">
                 <div className="flex items-center justify-center gap-2">
-                    <img src="/Avatar.svg" alt="" />
+                    <img src="/icons/Avatar.svg" alt="" />
                     <span>0x0595...PQ59</span>
-                    <img src="/arrow-down-01.svg" alt="" />
+                    <img src="/icons/arrow-down-01.svg" alt="" />
                 </div>
             </Button>
         </DropdownMenuTrigger>
@@ -28,11 +28,11 @@ const AccountAddress = () => {
             onMouseLeave={() => setIsOpen(false)}
         >
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-            <img src="/profile-ma.svg" className="mr-2 h-4 w-4" />
+            <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" />
             <span>Profile Management</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-            <img src="/logout-03.svg" className="mr-2 h-4 w-4" />
+            <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" />
             <span>Learning Path</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">

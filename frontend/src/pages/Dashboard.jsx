@@ -1,7 +1,8 @@
-import DashboardNav from '@/components/DashboardNav'
-import Overview from '@/components/Overview'
-import { DashboardBarchart } from '@/components/DashboardBarchart'
+import DashboardNav from '@/components/dashboard/DashboardNav'
+import Overview from '@/components/dashboard/Overview'
+import { DashboardBarchart } from '@/components/dashboard/DashboardBarchart'
 import React from 'react'
+import DashboardTable from '@/components/dashboard/DashboardTable'
 
 const Dashboard = () => {
   return (
@@ -9,6 +10,7 @@ const Dashboard = () => {
             <DashboardNav />
             <Overview />
             <DashboardBarchart />
+            <DashboardTable />
         </section>
     )
 }

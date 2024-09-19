@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Settings } from "lucide-react"
 import AccountAddress from "./AccountAddress";
 import {
     DropdownMenu,
@@ -17,7 +16,7 @@ export default function DashboardNav() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <a href="/" className="flex-shrink-0">
-              <img src="/declan-logo-dashboard.svg" alt="" />
+              <img src="/icons/declan-logo-dashboard.svg" alt="" />
             </a>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -27,7 +26,7 @@ export default function DashboardNav() {
                 <DropdownMenuTrigger asChild>
                         <div className="flex items-center text-sm cursor-pointer font-medium active:text-black text-[#989898] hover:text-gray-900 text justify-center gap-1">
                             <span className="text-sm">Job Matches</span>
-                            {isOpen ? <img src="/arrow-up-01.svg" alt="" /> : <img src="/arrow-down-grey.svg" alt="" />}
+                            <div className="w-[20px]">{isOpen ? <img src="/icons/arrow-up-01.svg" alt="" /> : <img src="/icons/arrow-down-grey.svg" alt="" />}</div>
                         </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -38,19 +37,19 @@ export default function DashboardNav() {
                 >
                     <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
                         <NavLink href="/job-listings">
-                            <img src="/profile-ma.svg" className="mr-2 h-4 w-4" />
+                            <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" />
                             <span className="text-zinc-950 font-normal">Job Listings</span>
                         </NavLink>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
                         <NavLink href="/job-listings-ai">   
-                            <img src="/logout-03.svg" className="mr-2 h-4 w-4" />
+                            <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" />
                             <span className="text-zinc-950 font-normal">Job Listings(AI)</span>
                         </NavLink>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
                         <NavLink href="/manage-projects">  
-                            <img src="/logout-03.svg" className="mr-2 h-4 w-4" />
+                            <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" />
                             <span  className="text-zinc-950 font-normal">Manage Projects</span>
                         </NavLink>
                     </DropdownMenuItem>

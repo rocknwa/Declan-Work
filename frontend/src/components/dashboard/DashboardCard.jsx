@@ -21,7 +21,7 @@ export default function DashboardCard(props) {
           </CardContent>
       </div>
         <div className="flex items-start justify-between p-4 xl:p-6">
-            <div className="rounded-full flex items-center justify-center bg-[#E9F8EE] p-2"><img src="/box.svg" className="h-4 w-4" /></div>
+            <div className="rounded-full flex items-center justify-center bg-[#E9F8EE] p-2"><img src="/icons/box.svg" className="h-4 w-4" /></div>
         </div>
     </Card>
   )

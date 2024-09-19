@@ -54,7 +54,7 @@ export function DashboardBarchart() {
                   <div className="flex items-center justify-between gap-3">
                     <p className="font-semibold tracking-tighter text-black text-[32px]">$13,000.04k</p>
                     <div className="flex gap-1.5 text-[#21B557] items-center text-sm">
-                      <div className="flex items-center justify-between bg-[#E9F8EE] p-1 rounded-full"><img src="/box-sm.svg" alt="" /></div>
+                      <div className="flex items-center justify-between bg-[#E9F8EE] p-1 rounded-full"><img src="/icons/box-sm.svg" alt="" /></div>
                       <span>5.6%</span>
                     </div>
                   </div>
