@@ -9,7 +9,7 @@ import {
 
 export default function DashboardCard(props) {
   return (
-    <Card className="rounded-2xl flex justify-between w-full">
+    <Card className="rounded-2xl shadow-none flex justify-between w-full">
       <div className="">
           <CardHeader className="flex flex-row p-2 xl:p-6 items-center justify-between space-y-0 pb-1 xl:pb-2">
             <CardTitle className="text-[12px] pl-4 xl:pl-0 xl:text-sm text-[#989898] font-medium">{props.title}</CardTitle>
