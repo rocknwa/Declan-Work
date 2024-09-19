@@ -33,6 +33,7 @@ export default {
   			grey: {
   				DEFAULT: 'hsl(var(--grey-400))', 
   				400: 'hsl(var(--grey-400))', 
+				50: 'hsl(var(--grey-50))',
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary-400))',
@@ -49,6 +50,7 @@ export default {
   			},
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
+				success: 'hsl(var(--accent-success))',
   				foreground: 'hsl(var(--accent-foreground))'
   			},
   			destructive: {
