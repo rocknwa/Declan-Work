@@ -44,7 +44,7 @@ export function DashboardBarchart() {
   return (
     <div className="">
       <div className='max-w-full mx-auto px-4 flex flex-col gap-4 sm:px-6 lg:px-8'>
-        <Card>
+        <Card className="shadow-none rounded-[20px]">
           <CardHeader>
             <div className="w-full flex justify-between items-start">
               <div className="flex flex-col gap-7 ">

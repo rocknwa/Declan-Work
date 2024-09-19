@@ -21,7 +21,7 @@ export default function DashboardTable() {
   return (
     <div>
       <div className='max-w-full mx-auto px-4 flex flex-col gap-4 sm:px-6 lg:px-8'>
-        <Card>
+        <Card className="rounded-[20px] ">
           <CardHeader className="px-7">
             <CardTitle className="flex items-center gap-3">
               Active Projects
