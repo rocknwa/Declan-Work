@@ -1,11 +1,8 @@
-import { TrendingUp } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -15,23 +12,37 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import ChartSelect from "./ChartSelect";
+import { useState } from "react";
 
-export const description = "A bar chart";
-
-const chartData = [
-  { month: "Jan", total: 3000 },
-  { month: "Feb", total: 3900 },
-  { month: "Mar", total: 4500 },
-  { month: "Apr", total: 4100 },
-  { month: "May", total: 2450 },
-  { month: "Jun", total: 3000 },
-  { month: "Jul", total: 3100 },
-  { month: "Aug", total: 4750 },
-  { month: "Sep", total: 3500 },
-  { month: "Oct", total: 2010 },
-  { month: "Nov", total: 4200 },
-  { month: "Dec", total: 3801 },
-];
+const chartData = {
+  yearly: [
+    { month: "Jan", total: 3000 },
+    { month: "Feb", total: 3900 },
+    { month: "Mar", total: 4500 },
+    { month: "Apr", total: 4100 },
+    { month: "May", total: 2450 },
+    { month: "Jun", total: 3000 },
+    { month: "Jul", total: 3100 },
+    { month: "Aug", total: 4750 },
+    { month: "Sep", total: 3500 },
+    { month: "Oct", total: 2010 },
+    { month: "Nov", total: 4200 },
+    { month: "Dec", total: 3801 },
+  ],
+  monthly: [
+    { week: "Week 1", total: 3000 },
+    { week: "Week 2", total: 3900 },
+    { week: "Week 3", total: 4500 },
+    { week: "Week 4", total: 4100 },
+  ],
+  weekly: [
+    { day: "Monday", total: 3000 },
+    { day: "Tuesday", total: 3900 },
+    { day: "Wednesday", total: 4500 },
+    { day: "Thursday", total: 4100 },
+    { day: "Friday", total: 2450 },
+  ]
+};
 
 const chartConfig = {
   desktop: {
@@ -41,6 +52,22 @@ const chartConfig = {
 };
 
 export function DashboardBarchart() {
+  const [reportRange, setReportRange] = useState("yearly");
+
+  const data = chartData[reportRange]; // Use the reportRange to select data
+
+  // Compute the maximum value and apply padding
+  const maxTotal = Math.max(...data.map(d => d.total));
+  const padding = 0.1 * maxTotal; // 10% padding for the upper limit
+  const maxDomainValue = maxTotal + padding;
+
+  // Compute ticks for the Y-axis
+  const numberOfTicks = 5;
+  const ticks = Array.from({ length: numberOfTicks }, (_, i) => {
+    const tickValue = (maxDomainValue / (numberOfTicks - 1)) * i;
+    return Math.round(tickValue / 100) * 100; // Round to nearest 100
+  }).filter((value, index, self) => self.indexOf(value) === index); // Ensure unique values
+
   return (
     <div className="">
       <div className='max-w-full mx-auto px-4 flex flex-col gap-4 sm:px-6 lg:px-8'>
@@ -61,33 +88,33 @@ export function DashboardBarchart() {
                 </CardDescription>
               </div>
               <div>
-                <ChartSelect />
+                <ChartSelect reportRange={reportRange} setReportRange={setReportRange} />
               </div>
             </div>
           </CardHeader>
           <CardContent className="pt-4">
             <ChartContainer className="max-h-[400px] ml-[-20px] w-full" config={chartConfig}>
               <BarChart
-                data={chartData}
+                data={data} // Pass the selected data here
                 height={300} // Reduce height of the chart
                 barCategoryGap={25} // Add space between bars
                 barGap={8} // Add gap between individual bars
               >
                 <CartesianGrid vertical={false} />
                 <XAxis
-                  dataKey="month"
+                  dataKey={reportRange === "yearly" ? "month" : reportRange === "monthly" ? "week" : "day"}
                   tickLine={false}
                   tickMargin={10}
                   axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
+                  tickFormatter={(value) => value} // Adjust as needed
                 />
                 <YAxis
                   tickLine={false}
                   axisLine={false}
-                  tickCount={6} // Adjust number of ticks for better scaling
-                  domain={[0, 5000]} // Set max value for the y-axis
+                  tickCount={numberOfTicks} // Set number of ticks
+                  domain={[0, maxDomainValue]} // Set domain from 0 to padded max value
                   interval="preserveEnd"
-                  ticks={[0, 1000, 2000, 3000, 4000, 5000]} // Set ticks at 1000 scale
+                  ticks={ticks} // Set ticks
                 />
                 <ChartTooltip
                   cursor={false}
@@ -97,8 +124,6 @@ export function DashboardBarchart() {
               </BarChart>
             </ChartContainer>
           </CardContent>
-          {/* <CardFooter className="flex-col items-start gap-2 text-sm">
-          </CardFooter> */}
         </Card>
       </div>
     </div>

@@ -1,26 +1,27 @@
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
-  
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const ChartSelect = () => {
+const ChartSelect = ({ reportRange, setReportRange }) => {
   return (
-    <Select>
-    <SelectTrigger defaultValue="yearly" className="w-[180px]">
-      <SelectValue placeholder="Yearly Report" ></SelectValue>
-    </SelectTrigger>
-    <SelectContent>
-      <SelectItem value="yearly">Yearly Report</SelectItem>
-      <SelectItem value="monthly">Monthly Report</SelectItem>
-      <SelectItem value="daily">Daily Report</SelectItem>
-    </SelectContent>
-  </Select>
-  )
-}
+    <Select
+      value={reportRange} 
+      onValueChange={(value) => setReportRange(value)} 
+    >
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Yearly Report" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="yearly">Yearly Report</SelectItem>
+        <SelectItem value="monthly">Monthly Report</SelectItem>
+        <SelectItem value="weekly">Weekly Report</SelectItem>
+      </SelectContent>
+    </Select>
+  );
+};
 
-export default ChartSelect  
- 
+export default ChartSelect;
