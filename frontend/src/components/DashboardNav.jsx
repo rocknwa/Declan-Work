@@ -1,37 +1,69 @@
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Settings } from "lucide-react"
+import AccountAddress from "./AccountAddress";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu";
 
 export default function DashboardNav() {
+    const [isOpen, setIsOpen] = useState(false)
   return (
     <nav className="bg-white border-b border-[#E9E9E9]">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <a href="/" className="flex-shrink-0">
-              <span className="sr-only">Your Logo</span>
               <img src="/declan-logo-dashboard.svg" alt="" />
             </a>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
             <NavLink href="/">Dashboard</NavLink>
-            <NavLink href="/job-matches">
-                <div className="flex items-center justify-center gap-1">
-                    Job Matches
-                    <img src="/arrow-down-grey.svg" alt="" />
-                </div>
-            </NavLink>
+            
+                <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+                <DropdownMenuTrigger asChild>
+                        <div className="flex items-center text-sm cursor-pointer font-medium active:text-black text-[#989898] hover:text-gray-900 text justify-center gap-1">
+                            <span className="text-sm">Job Matches</span>
+                            {isOpen ? <img src="/arrow-up-01.svg" alt="" /> : <img src="/arrow-down-grey.svg" alt="" />}
+                        </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                    align="end"
+                    className="w-[200px] rounded-2xl"
+                    onMouseEnter={() => setIsOpen(true)}
+                    onMouseLeave={() => setIsOpen(false)}
+                >
+                    <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
+                        <NavLink href="/job-listings">
+                            <img src="/profile-ma.svg" className="mr-2 h-4 w-4" />
+                            <span className="text-zinc-950 font-normal">Job Listings</span>
+                        </NavLink>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
+                        <NavLink href="/job-listings-ai">   
+                            <img src="/logout-03.svg" className="mr-2 h-4 w-4" />
+                            <span className="text-zinc-950 font-normal">Job Listings(AI)</span>
+                        </NavLink>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
+                        <NavLink href="/manage-projects">  
+                            <img src="/logout-03.svg" className="mr-2 h-4 w-4" />
+                            <span  className="text-zinc-950 font-normal">Manage Projects</span>
+                        </NavLink>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+            
             <NavLink href="/my-projects">My Projects</NavLink>
             <NavLink href="/about-us">About Us</NavLink>
             <NavLink href="/messages">Messages</NavLink>
             <NavLink href="/my-wallet">My Wallet</NavLink>
           </div>
           <div className="hidden sm:flex sm:items-center sm:space-x-4">
-            <Button variant="outline" className="rounded-full p-1 hover:bg-[#F0F0F0]" size="sm">
-                <div className="flex items-center justify-center gap-2">
-                    <img src="/Avatar.svg" alt="" />
-                    <span>0x0595...PQ59</span>
-                    <img src="/arrow-down-01.svg" alt="" />
-                </div>
-            </Button>
+            <AccountAddress />
           </div>
           <div className="flex items-center sm:hidden">
             <Button variant="ghost" size="icon">
