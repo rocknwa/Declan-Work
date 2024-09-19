@@ -26,7 +26,7 @@ export default function DashboardNav() {
                 <DropdownMenuTrigger asChild>
                         <div className="flex items-center text-sm cursor-pointer font-medium active:text-black text-[#989898] hover:text-gray-900 text justify-center gap-1">
                             <span className="text-sm">Job Matches</span>
-                            <div className="w-[20px]">{isOpen ? <img src="/icons/arrow-up-01.svg" alt="" /> : <img src="/icons/arrow-down-grey.svg" alt="" />}</div>
+                            <div className="w-[20px] flex items-center justify-center">{isOpen ? <img src="/icons/arrow-up-01.svg" alt="" /> : <img src="/icons/arrow-down-grey.svg" alt="" />}</div>
                         </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -91,7 +91,7 @@ function NavLink({ href, children }) {
   return (
     <a
       href={href}
-      className="inline-flex items-center px-1 pt-1 text-sm font-medium active:text-black text-[#989898] hover:text-gray-900"
+      className="inline-flex items-center text-sm font-medium active:text-black text-[#989898] hover:text-gray-900"
     >
       {children}
     </a>
