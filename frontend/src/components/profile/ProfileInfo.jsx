@@ -31,7 +31,7 @@ const ProfileInfo = () => {
   return (
     <div>
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[15px] box-shadow-soft border p-6 flex items-center justify-between">
+        <div className="rounded-[15px] border p-6 flex items-center justify-between">
           <div className="flex gap-6 items-center">
             <div className="relative">
               <img src="/assets/profile_img.png" alt="Profile" />
@@ -54,7 +54,7 @@ const ProfileInfo = () => {
           </div>
           <div className="flex items-center gap-2 text-sm text-[#21B557] font-medium">
             <p>Status: {data.status}</p>
-            <img src="/icons/edit.svg" className="" alt="Edit" />
+            <img src="/icons/edit.svg" className="w-4 h-4" alt="Edit" />
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline" className="rounded-full border-accent-success border-[2px]">
