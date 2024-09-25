@@ -8,9 +8,7 @@ import { useState } from 'react';
 const Bio = () => {
   const data = {
     oneLineHeader: "Product Designer with 5 Years of Experience",
-    about: `
-        I am a creative and detail-oriented freelance product designer with over 5 years of experience crafting user-friendly, visually striking designs. Specializing in UI/UX, branding, and digital experiences, I turn ideas into compelling products that captivate audiences and drive results.</p>
-        Having worked with startups and established brands alike, I excel at delivering innovative solutions tailored to your unique needs. Lets collaborate to create something extraordinary that sets your brand apart.
+    about: `I am a creative and detail-oriented freelance product designer with over 5 years of experience crafting user-friendly, visually striking designs. Specializing in UI/UX, branding, and digital experiences, I turn ideas into compelling products that captivate audiences and drive results. Having worked with startups and established brands alike, I excel at delivering innovative solutions tailored to your unique needs. Lets collaborate to create something extraordinary that sets your brand apart.
     `,
   };
 

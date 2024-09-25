@@ -30,7 +30,7 @@ const BioDialogBody = ({ initialOneLineHeader, initialAbout, onSave }) => {
       <div className="grid w-full lg:max-w-full sm:max-w-sm relative items-center gap-1.5">
         <Label className="ml-3 text-[#6A6A6A]" htmlFor="about">About You</Label>
         <textarea
-          maxLength={500}
+          maxLength={600}
           value={about}
           onChange={(e) => setAbout(e.target.value)}
           className="bg-[#FAFAFA] flex w-full rounded-[8px] border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
@@ -39,7 +39,7 @@ const BioDialogBody = ({ initialOneLineHeader, initialAbout, onSave }) => {
           rows="10"
         ></textarea>
         <span className="absolute text-[#BABABA] text-[12px] bottom-[2%] right-[2%]">
-          {500 - about.length}/500
+          {600 - about.length}/600
         </span>
       </div>
     </form>
