@@ -1,14 +1,13 @@
-import React from 'react'
 
 const Portfolio = () => {
   return (
-    <div className=' border flex flex-col gap-2 p-5 rounded-[15px] '>
+    <div className=' border flex flex-col gap-2 p-4 rounded-[10px] '>
         <div className='flex items-center gap-3'>
             <h3 className='font-semibold text-lg'>Portfolio</h3>
             <img src="/icons/edit-black.svg" className='w-4 h-4' alt="" />
         </div>
         <div className='text-sm 2xl:text-base'>
-            <p>Product Designer with 5 Years of Experience</p>
+            <p>https://www.behance.net/izuchukwuigwe1</p>
         </div>
     </div>
   )

@@ -1,13 +1,20 @@
-import { Button } from "../ui/button"
+import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
+import SelectAvailability from "./SelectAvailability";
+import { useState } from "react";
+import Location from "./Location/Location";
 
 const ProfileInfo = () => {
   const data = {
     name: "Izuchukwu Igwe",
     location: "Lagos, Nigeria",
     occupation: "Product Designer",
-    status: "Available",
+    available: true,
     rating: 4.5 // Rating value
   }
+
+  const [available, setAvailable] = useState(data.available);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
 
   // Function to render stars based on rating
   const renderStars = (rating) => {
@@ -45,20 +52,27 @@ const ProfileInfo = () => {
               <div>
                 <p className="font-normal">{data.occupation}</p>
               </div>
-              <div className="flex items-center gap-1">
-                <img src="/icons/map-marker.svg" alt="Location icon" />
-                <p className="text-sm font-semibold mr-1">{data.location}</p>
-                <img src="/icons/pencil-edit.svg" alt="Edit icon" />
-              </div>
+             <Location />
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm text-[#21B557] font-medium">
-            <p>Status: {data.status}</p>
-            <img src="/icons/edit.svg" className="w-4 h-4" alt="Edit" />
+          <div className="flex items-center relative gap-2 text-sm text-[#21B557] font-medium">
+            <p>Status: {available ? "Available" : "Unavailable"}</p>
+            <img
+              src="/icons/edit.svg"
+              className="w-4 h-4 cursor-pointer"
+              alt="Edit"
+              onClick={() => setIsSelectOpen((prev) => !prev)} 
+            />
+            <SelectAvailability
+              available={available}
+              onSelectChange={setAvailable} 
+              isOpen={isSelectOpen}
+              setIsOpen={setIsSelectOpen} 
+            />
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline" className="rounded-full border-accent-success border-[2px]">
-              View Public Profile
+              <Link to='/public'> View Public Profile</Link>
             </Button>
             <Button className="rounded-full bg-[#17813E] hover:bg-accent-success flex gap-2">
               <img src="/icons/share-alt.svg" alt="Share icon" />
@@ -68,7 +82,7 @@ const ProfileInfo = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProfileInfo
+export default ProfileInfo;
