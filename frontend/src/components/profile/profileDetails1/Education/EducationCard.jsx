@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
 
-const EducationCard = ({ key, certName, institution, startDate, endDate, }) => {
+const EducationCard = ({ certName, institution, startDate, endDate, }) => {
   return (
-        <div key={key} className="flex items-center">
+        <div className="flex items-center">
             <div className="border p-3 rounded-[10px]">
                 <p className="font-semibold text-sm uppercase w-[30ch]">{certName.degree} {certName.areaOfStudy}</p>
                 <p className="text-[12px] font-semibold text-[#4D4D4D]">{institution}</p>
