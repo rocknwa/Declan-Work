@@ -19,11 +19,11 @@ import { ChevronDown } from "lucide-react";
 
 // Mock data for degrees, areas of study, and institutions
 const degrees = [
-  { value: "bsc", label: "(B.Sc.) Bachelor of Science " },
-  { value: "beng", label: "(B.Eng.) Bachelor of Engineering " },
-  { value: "msc", label: "(M.Sc.) Master of Science " },
-  { value: "phd", label: "(Ph.D.) Doctor of Philosophy " },
-  { value: "mba", label: "(MBA) Master of Business Administration " },
+  { value: "b.sc.", label: "(B.Sc.) Bachelor of Science " },
+  { value: "b.eng.", label: "(B.Eng.) Bachelor of Engineering " },
+  { value: "m.sc.", label: "(M.Sc.) Master of Science " },
+  { value: "phd.", label: "(Ph.D.) Doctor of Philosophy " },
+  { value: "mba.", label: "(MBA) Master of Business Administration " },
 ];
 
 const areasOfStudyByDegree = {

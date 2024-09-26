@@ -4,13 +4,16 @@ import EducationDialogBody from "./EducationDialogBody"
 import { Button } from "@/components/ui/button"
 import ButtonWithIcon from "../../ButtonWithIcon"
 
-const EducationBody = ({educationData, handleSave}) => {
+const EducationBody = ({educationData, setEducationData, handleSave}) => {
+    const removeEducation = (id) => {
+        setEducationData((prev) => prev.filter((_, index) => index !== id));
+      };
   return (
     <div className='flex flex-col gap-4'>
         <div className="flex flex-wrap gap-x-10 gap-y-2">
             {
                 educationData.map(({certName, institution, startDate, endDate}, id) => (
-                    <EducationCard key={id} certName={certName} institution={institution} startDate={startDate} endDate={endDate} />
+                    <EducationCard key={id} id={id} removeEducation={removeEducation} certName={certName} institution={institution} startDate={startDate} endDate={endDate} />
                 ))
             }
         </div>
