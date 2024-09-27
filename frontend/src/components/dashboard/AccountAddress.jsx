@@ -8,6 +8,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 const AccountAddress = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ const AccountAddress = () => {
                 <div className="flex items-center justify-center gap-2">
                     <img src="/icons/Avatar.svg" alt="" />
                     <span>0x0595...PQ59</span>
-                    <img src="/icons/arrow-down-01.svg" alt="" />
+                    <img src="/icons/arrow-down-01.svg" className={cn("transition-transform", isOpen ? "rotate-180" : "rotate-0")} alt="" />
                 </div>
             </Button>
         </DropdownMenuTrigger>
