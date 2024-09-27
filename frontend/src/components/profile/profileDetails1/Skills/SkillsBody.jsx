@@ -1,11 +1,19 @@
-import SkillsTag from "./SkillsTag";
 
-const SkillsBody = ({oneLineHeader, about}) => {
+const SkillsBody = ({skills, removeSkill,}) => {
     return (
-        <div className='flex flex-wrap gap-2'>
-            <SkillsTag>3D</SkillsTag> <SkillsTag>Illustration</SkillsTag><SkillsTag>Illustration</SkillsTag><SkillsTag>Illustration</SkillsTag><SkillsTag>Illustration</SkillsTag> <SkillsTag>Wireframe</SkillsTag> <SkillsTag>Branding</SkillsTag>
+        <div className='flex flex-wrap min-w-full gap-2'>
+            {
+              skills.map((skill, id) => (
+                <div key={id} className="flex">
+                  <div className=" border-[2px] px-2 py-1 rounded-md hover:bg-transparent text-medium border-[#6acd8c]">{skill}</div>
+                    <img src="/icons/multiply.svg" onClick={() => removeSkill(skill)} className="cursor-pointer " alt="" />
+                </div>
+              ))
+            }
       </div>
     )
-  }
+}
   
   export default SkillsBody;
+
+ 

@@ -33,7 +33,7 @@ const BioDialogBody = ({ initialOneLineHeader, initialAbout, onSave }) => {
           maxLength={600}
           value={about}
           onChange={(e) => setAbout(e.target.value)}
-          className="bg-[#FAFAFA] flex w-full rounded-[8px] border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="bg-[#FAFAFA] flex w-full rounded-[8px] border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none  focus-visible:ring-[#fafafa] focus-visible:ring-offset-[#dfdddd]  focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           id="about"
           placeholder="Write about yourself"
           rows="10"

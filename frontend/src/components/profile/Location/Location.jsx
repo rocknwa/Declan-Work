@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import LocationDialogBody from './LocationDialogBody';
 import { Toaster } from '@/components/ui/sonner';
+import { showToast } from '@/components/Sonner';
 
 const Location = () => {
   const data = {
@@ -17,6 +18,9 @@ const Location = () => {
     if(newCountry.length != 0 && newCity.length !=0 && newCountry != "" && newCity != "") {
       setCountry(newCountry);
     setCity(newCity);
+    showToast({type: "success", message:"Location successfully changed"});
+  } else {
+    showToast({type: "error", message:"Please select all fields!"});
     }
   };
 
