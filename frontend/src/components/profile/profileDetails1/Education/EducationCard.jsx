@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 
-const EducationCard = ({ id, certName, institution, startDate, endDate, removeEducation }) => {
+const EducationCard = ({ viewOnly, id, certName, institution, startDate, endDate, removeEducation }) => {
   return (
         <div className="flex items-center">
             <div className="border p-3 rounded-[10px]">
@@ -9,9 +9,9 @@ const EducationCard = ({ id, certName, institution, startDate, endDate, removeEd
                 <p className="text-[12px] font-medium">{startDate.year} - {endDate.year}</p>
             </div>
             <div className="">
-                <Button onClick={() => removeEducation(id)} className="bg-transparent p-2 hover:bg-transparent">
+                { !viewOnly && <Button onClick={() => removeEducation(id)} className="bg-transparent p-2 hover:bg-transparent">
                     <img src="/icons/multiply-large.svg" alt="" />
-                </Button>
+                </Button>}
             </div>
         </div>
   )

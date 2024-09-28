@@ -1,7 +1,8 @@
+import { Button } from '@/components/ui/button'
 import ButtonWithIcon from '../../ButtonWithIcon'
 import FeaturedCard from './FeaturedCard'
 
-const Projects = () => {
+const Projects = ({viewOnly}) => {
     const data = {
         projects: {
             monthly: 74,
@@ -27,7 +28,10 @@ const Projects = () => {
             <h4 className='text-sm font-semibold mb-3'><b>Featured</b></h4>
             <FeaturedCard />
         </div>
-        <div><ButtonWithIcon>Add Projects to Featured</ButtonWithIcon> </div>
+        <div>
+            {viewOnly && <Button>View All Projects</Button> }
+            {!viewOnly && <ButtonWithIcon>Add Projects to Featured</ButtonWithIcon> }
+        </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ import SkillsBody from './SkillsBody'
 import { useState } from 'react'
 import { showToast } from '@/components/Sonner'
 
-const Skills = () => {
+const Skills = ({viewOnly}) => {
   const initialSkills = ['3d', 'Illustration', 'Cinema 4D', 'Photo Manipulation', 'Video Editing', 'Data Analysis'];
   const[skills, setSkills] = useState(initialSkills);
   const handleSave = (newSkills) => {
@@ -40,15 +40,15 @@ const Skills = () => {
             }
             body={
                 <div className='flex flex-col gap-4'>
-                  <SkillsBody skills={skills} addSkill={addSkill} removeSkill={removeSkill} setSkills={setSkills} />
-                  <DialogDemo
+                  <SkillsBody viewOnly={viewOnly} skills={skills} addSkill={addSkill} removeSkill={removeSkill} setSkills={setSkills} />
+                  {!viewOnly && <DialogDemo
                     trigger={<div><ButtonWithIcon>Add Skills</ButtonWithIcon></div>}
                     header={"Add Skills "}
                     body={
                       <SkillsDialogBody onSave={handleSave} skills={skills} />
                     }
                     footer={<Button form="skills-form" className="bg-[#21B557] hover:bg-accent-success-500 rounded-full">Save</Button>}
-                            />
+                            />}
                   </div>
               }
           />

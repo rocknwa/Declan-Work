@@ -4,13 +4,14 @@ import CertificationsCard from "./CertificationsCard"
 import { Button } from "@/components/ui/button"
 import CertificationsDialogDemo from "./CertificationsDialogBody.jsx"
 
-const CertificationsBody = ({ certificationData, handleSave, handleRemove}) => {
+const CertificationsBody = ({ viewOnly, certificationData, handleSave, handleRemove}) => {
   return (
         <div className='text-sm flex mt-4 flex-col gap-4 2xl:text-base'>
             <div className="flex flex-wrap gap-x-10 gap-y-2">
                 {
                     certificationData.map(({certName, provider, issueDate, expirationDate, certUrl, certId}, id) => (
                         <CertificationsCard 
+                            viewOnly={viewOnly}
                             key={id} 
                             id={id} 
                             certName={certName} 
@@ -25,7 +26,7 @@ const CertificationsBody = ({ certificationData, handleSave, handleRemove}) => {
             <div>
                 <DialogDemo
                     trigger={
-                        <div><ButtonWithIcon>Add Certification</ButtonWithIcon></div>
+                        <>{ !viewOnly && <div><ButtonWithIcon>Add Certification</ButtonWithIcon></div>}</>
                     }
                     header={"Add Certification"}
                     body={

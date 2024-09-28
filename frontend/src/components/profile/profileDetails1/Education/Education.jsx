@@ -3,7 +3,7 @@ import ProfileCard from '../../ProfileCard';
 import EducationBody from './EducationBody';
 import { showToast } from '@/components/Sonner';
 
-const Education = () => {
+const Education = ({viewOnly}) => {
   const initialData = [
     {
       certName: {
@@ -80,6 +80,7 @@ const Education = () => {
       header={<h3 className="font-semibold text-lg">Education</h3>}
       body={
         <EducationBody
+          viewOnly={viewOnly}
           degree={degree}
           institution={institution}
           areaOfStudy={areaOfStudy}

@@ -4,7 +4,7 @@ import SelectAvailability from "./SelectAvailability";
 import { useState } from "react";
 import Location from "./Location/Location";
 
-const ProfileInfo = () => {
+const ProfileInfo = ({viewOnly}) => {
   const data = {
     name: "Izuchukwu Igwe",
     location: "Lagos, Nigeria",
@@ -58,28 +58,42 @@ const ProfileInfo = () => {
               <div>
                 <p className="font-normal">{data.occupation}</p>
               </div>
-              <Location />
+              <Location viewOnly={true} />
             </div>
           </div>
           <div className="flex items-center relative gap-2 text-sm text-[#21B557] font-medium">
-            <p>Status: {available ? "Available" : "Unavailable"}</p>
-            <img
-              src="/icons/edit.svg"
-              className="w-4 h-4 cursor-pointer"
-              alt="Edit"
-              onClick={() => setIsSelectOpen((prev) => !prev)} 
-            />
-            <SelectAvailability
-              available={available}
-              onSelectChange={setAvailable} 
-              isOpen={isSelectOpen}
-              setIsOpen={setIsSelectOpen} 
-            />
+            {
+              viewOnly && 
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-[#21B557]">{available ? "Available Now" : "Unavailable"}</p>
+                <Button className="px-4 py-2 flex items-center gap-2 text-white rounded-full bg-[#17813e]">
+                  <img src="/icons/sms.svg" alt="" />
+                  <span>Get in Touch</span>
+                </Button>
+              </div>
+            }
+            { !viewOnly  && 
+            <>
+              <p>Status: {available ? "Available" : "Unavailable"}</p>
+                <img
+                  src="/icons/edit.svg"
+                  className="w-4 h-4 cursor-pointer"
+                  alt="Edit"
+                  onClick={() => setIsSelectOpen((prev) => !prev)} 
+                />
+                <SelectAvailability
+                  available={available}
+                  onSelectChange={setAvailable} 
+                  isOpen={isSelectOpen}
+                  setIsOpen={setIsSelectOpen} 
+                />
+              </>
+              }
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="rounded-full border-accent-success border-[2px]">
+            { !viewOnly && <Button variant="outline" className="rounded-full border-accent-success border-[2px]">
               <Link to='/public'>View Public Profile</Link>
-            </Button>
+            </Button>}
             <Button className="rounded-full bg-[#17813E] hover:bg-accent-success flex gap-2">
               <img src="/icons/share-alt.svg" alt="Share icon" />
               Share

@@ -3,7 +3,7 @@ import ProfileCard from '../../ProfileCard'
 import CertificationsBody from './CertificationsBody'
 import { showToast } from '@/components/Sonner';
 
-const Certifications = () => {
+const Certifications = ({viewOnly}) => {
     const initialData= [
         {
             certName: "GRAPHIC DESIGN MASTERCLASS – LEARN GREAT DESIGN BY LINDSAY MARSH",
@@ -97,6 +97,7 @@ const Certifications = () => {
         header={<h3 className='font-semibold text-lg'>Certifications</h3>}
         body={
             <CertificationsBody
+                viewOnly={viewOnly}
                 certName={certName}
                 certId={certId}
                 certUrl={certUrl}

@@ -5,7 +5,7 @@ import LocationDialogBody from './LocationDialogBody';
 import { Toaster } from '@/components/ui/sonner';
 import { showToast } from '@/components/Sonner';
 
-const Location = () => {
+const Location = ({viewOnly}) => {
   const data = {
     country: "Nigeria",
     city: "Lagos"
@@ -32,7 +32,7 @@ const Location = () => {
       <img src="/icons/map-marker.svg" alt="Location icon" />
       <Toaster />
       <p className="text-sm font-semibold mr-1 capitalize">{city}, {country}</p>
-      <DialogDemo
+      {!viewOnly && <DialogDemo
         trigger={
           <img src="/icons/pencil-edit.svg" className='cursor-pointer' alt="Edit icon" />
         }
@@ -45,7 +45,7 @@ const Location = () => {
           />
         }
         footer={<Button form="location-form" className="bg-[#21B557] hover:bg-accent-success-500 rounded-full">Save</Button>}
-      />
+      />}
     </div>
   );
 };

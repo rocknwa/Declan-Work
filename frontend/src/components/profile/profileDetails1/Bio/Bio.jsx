@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { showToast } from '@/components/Sonner';
 import BioBody from './BioBody';
 
-const Bio = () => {
+const Bio = ({viewOnly}) => {
   const data = {
     oneLineHeader: "Product Designer with 5 Years of Experience",
     about: `I am a creative and detail-oriented freelance product designer with over 5 years of experience...`,
@@ -32,7 +32,7 @@ const Bio = () => {
       header={
         <div className="flex justify-between items-center">
           <h3 className="font-semibold text-lg text-black">Bio</h3>
-          <DialogDemo
+          {!viewOnly && <DialogDemo
             trigger={
               <img
                 className="w-4 h-4 cursor-pointer"
@@ -49,7 +49,7 @@ const Bio = () => {
               />
             }
             footer={<Button form="bio-form" className="bg-[#21B557] hover:bg-accent-success-500 rounded-full">Save</Button>}
-          />
+          />}
         </div>
       }
       body={<BioBody oneLineHeader={oneLineHeader} about={about} />}
