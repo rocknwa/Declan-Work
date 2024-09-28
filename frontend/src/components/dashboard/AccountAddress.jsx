@@ -7,6 +7,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu";
+import { NavLink } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 const AccountAddress = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +19,7 @@ const AccountAddress = () => {
                 <div className="flex items-center justify-center gap-2">
                     <img src="/icons/Avatar.svg" alt="" />
                     <span>0x0595...PQ59</span>
-                    <img src="/icons/arrow-down-01.svg" alt="" />
+                    <img src="/icons/arrow-down-01.svg" className={cn("transition-transform", isOpen ? "rotate-180" : "rotate-0")} alt="" />
                 </div>
             </Button>
         </DropdownMenuTrigger>
@@ -28,8 +30,10 @@ const AccountAddress = () => {
             onMouseLeave={() => setIsOpen(false)}
         >
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-            <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" />
-            <span>Profile Management</span>
+            <NavLink className="flex items-center justify-center" to="/profile">
+                <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" />
+                <span>Profile Management</span>
+            </NavLink>
             </DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
             <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" />
