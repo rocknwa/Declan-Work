@@ -29,7 +29,7 @@ const ProfileInfo = () => {
         ))}
         {hasHalfStar && <img src="/icons/star-half.svg" alt="Half star" />}
         {Array(emptyStars).fill().map((_, index) => (
-          <img key={index} src="/icons/star.svg" alt="Empty star" />
+          <img key={index} src="/icons/star-empty.svg" alt="Empty star" />
         ))}
       </div>
     );
@@ -41,10 +41,16 @@ const ProfileInfo = () => {
         <div className="rounded-[15px] border p-6 flex items-center justify-between">
           <div className="flex gap-6 items-center">
             <div className="relative">
-              <img src="/assets/profile_img.png" alt="Profile" />
-              <div className="bg-success-strong w-3 lg:w-4 lg:h-4 h-3 rounded-full absolute bottom-[1%] right-[4%] border border-white"></div>
+              <div className="overflow-hidden rounded-full w-[50px] h-[50px]">
+                <img
+                  src="/assets/profile.jpg"
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-[#059669] w-3 lg:w-4 lg:h-4 h-3 rounded-full absolute bottom-[-1%] right-[3%] border-2 border-white"></div>
             </div>
-            <div className="">
+            <div>
               <div className="flex items-center gap-3">
                 <h1 className="text-xl font-semibold">{data.name}</h1>
                 {renderStars(data.rating)} {/* Render stars based on rating */}
@@ -52,7 +58,7 @@ const ProfileInfo = () => {
               <div>
                 <p className="font-normal">{data.occupation}</p>
               </div>
-             <Location />
+              <Location />
             </div>
           </div>
           <div className="flex items-center relative gap-2 text-sm text-[#21B557] font-medium">
@@ -72,7 +78,7 @@ const ProfileInfo = () => {
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline" className="rounded-full border-accent-success border-[2px]">
-              <Link to='/public'> View Public Profile</Link>
+              <Link to='/public'>View Public Profile</Link>
             </Button>
             <Button className="rounded-full bg-[#17813E] hover:bg-accent-success flex gap-2">
               <img src="/icons/share-alt.svg" alt="Share icon" />
