@@ -7,7 +7,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const AccountAddress = () => {
@@ -30,10 +30,10 @@ const AccountAddress = () => {
             onMouseLeave={() => setIsOpen(false)}
         >
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-            <Link className="flex items-center justify-center" to="/profile">
+            <NavLink className="flex items-center justify-center" to="/profile">
                 <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" />
                 <span>Profile Management</span>
-            </Link>
+            </NavLink>
             </DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
             <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" />

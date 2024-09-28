@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import AccountAddress from "./AccountAddress";
@@ -17,17 +18,25 @@ export default function DashboardNav() {
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="flex-shrink-0">
+            <NavLink to="/" className="flex-shrink-0">
               <img src="/icons/declan-logo-dashboard.svg" alt="Declan logo" />
-            </a>
+            </NavLink>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <NavLink href="/">Dashboard</NavLink>
-
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "inline-flex items-center text-sm font-medium text-[#000]"
+                  : "inline-flex items-center text-sm font-medium text-black"
+              }
+            >
+              Dashboard
+            </NavLink>
             <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
               <DropdownMenuTrigger asChild>
                 <div
-                  className="flex items-center text-sm cursor-pointer font-medium active:text-black text-[#989898] hover:text-gray-900 justify-center gap-1"
+                  className="flex items-center text-sm cursor-pointer font-medium text-[#989898] hover:text-gray-900 justify-center gap-1"
                 >
                   <span className="text-sm">Job Matches</span>
                   <div className="w-[20px] transition-transform flex items-center justify-center">
@@ -47,19 +56,34 @@ export default function DashboardNav() {
                 onMouseLeave={() => setIsOpen(false)}
               >
                 <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-                  <NavLink href="/job-listings">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "flex items-center text-[#000]" : "flex items-center"
+                    }
+                    to="/job-listings"
+                  >
                     <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" alt="Job Listings icon" />
                     <span className="text-zinc-950 font-normal">Job Listings</span>
                   </NavLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-                  <NavLink href="/job-listings-ai">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "flex items-center text-[#000]" : "flex items-center"
+                    }
+                    to="/job-listings-ai"
+                  >
                     <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" alt="AI Job Listings icon" />
                     <span className="text-zinc-950 font-normal">Job Listings (AI)</span>
                   </NavLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-                  <NavLink href="/manage-projects">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "flex items-center text-[#000]" : "flex items-center"
+                    }
+                    to="/manage-projects"
+                  >
                     <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" alt="Manage Projects icon" />
                     <span className="text-zinc-950 font-normal">Manage Projects</span>
                   </NavLink>
@@ -67,10 +91,38 @@ export default function DashboardNav() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <NavLink href="/my-projects">My Projects</NavLink>
-            <NavLink href="/about-us">About Us</NavLink>
-            <NavLink href="/messages">Messages</NavLink>
-            <NavLink href="/my-wallet">My Wallet</NavLink>
+            <NavLink
+              to="/my-projects"
+              className={({ isActive }) =>
+                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+              }
+            >
+              My Projects
+            </NavLink>
+            <NavLink
+              to="/about-us"
+              className={({ isActive }) =>
+                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+              }
+            >
+              About Us
+            </NavLink>
+            <NavLink
+              to="/messages"
+              className={({ isActive }) =>
+                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+              }
+            >
+              Messages
+            </NavLink>
+            <NavLink
+              to="/my-wallet"
+              className={({ isActive }) =>
+                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+              }
+            >
+              My Wallet
+            </NavLink>
           </div>
 
           <div className="hidden sm:flex sm:items-center sm:space-x-4">
@@ -98,16 +150,5 @@ export default function DashboardNav() {
         </div>
       </div>
     </nav>
-  );
-}
-
-function NavLink({ href, children }) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center text-sm font-medium active:text-black text-[#989898] hover:text-gray-900"
-    >
-      {children}
-    </a>
   );
 }
