@@ -48,7 +48,7 @@ const ProfileInfo = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="bg-[#059669] w-3 lg:w-4 lg:h-4 h-3 rounded-full absolute bottom-[-1%] right-[3%] border-2 border-white"></div>
+              {available && <div className="bg-[#059669] w-3 lg:w-4 lg:h-4 h-3 rounded-full absolute bottom-[-1%] right-[3%] border-2 border-white"></div>}
             </div>
             <div>
               <div className="flex items-center gap-3">
