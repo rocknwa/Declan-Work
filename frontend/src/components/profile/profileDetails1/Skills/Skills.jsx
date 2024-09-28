@@ -36,7 +36,7 @@ const Skills = ({viewOnly}) => {
         <ProfileCard
             icon={false}
             header={
-                <h3 className='font-semibold text-lg'>Skills</h3>
+                <h3 className=''>Skills</h3>
             }
             body={
                 <div className='flex flex-col gap-4'>

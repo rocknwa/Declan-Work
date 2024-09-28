@@ -5,12 +5,14 @@ import DashboardTable from '@/components/dashboard/DashboardTable'
 
 const Dashboard = () => {
   return (
-        <section className='bg-white flex flex-col gap-6'>
-            <DashboardNav />
-            <Overview />
-            <DashboardBarchart />
-            <DashboardTable />
-        </section>
+        <>
+            <DashboardNav />  
+            <section className='bg-white py-6 flex flex-col gap-6'>
+                <Overview />
+                <DashboardBarchart />
+                <DashboardTable />
+            </section>
+        </>
     )
 }
 

@@ -94,7 +94,7 @@ const Certifications = ({viewOnly}) => {
         };
   return (
     <ProfileCard
-        header={<h3 className='font-semibold text-lg'>Certifications</h3>}
+        header={<h3 className=''>Certifications</h3>}
         body={
             <CertificationsBody
                 viewOnly={viewOnly}

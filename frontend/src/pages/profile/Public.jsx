@@ -14,14 +14,14 @@ const PublicProfile = () => {
             <DashboardNav />
             <ProfileInfo viewOnly = {true} />
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <div className='flex gap-3'>
-                <div className='w-[35%] flex flex-col gap-3 max-w-[]'>
+                <div className='flex gap-3 flex-col lg:flex-row'>
+                <div className='lg:w-[35%] w-full flex flex-col gap-3'>
                     <Bio viewOnly = {true} />
                     <Skills viewOnly = {true} />
                     <Resume viewOnly = {true} />
                     <Education viewOnly = {true} />
                 </div>
-                <div className='w-[65%] flex flex-col gap-3'>
+                <div className='lg:w-[65%] w-full flex flex-col gap-3'>
                     <Portfolio viewOnly = {true} />
                     <Projects viewOnly = {true} />
                     <Certifications viewOnly = {true}/>

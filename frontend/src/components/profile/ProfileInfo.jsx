@@ -38,7 +38,7 @@ const ProfileInfo = ({viewOnly}) => {
   return (
     <div>
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[15px] border p-6 flex items-center justify-between">
+        <div className="rounded-[15px] box-shadow-soft border p-6 flex flex-col lg:flex-row gap-[20px] lg:gap-0 items-center justify-between">
           <div className="flex gap-6 items-center">
             <div className="relative">
               <div className="overflow-hidden rounded-full w-[50px] h-[50px]">
@@ -51,7 +51,7 @@ const ProfileInfo = ({viewOnly}) => {
               {available && <div className="bg-[#059669] w-3 lg:w-4 lg:h-4 h-3 rounded-full absolute bottom-[-1%] right-[3%] border-2 border-white"></div>}
             </div>
             <div>
-              <div className="flex items-center gap-3">
+              <div className="flex lg:items-center gap-3 flex-col lg:flex-row items-start">
                 <h1 className="text-xl font-semibold">{data.name}</h1>
                 {renderStars(data.rating)} {/* Render stars based on rating */}
               </div>
@@ -66,7 +66,7 @@ const ProfileInfo = ({viewOnly}) => {
               viewOnly && 
               <div className="flex flex-col items-center gap-2">
                 <p className="text-[#21B557]">{available ? "Available Now" : "Unavailable"}</p>
-                <Button className="px-4 py-2 flex items-center gap-2 text-white rounded-full bg-[#17813e]">
+                <Button className="px-4 py-2 flex items-center gap-2 hover:bg-accent-success text-white rounded-full bg-[#17813e]">
                   <img src="/icons/sms.svg" alt="" />
                   <span>Get in Touch</span>
                 </Button>

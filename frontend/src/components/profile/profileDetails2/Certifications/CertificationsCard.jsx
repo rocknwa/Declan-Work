@@ -4,7 +4,7 @@ const CertificationsCard = ({ viewOnly, id, certName, provider, issueYear, expir
   return (
     <div className="flex items-start">
         <div className="flex items-center">
-          <div className="border p-3 rounded-[10px]">
+          <div className="border p-3 pr-6 rounded-[10px]">
               <p className="font-semibold text-sm uppercase w-[30ch]">{certName}</p>
               <p className="text-[12px] font-semibold text-[#4D4D4D]">{provider}</p>
               <p className="text-[12px] font-bold">{issueYear} - {expirationYear}</p>

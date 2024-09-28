@@ -4,7 +4,7 @@ const EducationCard = ({ viewOnly, id, certName, institution, startDate, endDate
   return (
         <div className="flex items-center">
             <div className="border p-3 rounded-[10px]">
-                <p className="font-semibold text-sm uppercase w-[30ch]">{certName.degree} {certName.areaOfStudy}</p>
+                <p className="font-semibold uppercase w-[30ch]">{certName.degree} {certName.areaOfStudy}</p>
                 <p className="text-[12px] font-semibold text-[#4D4D4D]">{institution}</p>
                 <p className="text-[12px] font-medium">{startDate.year} - {endDate.year}</p>
             </div>

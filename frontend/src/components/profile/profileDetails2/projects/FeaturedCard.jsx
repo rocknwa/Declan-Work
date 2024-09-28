@@ -52,14 +52,14 @@ const FeaturedCard = () => {
     <div className='flex flex-wrap gap-2 w-full'> 
         {
             data.map(({projectName, client, projectEnd, projectStart, rating}, id) => (
-                <div key={id} className='rounded-[8px] border w-[383px] justify-between p-[10px] text-sm max-h-[61px] flex'> 
+                <div key={id} className='rounded-[8px] border w-[383px] justify-between p-[10px] text-sm lg:max-h-[61px] flex flex-col lg:flex-row'> 
                     <div className='flex flex-col gap-1'>
                         <p className='font-bold'>{projectName}</p>
                         <p className=''>Client: {client}</p>
                     </div>
                     <div className='flex flex-col gap-1'>
                         <p className='text-[#989898]'>{projectStart} - {projectEnd}</p>
-                        <div className='flex font-medium justify-end items-center gap-2'>
+                        <div className='flex font-medium justify-end items-start lg:items-center gap-2'>
                             Rating
                             {renderStars(rating)}
                         </div>

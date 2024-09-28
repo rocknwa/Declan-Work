@@ -31,7 +31,7 @@ const Bio = ({viewOnly}) => {
     <ProfileCard
       header={
         <div className="flex justify-between items-center">
-          <h3 className="font-semibold text-lg text-black">Bio</h3>
+          <h3 className="">Bio</h3>
           {!viewOnly && <DialogDemo
             trigger={
               <img
