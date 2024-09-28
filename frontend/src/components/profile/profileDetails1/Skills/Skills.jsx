@@ -11,7 +11,7 @@ const Skills = () => {
   const initialSkills = ['3d', 'Illustration', 'Cinema 4D', 'Photo Manipulation', 'Video Editing', 'Data Analysis'];
   const[skills, setSkills] = useState(initialSkills);
   const handleSave = (newSkills) => {
-    if(newSkills.length >= 4 && newSkills.length < 6) {
+    if(newSkills.length == 4) {
       setSkills(newSkills)
       showToast({type: "success", message: "Skills successfully updated!"})
     } else if (newSkills.length < 4) {

@@ -40,7 +40,7 @@ const SelectMonth = ({ month, setMonth, startDate, isEndDate = false }) => {
         month: value
       }))} 
     >
-      <SelectTrigger className="max-w-[200px] w-full bg-[#fafafa] rounded-[10px]">
+      <SelectTrigger className="max-w-[120px] w-[120px] bg-[#fafafa] rounded-[10px]">
         <SelectValue className="" placeholder="Month" />
       </SelectTrigger>
       <SelectContent className="max-h-[150px] bg-[#fafafa] rounded-[10px]">

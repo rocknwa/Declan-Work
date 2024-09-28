@@ -31,32 +31,32 @@ export function YearComboboxDemo({ year, setYear, startDate, isEndDate = false }
     : years;
 
   return (
-    <div className="flex flex-col items-start font-normal justify-start gap-4 w-full">
+    <div className="flex flex-col items-start font-normal justify-start ">
       <Popover open={openYear} onOpenChange={setOpenYear}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             role="combobox"
             aria-expanded={openYear}
-            className="w-full max-w-[150px] font-normal rounded-[10px] bg-[#fafafa] justify-between"
+            className="w-full max-w-[76px] font-normal rounded-[10px] bg-[#fafafa] justify-between"
           >
             {year
               ? filteredYears.find((d) => d.value === year)?.label
               : "Year"}
             <ChevronDown
               className={cn(
-                "ml-2 h-4 w-4 shrink-0 transition-transform",
+                "ml-[1.5%] h-4 w-4 shrink-0 color-[#e5e7eb] transition-transform",
                 openYear ? "rotate-180" : "rotate-0"
               )}
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="lg:w-[150px] p-0">
-          <Command>
-            <CommandInput placeholder="Search" className="h-9" />
+        <PopoverContent className="lg:w-[100px] h-[180px] bg-[#fafafa]  p-0">
+          <Command className="bg-transparent">
+            <CommandInput placeholder="Search" className="h-9 bg-transparent" />
             <CommandList>
               <CommandEmpty>Pick within range</CommandEmpty>
-              <CommandGroup className="">
+              <CommandGroup className="bg-transparent">
                 {filteredYears.map((d) => (
                   <CommandItem
                     key={d.value}

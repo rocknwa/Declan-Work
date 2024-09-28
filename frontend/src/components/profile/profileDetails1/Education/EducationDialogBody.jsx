@@ -55,12 +55,14 @@ const EducationDialogBody = ({ onSave, }) => {
             </div>
             <div>
               <Label className="ml-3 text-[#6A6A6A]" htmlFor="dates">Period</Label>
-              <div className="lg:max-w-full flex items-center justify-between">
+              <div className="lg:max-w-full w-lg flex items-center justify-between">
                 <div className="flex gap-1 justify-between">
                   <SelectMonth month={startDate.month} setMonth={setStartDate} />
                   <YearComboboxDemo year={startDate.year} setYear={setStartDate} />
                 </div>
-                <p>to</p>
+                <div>
+                  <p>to</p>
+                </div>
                 <div className="flex gap-1 justify-between">
                   <SelectMonth month={endDate.month} setMonth={setEndDate} startDate={startDate} isEndDate />
                   <YearComboboxDemo year={endDate.year} setYear={setEndDate} startDate={startDate} isEndDate />

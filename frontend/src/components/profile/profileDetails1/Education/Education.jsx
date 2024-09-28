@@ -20,7 +20,6 @@ const Education = () => {
         year: "2022",
       },
     },
-    // Add more data if needed
   ];
 
   const [educationData, setEducationData] = useState(initialData);
