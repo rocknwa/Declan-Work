@@ -58,7 +58,7 @@ const ProfileInfo = ({viewOnly}) => {
               <div>
                 <p className="font-normal">{data.occupation}</p>
               </div>
-              <Location viewOnly={true} />
+              <Location viewOnly={viewOnly} />
             </div>
           </div>
           <div className="flex items-center relative gap-2 text-sm text-[#21B557] font-medium">
