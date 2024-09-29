@@ -3,7 +3,7 @@ import DashboardCard from './DashboardCard'
 
 const Overview = () => {
     const user= {
-        name: "Owai"
+        name: "Owais"
     }
   return (
     <div>

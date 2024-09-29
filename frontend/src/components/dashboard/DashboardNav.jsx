@@ -36,7 +36,7 @@ export default function DashboardNav() {
                     onMouseLeave={() => setIsOpen(false)}
                 >
                     <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-                        <NavLink href="/job-listings">
+                        <NavLink href="/jobs">
                             <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" />
                             <span className="text-zinc-950 font-normal">Job Listings</span>
                         </NavLink>
