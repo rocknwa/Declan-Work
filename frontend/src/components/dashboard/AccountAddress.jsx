@@ -48,8 +48,10 @@ const AccountAddress = () => {
             <span>Support</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
+            <NavLink className="flex items-center justify-center" to="/signup">
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>
+            </NavLink>
             </DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>

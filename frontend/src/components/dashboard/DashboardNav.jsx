@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import AccountAddress from "./AccountAddress";
@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 export default function DashboardNav() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const location = useLocation();
   return (
     <nav className="bg-white border-b border-[#E9E9E9]">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,7 +39,7 @@ export default function DashboardNav() {
                 <div
                   className="flex items-center text-sm cursor-pointer font-medium text-[#989898] hover:text-gray-900 justify-center gap-1"
                 >
-                  <span className="text-sm">Job Matches</span>
+                  <span className={`${location.pathname === "/jobs" ? "text-[#000]" : ""} text-sm`}>Job Matches</span>
                   <div className="w-[20px] transition-transform flex items-center justify-center">
                     <img
                       src="/icons/arrow-down-grey.svg"
@@ -61,7 +61,7 @@ export default function DashboardNav() {
                     className={({ isActive }) =>
                       isActive ? "flex items-center text-[#000]" : "flex items-center"
                     }
-                    to="/job-listings"
+                    to="/jobs"
                   >
                     <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" alt="Job Listings icon" />
                     <span className="text-zinc-950 font-normal">Job Listings</span>

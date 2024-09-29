@@ -9,7 +9,10 @@ import CompletedProjects from './pages/projects/CompletedProjects';
 import AllProjects from './pages/projects/AllProjects';
 import DashboardNav from './components/dashboard/DashboardNav';
 import Applications from './pages/projects/Applications';
-
+import JobListings from './pages/JobListings';
+import JobDetails from './pages/JobDetails';
+import ApplyJobs from './pages/ApplyJobs';
+import AppSuccess from './pages/AppSuccess';
 function App() {
   return (
     <Router>
@@ -17,6 +20,12 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<SignedInPages />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="jobs" element={<JobListings />}>
+            <Route path=":companyName" element={<JobListings />} />
+            <Route path=":companyName/:jobId" element={<JobDetails />} />
+            <Route path=":companyName/:jobId/apply" element={<ApplyJobs />} />
+            <Route path=":companyName/:jobId/congrats" element={<AppSuccess />} />
+          </Route>
           <Route path="profile" element={<Freelancer />} />
           <Route path="public" element={<PublicProfile />} />
           <Route path="projects" element={<Projects />}>
@@ -35,10 +44,10 @@ function App() {
 
 function SignedInPages() {
   return (
-    <div>
+    <>
     <DashboardNav />
       <Outlet />
-    </div>
+    </>
   );
 }
 export default App;
