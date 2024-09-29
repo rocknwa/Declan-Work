@@ -62,13 +62,13 @@ const JobsCard = ({title, companyLogo, type, companyLocation, companyName, jobDe
     <div className="bg-white px-4 py-5 flex flex-col gap-3 rounded-[8px]">
         <div className="flex justify-between items-center">
             <div className="rounded-full flex items-center overflow-hidden"><img className="rounded-full" src={companyLogo} alt="" /></div>
-            <Badge className="border-[#00C774] text-[#00C774] capitalize" variant="outline">{type}</Badge>
+            <Badge className="border-[#00C774] py-1.5 text-[#00C774] capitalize" variant="outline">{type}</Badge>
         </div>
         <div className="flex flex-col gap-1">
             <p className="font-semibold">{title}</p>
             <div className="flex items-center font-medium text-[13px] gap-1 text-[#989898]">
                 <p className="">{companyName}</p>
-                    <div className="bg-[#989898] w-[3.26px] h-[3.26px] rounded-full"></div>
+                <img src="/icons/dot-grey.svg" alt="" />
                 <p>{companyLocation}</p>
             </div>
         </div>

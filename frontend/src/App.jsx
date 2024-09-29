@@ -8,6 +8,7 @@ import ActiveProjects from './components/projects/ActiveProjects';
 import CompletedProjects from './pages/projects/CompletedProjects';
 import AllProjects from './pages/projects/AllProjects';
 import DashboardNav from './components/dashboard/DashboardNav';
+import Applications from './pages/projects/Applications';
 
 function App() {
   return (
@@ -16,13 +17,14 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<SignedInPages />}>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/profile" element={<Freelancer />} />
-          <Route path="/public" element={<PublicProfile />} />
-          <Route path="/projects" element={<Projects />}>
-            <Route path="" element={< AllProjects/>}>
-              <Route path="" element={< ActiveProjects/>} />
+          <Route path="profile" element={<Freelancer />} />
+          <Route path="public" element={<PublicProfile />} />
+          <Route path="projects" element={<Projects />}>
+            <Route path='' element={< AllProjects />}>
+              <Route index element={< ActiveProjects/>} />
+              <Route path="active" element={< ActiveProjects/>} />
               <Route path="completed" element={< CompletedProjects/>} />
-              <Route path="applications"  element={< ActiveProjects/>} />
+              <Route path="applications"  element={< Applications/>} />
             </Route>
           </Route>
         </Route>

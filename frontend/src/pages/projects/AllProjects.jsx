@@ -1,13 +1,8 @@
-import ActiveProjects from "@/components/projects/ActiveProjects";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import CompletedProjects from "./CompletedProjects";
 import JobsSidebar from "@/components/projects/JobsSidebar";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const AllProjects = () => {
-  const [openTab, setOpenTab] = useState("active");
-
+  const location = useLocation();
   return (
     <div className="flex gap-[70px] w-full">
         <div className="w-full">
@@ -18,36 +13,37 @@ const AllProjects = () => {
             </p>
         </div>
         <div className="flex gap-4">
-            <Link to="">
-                <Button
-                onClick={() => setOpenTab("active")}
-                className={`${
-                    openTab === "active" ? "text-[#21B557] font-semibold" : "text-[#989898]"
-                } bg-transparent text-lg p-0 hover:bg-transparent hover:text-[#21B557]`}
-                >
-                Active
-                </Button>
-            </Link>
-            <Link to="completed">
-                <Button
-                onClick={() => setOpenTab("completed")}
-                className={`${
-                    openTab === "completed" ? "text-[#21B557] font-semibold" : "text-[#989898]"
-                } bg-transparent text-lg p-0 hover:bg-transparent hover:text-[#21B557]`}
-                >
-                Completed
-                </Button>
-            </Link>
-            <Link to="applications">
-                <Button
-                onClick={() => setOpenTab("applications")}
-                className={`${
-                    openTab === "applications" ? "text-[#21B557] font-semibold" : "text-[#989898]"
-                } bg-transparent text-lg p-0 hover:bg-transparent hover:text-[#21B557]`}
-                >
-                Applications
-                </Button>
-            </Link>
+            <NavLink
+             to="active"
+             end
+             className={({isActive}) =>
+                isActive || location.pathname === "/projects"
+                  ? "text-[#21B557] font-semibold bg-transparent text-lg py-2 hover:bg-transparent hover:text-[#21B557]"
+                  : "text-[#989898] font-semibold bg-transparent text-lg py-2 hover:bg-transparent hover:text-[#21B557]"
+              }
+            >
+              Active
+            </NavLink>
+            <NavLink
+             to="completed"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#21B557] font-semibold bg-transparent text-lg py-2 hover:bg-transparent hover:text-[#21B557]"
+                  : "text-[#989898] font-semibold bg-transparent text-lg py-2 hover:bg-transparent hover:text-[#21B557]"
+              }
+            >
+              Completed
+            </NavLink>
+            <NavLink
+             to="applications"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#21B557] font-semibold bg-transparent text-lg py-2 hover:bg-transparent hover:text-[#21B557]"
+                  : "text-[#989898] font-semibold bg-transparent text-lg py-2 hover:bg-transparent hover:text-[#21B557]"
+              }
+            >
+              Applications
+            </NavLink>
         </div>
         <div className="mt-6">
             <Outlet />

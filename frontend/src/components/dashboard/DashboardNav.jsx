@@ -25,6 +25,7 @@ export default function DashboardNav() {
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
             <NavLink
               to="/"
+              end
               className={({ isActive }) =>
                 isActive
                   ? "inline-flex items-center text-sm font-medium text-[#000]"
