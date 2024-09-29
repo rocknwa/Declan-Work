@@ -6,7 +6,7 @@ import SignUp from "@/components/authentication/SignUp";
 import AccountType from "@/components/authentication/AccountType";
 import Sidebar from "@/components/authentication/Sidebar";
 import Header from "@/components/authentication/Header";
-import VerifyEmail from "@/components/authentication/verifyEmail";
+import VerifyEmail from "@/components/authentication/VerifyEmail";
 
 const SignupPage = () => {
   const [active, setActive] = useState("accountType");
