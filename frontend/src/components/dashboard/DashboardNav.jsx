@@ -25,10 +25,11 @@ export default function DashboardNav() {
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
             <NavLink
               to="/"
+              end
               className={({ isActive }) =>
                 isActive
                   ? "inline-flex items-center text-sm font-medium text-[#000]"
-                  : "inline-flex items-center text-sm font-medium text-black"
+                  : "inline-flex items-center text-sm font-medium text-[#989898]"
               }
             >
               Dashboard
@@ -92,7 +93,7 @@ export default function DashboardNav() {
             </DropdownMenu>
 
             <NavLink
-              to="/my-projects"
+              to="/projects"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
               }

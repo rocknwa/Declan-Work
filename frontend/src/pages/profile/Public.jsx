@@ -1,4 +1,3 @@
-import DashboardNav from "@/components/dashboard/DashboardNav"
 import Bio from "@/components/profile/profileDetails1/Bio/Bio"
 import Education from "@/components/profile/profileDetails1/Education/Education"
 import Resume from "@/components/profile/profileDetails1/Resume"
@@ -10,8 +9,8 @@ import ProfileInfo from "@/components/profile/ProfileInfo"
 
 const PublicProfile = () => {
   return (
-    <section className='flex flex-col gap-4'>
-            <DashboardNav />
+        <>
+          <section className='flex flex-col p-4 gap-4'>
             <ProfileInfo viewOnly = {true} />
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className='flex gap-3 flex-col lg:flex-row'>
@@ -28,7 +27,8 @@ const PublicProfile = () => {
                 </div>    
                 </div>
             </div>
-    </section>
+          </section>
+        </>
   )
 }
 
