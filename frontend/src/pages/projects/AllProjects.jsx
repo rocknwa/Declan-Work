@@ -7,7 +7,7 @@ const AllProjects = () => {
     <div className="flex gap-[70px] w-full">
         <div className="w-full">
         <div className="py-4">
-            <h1 className="font-semibold text-[#202020] text-2xl">My Projects</h1>
+            <h1 className="font-bold text-[#202020] text-2xl">My Projects</h1>
             <p className="text-[#6A6A6A] text-sm">
             View all ongoing and completed projects
             </p>
