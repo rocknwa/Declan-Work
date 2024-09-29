@@ -30,6 +30,9 @@ export default {
 				300: 'hsl(var(--neutral-300))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
+			success: {
+				strong: 'hsl(var(--success-strong))',
+			},
   			grey: {
   				DEFAULT: 'hsl(var(--grey-400))', 
   				400: 'hsl(var(--grey-400))', 

@@ -57,6 +57,7 @@ export default function DashboardTable() {
               <div className="bg-[#FAFAFA] border text-[#989898] flex flex-col items-center justify-center px-2 py-0.5 text-sm rounded-md">
                 <span>{fakeData.transactions?.length}</span>
               </div>
+              <span className="ml-1 cursor-pointer text-[#21B557] text-base">View All</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
