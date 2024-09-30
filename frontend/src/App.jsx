@@ -20,12 +20,11 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<SignedInPages />}>
           <Route path="/" element={<Dashboard />} />
-          <Route path="jobs" element={<JobListings />}>
-            <Route path=":companyName" element={<JobListings />} />
-            <Route path=":companyName/:jobId" element={<JobDetails />} />
-            <Route path=":companyName/:jobId/apply" element={<ApplyJobs />} />
-            <Route path=":companyName/:jobId/congrats" element={<AppSuccess />} />
-          </Route>
+          <Route path="jobs" element={<JobListings />} />
+            <Route path="jobs/:companyName" element={<JobListings />} />
+            <Route path="jobs/:companyName/:jobId" element={<JobDetails />} />
+            <Route path="jobs/:companyName/:jobId/apply" element={<ApplyJobs />} />
+            <Route path="jobs/:companyName/:jobId/congrats" element={<AppSuccess />} />
           <Route path="profile" element={<Freelancer />} />
           <Route path="public" element={<PublicProfile />} />
           <Route path="projects" element={<Projects />}>
