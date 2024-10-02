@@ -13,11 +13,18 @@ import JobListings from './pages/JobListings';
 import JobDetails from './pages/JobDetails';
 import ApplyJobs from './pages/ApplyJobs';
 import AppSuccess from './pages/AppSuccess';
+import AboutUs from './pages/AboutUs';
+import Messages from './pages/Messages';
+import MyWallet from './pages/MyWallet';
+import SignInPage from './pages/SignIn';
+import NewPassword from './pages/NewPassword';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/forgot-password" element={<NewPassword />} />
         <Route path="/" element={<SignedInPages />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="jobs" element={<JobListings />} />
@@ -35,6 +42,9 @@ function App() {
               <Route path="applications"  element={< Applications/>} />
             </Route>
           </Route>
+          <Route path='about-us' element={<AboutUs />} />
+          <Route path='messages' element={<Messages />} />
+          <Route path='my-wallet' element={<MyWallet />} />
         </Route>
       </Routes>
     </Router>
