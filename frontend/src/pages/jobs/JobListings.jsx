@@ -1,9 +1,9 @@
-import SearchJobsForm from '../components/jobListings/SearchJobsForm'
 import { useEffect, useState } from 'react'
-import JobCard from '../components/jobListings/JobCard'
-import Pagination from '../components/jobListings/Pagination'
-import { JobCardData } from '../data/JobCardData'
+import { JobCardData } from '@/data/JobCardData'
 import { useParams } from 'react-router-dom'
+import SearchJobsForm from '@/components/jobListings/SearchJobsForm'
+import JobCard from '@/components/jobListings/JobCard'
+import Pagination from '@/components/jobListings/Pagination'
 
 function JobListings() {
     const [jobs, setJobs] = useState(JobCardData)

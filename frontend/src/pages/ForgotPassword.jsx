@@ -32,7 +32,6 @@ export default function ForgotPassword() {
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col ">
-      <Header />
       <div className="w-[700px] mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
         {/* Icon */}
         {!isSubmitted ? (
