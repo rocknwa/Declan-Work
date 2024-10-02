@@ -18,13 +18,13 @@ export default function DashboardNav() {
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <NavLink to="/" className="flex-shrink-0">
+            <NavLink to="/dashboard" className="flex-shrink-0">
               <img src="/icons/declan-logo-dashboard.svg" alt="Declan logo" />
             </NavLink>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
             <NavLink
-              to="/"
+              to="/dashboard"
               end
               className={({ isActive }) =>
                 isActive
@@ -56,17 +56,17 @@ export default function DashboardNav() {
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}
               >
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? " text-[#000]" : ""
+                  }
+                  to="/jobs"
+                >
                 <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "flex items-center text-[#000]" : "flex items-center"
-                    }
-                    to="/jobs"
-                  >
                     <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" alt="Job Listings icon" />
                     <span className="text-zinc-950 font-normal">Job Listings</span>
-                  </NavLink>
                 </DropdownMenuItem>
+                </NavLink>
                 <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
                   <NavLink
                     className={({ isActive }) =>
