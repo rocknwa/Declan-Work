@@ -18,15 +18,13 @@ import Messages from './pages/Messages';
 import MyWallet from './pages/MyWallet';
 import SignInPage from './pages/SignIn';
 import NewPassword from './pages/NewPassword';
-import ForgotPassword from './pages/ForgotPassword';
 import Header from './components/authentication/Header';
-import Homepage from './pages/Homepage';
+import ForgotPassword from './pages/ForgotPassword';
 function App() {
   return (
     <Router>
       <Routes>
         {/* Routes for unauthenticated pages */}
-        <Route path='/' element={<Dashboard />} />
         <Route element={<PublicPages />}>
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SignInPage />} />
@@ -35,6 +33,7 @@ function App() {
         </Route>
         {/* Routes for authenticated pages */}
         <Route element={<SignedInPages />}> 
+          <Route path='/' element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="jobs" element={<JobListings />} />
             <Route path="jobs/:companyName" element={<JobListings />} />

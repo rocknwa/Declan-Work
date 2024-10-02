@@ -1,6 +1,7 @@
 import Header from "@/components/authentication/Header";
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -90,7 +91,7 @@ export default function ForgotPassword() {
             <p className="mt-6 text-sm text-[#667085]">
               Back to{" "}
               <span className="cursor-pointer font-medium text-[#21B557]">
-                Login
+                <Link to="/signin"> Login</Link>
               </span>
             </p>
           </>
