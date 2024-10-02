@@ -1,7 +1,10 @@
+import ComingSoon from "@/components/ComingSoon"
 
 const Messages = () => {
   return (
-    <div>Messages</div>
+    <section className="bg-white py-6 flex flex-col gap-6"> 
+      <ComingSoon />
+    </section>
   )
 }
 
