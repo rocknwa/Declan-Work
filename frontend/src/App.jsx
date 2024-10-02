@@ -26,7 +26,7 @@ function App() {
     <Router>
       <Routes>
         {/* Routes for unauthenticated pages */}
-        <Route path='/' element={<Homepage />} />
+        <Route path='/' element={<Dashboard />} />
         <Route element={<PublicPages />}>
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SignInPage />} />
