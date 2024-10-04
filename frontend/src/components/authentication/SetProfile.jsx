@@ -20,6 +20,7 @@ export default function SetProfile({
   setResume,
   profilePic,
   setProfilePic, 
+  handleSubmit,
  }) {
  
 
@@ -263,7 +264,7 @@ export default function SetProfile({
         <div className="mt-2 p-3 border border-dashed border-gray-300 rounded-lg bg-gray-100 text-center">
           <input
             type="file"
-            accept=".pdf,.doc,.docx"
+            accept=".pdf,.doc,.docx,.png,.jpg"
             onChange={handleResumeUpload}
             className="hidden"
             id="resumeInput"
@@ -294,7 +295,7 @@ export default function SetProfile({
 
       <button
         className="w-full bg-gray-300 text-white rounded-full py-3 font-medium text-sm"
-        onClick={() => setActive("verifyEmail")}
+        onClick={() => {setActive("verifyEmail"); handleSubmit();}}
       >
         Continue
       </button>
@@ -320,6 +321,7 @@ SetProfile.propTypes = {
   setPortfolioLink: PropTypes.func.isRequired,
   resume: PropTypes.object, // or PropTypes.instanceOf(File) if you want to be more specific
   setResume: PropTypes.func.isRequired,
-  profilePic: PropTypes.string.isRequired,
+  profilePic: PropTypes.string,
   setProfilePic: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };

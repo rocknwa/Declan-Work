@@ -133,7 +133,7 @@ export default function SignUp({
       </div>
 
       <button
-        onClick={() => setActive("setProfile")}
+        onClick={() => {setActive("setProfile");}}
         disabled={!allCriteriaMet}
         className={`w-full mt-6 ${
           allCriteriaMet ? "bg-[#00EF8B]" : "bg-gray-300"

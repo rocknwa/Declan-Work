@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import { signUp } from "@/api/authService";
+
 import React, { useState } from "react";
 import Onboarding from "@/components/authentication/Onboarding";
 import SetProfile from "@/components/authentication/SetProfile";
@@ -24,6 +26,27 @@ const SignupPage = () => {
    const [portfolioLink, setPortfolioLink] = useState("");
    const [resume, setResume] = useState(null); // Resume file upload
    const [profilePic, setProfilePic] = useState(null); // Profile picture upload
+
+   const handleSubmit = async () => {
+    try {
+      await signUp (
+        firstName, 
+        lastName, 
+        email, 
+        jobRole, 
+        city, 
+        country, 
+        headline,
+        bio, 
+        "available",
+        null,
+        skills,
+        true,
+      )} catch (err) {
+        console.log('Handle submit function failed')
+      }
+    };
+      
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
@@ -73,6 +96,7 @@ const SignupPage = () => {
               setResume={setResume}
               profilePic={profilePic}
               setProfilePic={setProfilePic} 
+              handleSubmit={handleSubmit}
               />
           )}
 
