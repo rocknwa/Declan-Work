@@ -43,8 +43,6 @@ export default function NewPassword() {
   };
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col ">
-      <Header />
-
       <div className="w-[700px] mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
         <div className="mb-6">
           <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">

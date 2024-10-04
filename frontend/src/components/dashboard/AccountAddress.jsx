@@ -29,12 +29,12 @@ const AccountAddress = () => {
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
         >
+            <NavLink className="" to="/profile">
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-            <NavLink className="flex items-center justify-center" to="/profile">
                 <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" />
                 <span>Profile Management</span>
-            </NavLink>
             </DropdownMenuItem>
+            </NavLink>
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
             <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" />
             <span>Learning Path</span>
@@ -47,12 +47,12 @@ const AccountAddress = () => {
             <HelpCircle className="mr-2 h-4 w-4" />
             <span>Support</span>
             </DropdownMenuItem>
+            <NavLink className="" to="/signin">
             <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
-            <NavLink className="flex items-center justify-center" to="/signup">
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>
-            </NavLink>
             </DropdownMenuItem>
+            </NavLink>
         </DropdownMenuContent>
     </DropdownMenu>
   )

@@ -18,8 +18,6 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
-      <Header />
-
       <main className="flex-grow flex justify-center items-start pt-9 pl-4 relative pr-[500px]">
         <div className="max-w-screen-xl mx-auto">
           {/* Card */}
