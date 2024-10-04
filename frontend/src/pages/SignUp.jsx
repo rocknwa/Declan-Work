@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { signUp } from "@/api/authService";
+import { signIn, signUp } from "@/api/authService";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Onboarding from "@/components/authentication/Onboarding";
 import SetProfile from "@/components/authentication/SetProfile";
 import SignUp from "@/components/authentication/SignUp";
 import AccountType from "@/components/authentication/AccountType";
 import Sidebar from "@/components/authentication/Sidebar";
 import VerifyEmail from "@/components/authentication/VerifyEmail";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const SignupPage = () => {
   const [active, setActive] = useState("accountType");
@@ -26,8 +28,11 @@ const SignupPage = () => {
    const [portfolioLink, setPortfolioLink] = useState("");
    const [resume, setResume] = useState(null); // Resume file upload
    const [profilePic, setProfilePic] = useState(null); // Profile picture upload
-
-   const handleSubmit = async () => {
+  // handle navigation
+   const navigate = useNavigate();
+   const location = useLocation();
+   const {isAuthenticated} = useAuth();
+   const handleSignUp = async () => {
     try {
       await signUp (
         firstName, 
@@ -43,10 +48,23 @@ const SignupPage = () => {
         skills,
         true,
       )} catch (err) {
-        console.log('Handle submit function failed')
+        console.log('Handle signup function failed')
       }
     };
-      
+   const handleSignIn = async () => {
+    try {
+      await signIn ( email, password,)
+      navigate("/dashboard");
+    } catch (err) {
+        console.log('Handle Login function failed')
+      }
+    };
+
+    useEffect(()=> {
+      if(isAuthenticated) {
+        navigate(location.state?.from || "/dashboard", { replace: true }) //reroute if the user is signed in already
+       }
+    }, []);
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
@@ -96,13 +114,14 @@ const SignupPage = () => {
               setResume={setResume}
               profilePic={profilePic}
               setProfilePic={setProfilePic} 
-              handleSubmit={handleSubmit}
+              handleSignUp={handleSignUp}
               />
           )}
 
           {active === "verifyEmail" && <VerifyEmail setActive={setActive} />}
 
-          {active === "onboarding" && <Onboarding />}
+          {active === "onboarding" && 
+            <Onboarding handleSignIn={handleSignIn} />}
 
           {/* Fixed  */}
           <Sidebar active={active} />

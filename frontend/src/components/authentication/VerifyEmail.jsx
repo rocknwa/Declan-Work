@@ -28,7 +28,7 @@ export default function VerifyEmail({ setActive }) {
           </p>
           <button
             className="w-full bg-green-500 text-white rounded-full py-3 font-medium text-sm"
-            onClick={() => setActive("onBoarding")}
+            onClick={() => setActive("onboarding")}
           >
             Continue
           </button>

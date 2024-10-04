@@ -20,7 +20,7 @@ export default function SetProfile({
   setResume,
   profilePic,
   setProfilePic, 
-  handleSubmit,
+  handleSignUp,
  }) {
  
 
@@ -295,7 +295,7 @@ export default function SetProfile({
 
       <button
         className="w-full bg-gray-300 text-white rounded-full py-3 font-medium text-sm"
-        onClick={() => {setActive("verifyEmail"); handleSubmit();}}
+        onClick={() => {setActive("verifyEmail"); handleSignUp();}}
       >
         Continue
       </button>
@@ -323,5 +323,5 @@ SetProfile.propTypes = {
   setResume: PropTypes.func.isRequired,
   profilePic: PropTypes.string,
   setProfilePic: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  handleSignUp: PropTypes.func.isRequired,
 };

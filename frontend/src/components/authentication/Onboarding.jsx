@@ -1,6 +1,9 @@
-export default function Onboarding() {
+import PropTypes from "prop-types";
+
+export default function Onboarding({handleSignIn}) {
+
   return (
-    <div className="w-[750px] mx-auto border border-gray-200 rounded-2xl p-8 text-center">
+    <div className="w-[750px] mx-auto border bg-white border-gray-200 rounded-2xl p-8 text-center">
       {/* Logo and Title */}
       <div className="mb-6">
         <div className="w-[127px] h-[41px] mx-auto">
@@ -30,9 +33,14 @@ export default function Onboarding() {
       </div>
 
       {/* Finish Up Button */}
-      <button className="w-full bg-[#00EF8B] hover:bg-[#00EF8B] text-[#202020] rounded-full py-3 font-medium text-sm">
+      <button onClick={() => handleSignIn()} className="w-full bg-[#00EF8B] hover:bg-[#00EF8B] text-[#202020] rounded-full py-3 font-medium text-sm">
         Finish Up
       </button>
     </div>
   );
+}
+
+
+Onboarding.propTypes  = {
+  handleSignIn : PropTypes.func.isRequired
 }
