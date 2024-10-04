@@ -21,6 +21,7 @@ export default function SignInPage() {
       setIsAuthenticated(true);
       navigate("/dashboard");
     } catch (err) {
+      setIsAuthenticated(false);
       console.log('Handle Login function failed', err);
     } finally {
       setIsLoading(false); // Stop loading state

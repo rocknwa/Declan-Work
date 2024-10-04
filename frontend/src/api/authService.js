@@ -13,6 +13,7 @@ export const getAccessToken = async (email, password) => {
        return token;
     } catch (error) {
         console.log("The error is:", error.response.data);
+        throw new Error(error.response.data);
     }
 }
 
@@ -63,8 +64,12 @@ export const signUp = async (
 
 //login in to a user account.......... there is inconsistency in the naming login/signin/
 export const signIn = async (email, password) => {
-   await getAccessToken(email, password);
-   console.log("user signed in");
+   try {
+       await getAccessToken(email, password);
+       console.log("user signed in");
+   } catch (error) {
+        throw new Error(error.response.data);
+   }
 }
 
 // Log out user by removing the token
