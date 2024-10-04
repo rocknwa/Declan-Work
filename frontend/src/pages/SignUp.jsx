@@ -5,7 +5,6 @@ import SetProfile from "@/components/authentication/SetProfile";
 import SignUp from "@/components/authentication/SignUp";
 import AccountType from "@/components/authentication/AccountType";
 import Sidebar from "@/components/authentication/Sidebar";
-import Header from "@/components/authentication/Header";
 import VerifyEmail from "@/components/authentication/VerifyEmail";
 
 const SignupPage = () => {
@@ -15,6 +14,16 @@ const SignupPage = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   // State for form fields
+   const [jobRole, setJobRole] = useState("");
+   const [headline, setHeadline] = useState("");
+   const [country, setCountry] = useState("");
+   const [city, setCity] = useState("");
+   const [bio, setBio] = useState("");
+   const [skills, setSkills] = useState([]); // Skills array
+   const [portfolioLink, setPortfolioLink] = useState("");
+   const [resume, setResume] = useState(null); // Resume file upload
+   const [profilePic, setProfilePic] = useState(null); // Profile picture upload
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
@@ -43,7 +52,29 @@ const SignupPage = () => {
             />
           )}
 
-          {active === "setProfile" && <SetProfile setActive={setActive} />}
+          {active === "setProfile" && (
+            <SetProfile 
+              setActive={setActive}
+              jobRole={jobRole}
+              setJobRole={setJobRole}
+              headline={headline}
+              setHeadline={setHeadline}
+              country={country}
+              setCountry={setCountry}
+              city={city}
+              setCity={setCity}
+              bio={bio}
+              setBio={setBio}
+              skills={skills}
+              setSkills={setSkills}
+              portfolioLink={portfolioLink}
+              setPortfolioLink={setPortfolioLink}
+              resume={resume}
+              setResume={setResume}
+              profilePic={profilePic}
+              setProfilePic={setProfilePic} 
+              />
+          )}
 
           {active === "verifyEmail" && <VerifyEmail setActive={setActive} />}
 

@@ -1,17 +1,27 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 
-export default function SetProfile({ setActive }) {
-  // State for form fields
-  const [jobRole, setJobRole] = useState("");
-  const [headline, setHeadline] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [bio, setBio] = useState("");
-  const [skills, setSkills] = useState([]); // Skills array
-  const [portfolioLink, setPortfolioLink] = useState("");
-  const [resume, setResume] = useState(null); // Resume file upload
-  const [profilePic, setProfilePic] = useState(null); // Profile picture upload
+export default function SetProfile({ 
+  setActive,
+  jobRole,
+  setJobRole,
+  headline,
+  setHeadline,
+  country,
+  setCountry,
+  city,
+  setCity,
+  bio,
+  setBio,
+  skills,
+  setSkills,
+  portfolioLink,
+  setPortfolioLink,
+  resume,
+  setResume,
+  profilePic,
+  setProfilePic, 
+ }) {
+ 
 
   // Sample job roles and locations
   const jobRoles = [
@@ -294,4 +304,22 @@ export default function SetProfile({ setActive }) {
 
 SetProfile.propTypes = {
   setActive: PropTypes.func.isRequired,
+  jobRole: PropTypes.string.isRequired,
+  setJobRole: PropTypes.func.isRequired,
+  headline: PropTypes.string.isRequired,
+  setHeadline: PropTypes.func.isRequired,
+  country: PropTypes.string.isRequired,
+  setCountry: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
+  setCity: PropTypes.func.isRequired,
+  bio: PropTypes.string.isRequired,
+  setBio: PropTypes.func.isRequired,
+  skills: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setSkills: PropTypes.func.isRequired,
+  portfolioLink: PropTypes.string.isRequired,
+  setPortfolioLink: PropTypes.func.isRequired,
+  resume: PropTypes.object, // or PropTypes.instanceOf(File) if you want to be more specific
+  setResume: PropTypes.func.isRequired,
+  profilePic: PropTypes.string.isRequired,
+  setProfilePic: PropTypes.func.isRequired,
 };
