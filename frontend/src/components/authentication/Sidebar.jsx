@@ -6,7 +6,7 @@ export default function Sidebar({ active }) {
     { id: "sign-up", label: "Choose Registration Method", description: "Choose how you would like to register on Declanwork." },
     { id: "setProfile", label: "Profile Setup", description: "Please provide your name and email" },
     { id: "verifyEmail", label: "Enter Registration Details", description: "You are needed to enter the required information" },
-    { id: "onBoarding", label: "Welcome Declanwork", description: "" },
+    { id: "onboarding", label: "Welcome Declanwork", description: "" },
   ];
 
   return (
