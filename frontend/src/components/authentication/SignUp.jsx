@@ -33,7 +33,7 @@ export default function SignUp({
   const allCriteriaMet = isLengthValid && hasNumber && hasUpperLowerCase;
 
   return (
-    <div className="w-[750px] mx-auto border border-gray-200 rounded-2xl p-6">
+    <div className="lg:w-[750px] w-full lg:mx-auto border border-gray-200 rounded-2xl p-6">
       <div className="text-center mb-6">
         <p className="text-lg text-[#6A6A6A] font-medium">
           Get started by choosing your preferred registration method.

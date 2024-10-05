@@ -46,7 +46,7 @@ export default function SignInPage() {
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
-      <div className="w-[700px] mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
+      <div className="lg:w-[700px] lg:mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
         <div className="mb-6">
           <h2 className="text-base font-semibold text-[#6A6A6A]">
             Welcome Back
@@ -134,7 +134,7 @@ export default function SignInPage() {
             {isLoading && (
               <img
                 src="/icons/spinner.svg"
-                className="absolute w-[30px] h-[30px] top-[15%] left-[42%] transition-transform transform rotate-180 repeat-infinite"
+                className="absolute w-[30px] h-[30px] top-[15%] left-[35%] lg:left-[42%] transition-transform transform rotate-180 repeat-infinite"
                 alt="Loading"
               />
             )}

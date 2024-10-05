@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import PropTypes from "prop-types";
 
 export default function SetProfile({ 
@@ -80,7 +81,7 @@ export default function SetProfile({
   };
 
   return (
-    <div className="w-[750px] mx-auto border border-gray-200 rounded-2xl p-8">
+    <div className="lg:w-[750px] mx-auto border border-gray-200 rounded-2xl p-8">
       <div className="mb-6">
         <p className="text-2xl font-semibold text-black">Profile Setup</p>
         <p className="text-gray-600 mt-2">
@@ -133,10 +134,11 @@ export default function SetProfile({
 
         <div className="mt-4">
           <label className="text-sm text-black">Job role</label>
+          <div className="relative">
           <select
             value={jobRole}
             onChange={(e) => setJobRole(e.target.value)}
-            className="w-full mt-1 p-3 bg-transparent border border-gray-300 rounded-lg focus:outline-none"
+            className="w-full mt-1 appearance-none p-3 bg-transparent border border-gray-300 rounded-lg focus:outline-none"
           >
             <option>Select your job role</option>
             {jobRoles.map((role, index) => (
@@ -145,6 +147,8 @@ export default function SetProfile({
               </option>
             ))}
           </select>
+          <ChevronDown className="absolute inset-y-0 top-[30%] right-[4%] flex items-center pointer-events-none"  />
+          </div>
         </div>
 
         <div className="mt-4">
@@ -161,10 +165,11 @@ export default function SetProfile({
         <div className="grid gap-4 mt-4">
           <div>
             <label className="text-sm text-black">Country</label>
+            <div className="relative">
             <select
               value={country}
               onChange={(e) => setCountry(e.target.value)}
-              className="w-full mt-1 p-3 bg-transparent border border-gray-300 rounded-lg focus:outline-none"
+              className="w-full mt-1 p-3 appearance-none bg-transparent border border-gray-300 rounded-lg focus:outline-none"
             >
               <option>Select Country</option>
               {countries.map((countryOption, index) => (
@@ -173,14 +178,17 @@ export default function SetProfile({
                 </option>
               ))}
             </select>
+            <ChevronDown className="absolute inset-y-0 top-[30%] right-[4%] flex items-center pointer-events-none"  />
+            </div>
           </div>
 
           <div>
             <label className="text-sm text-black">City</label>
+            <div className="relative">
             <select
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              className="w-full mt-1 p-3 bg-transparent border border-gray-300 rounded-lg focus:outline-none"
+              className="w-full mt-1 p-3 appearance-none bg-transparent border border-gray-300 rounded-lg focus:outline-none"
             >
               <option>Select City</option>
               {country &&
@@ -189,7 +197,10 @@ export default function SetProfile({
                     {cityOption}
                   </option>
                 ))}
+                
             </select>
+            <ChevronDown className="absolute inset-y-0 top-[30%] right-[4%] flex items-center pointer-events-none"  />
+            </div>
           </div>
         </div>
       </div>
@@ -207,14 +218,14 @@ export default function SetProfile({
         <textarea
           value={bio}
           onChange={(e) => setBio(e.target.value)}
-          className="w-full mt-2 p-3 bg-transparent border border-gray-300 rounded-lg focus:outline-none"
+          className="w-full lg:h-auto h-[200px] mt-2 p-3 bg-transparent border lg:text-base text-sm border-gray-300 rounded-lg focus:outline-none"
           placeholder="Tip: Focus on your skills, experience, and what you’re looking for on Declanwork. Aim for 150-300 words."
           rows="4"
         ></textarea>
       </div>
 
       {/* Skills Section */}
-      <div className="mb-6 border p-4 rounded-md">
+      {/* <div className="mb-6 border p-4 rounded-md">
         <p className="font-semibold text-sm text-[#010101]">List Your Skills</p>
         <p className="text-[#6A6A6A] text-sm my-2">
           Add relevant skills that showcase your expertise. This helps your
@@ -254,10 +265,10 @@ export default function SetProfile({
             ))}
           </select>
         </div>
-      </div>
+      </div> */}
 
       {/* Upload Resume and Portfolio */}
-      <div className="mb-6 border rounded-md p-4">
+      {/* <div className="mb-6 border rounded-md p-4">
         <p className="font-semibold text-sm text-black">
           Upload Portfolio and Resume
         </p>
@@ -290,8 +301,8 @@ export default function SetProfile({
             placeholder="Enter Portfolio Link"
             className="w-full mt-1 p-3 border bg-transparent border-gray-300 rounded-lg focus:outline-none"
           />
-        </div>
-      </div>
+        </div> 
+      </div>*/}
 
       <button
         className="w-full bg-gray-300 text-white rounded-full py-3 font-medium text-sm"

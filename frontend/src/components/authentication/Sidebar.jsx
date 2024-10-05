@@ -10,7 +10,7 @@ export default function Sidebar({ active }) {
   ];
 
   return (
-    <div className="absolute top-0 right-0 w-1/3 h-full px-6 py-10 bg-white mr-auto">
+    <div className="lg:absolute lg:block hidden top-0 right-0 w-1/3 h-full px-6 py-10 bg-white mr-auto">
       <ul className="relative ml-6">
         {steps.map((step, index) => {
           const isActive = active === step.id; // The currently active step

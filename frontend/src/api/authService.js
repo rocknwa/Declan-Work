@@ -13,7 +13,7 @@ export const getAccessToken = async (email, password) => {
        return token;
     } catch (error) {
         console.log("The error is:", error.response.data.detail);
-        if (error.response) {
+        if (error.response && error.response.data) {
             const { status, data } = error.response;
             
             if (status === 401) {

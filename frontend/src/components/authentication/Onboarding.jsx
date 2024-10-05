@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export default function Onboarding({handleSignIn}) {
 
   return (
-    <div className="w-[750px] mx-auto border bg-white border-gray-200 rounded-2xl p-8 text-center">
+    <div className="lg:w-[750px] mx-2 lg:mx-auto border bg-white border-gray-200 rounded-2xl px-3 py-8 lg:p-8 text-center">
       {/* Logo and Title */}
       <div className="mb-6">
         <div className="w-[127px] h-[41px] mx-auto">

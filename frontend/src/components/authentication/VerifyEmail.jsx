@@ -11,7 +11,7 @@ export default function VerifyEmail({ setActive }) {
   };
 
   return (
-    <div className="w-[750px] mx-auto border border-gray-200 rounded-2xl p-8">
+    <div className="lg:w-[750px] lg:mx-auto mx-4 border border-gray-200 rounded-2xl p-4 lg:p-8">
       {isVerified ? (
         // Component to show when the email is verified
         <div className="text-center">
