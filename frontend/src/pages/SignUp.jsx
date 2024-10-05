@@ -14,51 +14,61 @@ import { useAuth } from "@/hooks/useAuth";
 const SignupPage = () => {
   const [active, setActive] = useState("accountType");
   const [accountType, setAccountType] = useState("");
+  // State for form fields
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-   // State for form fields
    const [jobRole, setJobRole] = useState("");
    const [headline, setHeadline] = useState("");
    const [country, setCountry] = useState("");
    const [city, setCity] = useState("");
    const [bio, setBio] = useState("");
-   const [skills, setSkills] = useState([]); // Skills array
-   const [portfolioLink, setPortfolioLink] = useState("");
-   const [resume, setResume] = useState(null); // Resume file upload
+  //  const [skills, setSkills] = useState([]); // Skills array
+  //  const [portfolioLink, setPortfolioLink] = useState("");
+  //  const [resume, setResume] = useState(null); // Resume file upload
    const [profilePic, setProfilePic] = useState(null); // Profile picture upload
   // handle navigation
    const navigate = useNavigate();
    const location = useLocation();
-   const {isAuthenticated} = useAuth();
+   const {isAuthenticated, setIsAuthenticated} = useAuth();
+   const [isLoading, setIsLoading] = useState(false);
+
+
    const handleSignUp = async () => {
+    setIsLoading(true);
     try {
-      await signUp (
-        firstName, 
-        lastName, 
+      const userInfo = await signUp (
         email, 
+        firstName, 
+        lastName,
+        password,
         jobRole, 
         city, 
         country, 
         headline,
         bio, 
         "available",
-        null,
-        skills,
-        true,
-      )} catch (err) {
-        console.log('Handle signup function failed')
+        profilePic,)
+        console.log("the returned data is:", userInfo);
+    } catch (err) {
+        setIsLoading(false);
+        console.log('Handle signup function failed', err.message)
+      } finally {
+        setIsLoading(false);
       }
     };
    const handleSignIn = async () => {
     try {
-      await signIn ( email, password,)
-      navigate("/dashboard");
+      await signIn (email, password);
+      setIsAuthenticated(true);
+      navigate("/profile");
     } catch (err) {
-        console.log('Handle Login function failed')
+      setIsAuthenticated(false);
+      console.log('Handle Login function failed', err.message)
       }
     };
+
 
     useEffect(()=> {
       if(isAuthenticated) {
@@ -106,14 +116,16 @@ const SignupPage = () => {
               setCity={setCity}
               bio={bio}
               setBio={setBio}
-              skills={skills}
-              setSkills={setSkills}
-              portfolioLink={portfolioLink}
-              setPortfolioLink={setPortfolioLink}
-              resume={resume}
-              setResume={setResume}
+              // skills={skills}
+              // setSkills={setSkills}
+              // portfolioLink={portfolioLink}
+              // setPortfolioLink={setPortfolioLink}
+              // resume={resume}
+              // setResume={setResume}
               profilePic={profilePic}
               setProfilePic={setProfilePic} 
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
               handleSignUp={handleSignUp}
               />
           )}

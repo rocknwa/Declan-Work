@@ -13,14 +13,15 @@ export default function SetProfile({
   setCity,
   bio,
   setBio,
-  skills,
-  setSkills,
-  portfolioLink,
-  setPortfolioLink,
-  resume,
-  setResume,
+  // skills,
+  // setSkills,
+  // portfolioLink,
+  // setPortfolioLink,
+  // resume,
+  // setResume,
   profilePic,
   setProfilePic, 
+  isLoading,
   handleSignUp,
  }) {
  
@@ -39,14 +40,14 @@ export default function SetProfile({
     Canada: ["Toronto", "Vancouver", "Montreal"],
   };
 
-  const availableSkills = [
-    "Communication",
-    "Prototyping",
-    "Teamwork",
-    "Problem Solving",
-    "Time Management",
-    "Creativity",
-  ];
+  // const availableSkills = [
+  //   "Communication",
+  //   "Prototyping",
+  //   "Teamwork",
+  //   "Problem Solving",
+  //   "Time Management",
+  //   "Creativity",
+  // ];
 
   // Function to handle profile picture upload
   const handleProfilePicUpload = (e) => {
@@ -60,26 +61,28 @@ export default function SetProfile({
     }
   };
 
-  // Function to handle resume file upload
-  const handleResumeUpload = (e) => {
-    setResume(e.target.files[0]);
-  };
+  // // Function to handle resume file upload
+  // const handleResumeUpload = (e) => {
+  //   setResume(e.target.files[0]);
+  // };
 
-  // Function to handle skill input and adding to array when Enter is pressed
-  const handleSkillSelect = (e) => {
-    const selectedSkill = e.target.value;
-    if (selectedSkill && !skills.includes(selectedSkill)) {
-      setSkills([...skills, selectedSkill]);
-      e.target.value = ""; // Clear the select field
-    }
-  };
+  // // Function to handle skill input and adding to array when Enter is pressed
+  // const handleSkillSelect = (e) => {
+  //   const selectedSkill = e.target.value;
+  //   if (selectedSkill && !skills.includes(selectedSkill)) {
+  //     setSkills([...skills, selectedSkill]);
+  //     e.target.value = ""; // Clear the select field
+  //   }
+  // };
 
 
-  // Function to remove a skill from array
-  const handleRemoveSkill = (skillToRemove) => {
-    setSkills(skills.filter((skill) => skill !== skillToRemove));
-  };
-
+  // // Function to remove a skill from array
+  // const handleRemoveSkill = (skillToRemove) => {
+  //   setSkills(skills.filter((skill) => skill !== skillToRemove));
+  // };
+  
+  const allCriteriaMet = jobRole != "" && headline != "" && country != "" && city != "" && bio != "";
+ 
   return (
     <div className="lg:w-[750px] mx-auto border border-gray-200 rounded-2xl p-8">
       <div className="mb-6">
@@ -305,10 +308,20 @@ export default function SetProfile({
       </div>*/}
 
       <button
-        className="w-full bg-gray-300 text-white rounded-full py-3 font-medium text-sm"
+        className={`w-full relative mt-6 ${
+          allCriteriaMet ? "bg-[#00EF8B]" : "bg-gray-300"
+        } text-[#202020] rounded-full py-3 font-medium text-sm`}
+        disabled={!allCriteriaMet}
         onClick={() => {setActive("verifyEmail"); handleSignUp();}}
       >
         Continue
+        {isLoading && (
+              <img
+                src="/icons/spinner.svg"
+                className="absolute w-[30px] h-[30px] top-[15%] left-[35%] lg:left-[42%] transition-transform transform rotate-180 repeat-infinite"
+                alt="Loading"
+              />
+            )}
       </button>
     </div>
   );
@@ -326,13 +339,15 @@ SetProfile.propTypes = {
   setCity: PropTypes.func.isRequired,
   bio: PropTypes.string.isRequired,
   setBio: PropTypes.func.isRequired,
-  skills: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setSkills: PropTypes.func.isRequired,
-  portfolioLink: PropTypes.string.isRequired,
-  setPortfolioLink: PropTypes.func.isRequired,
-  resume: PropTypes.object, // or PropTypes.instanceOf(File) if you want to be more specific
-  setResume: PropTypes.func.isRequired,
+  // skills: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // setSkills: PropTypes.func.isRequired,
+  // portfolioLink: PropTypes.string.isRequired,
+  // setPortfolioLink: PropTypes.func.isRequired,
+  // resume: PropTypes.object, // or PropTypes.instanceOf(File) if you want to be more specific
+  // setResume: PropTypes.func.isRequired,
   profilePic: PropTypes.string,
   setProfilePic: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
   handleSignUp: PropTypes.func.isRequired,
 };

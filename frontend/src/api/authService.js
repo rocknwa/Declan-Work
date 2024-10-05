@@ -12,22 +12,17 @@ export const getAccessToken = async (email, password) => {
        console.log("the token has been stored woohoo");
        return token;
     } catch (error) {
+      if (error.response && error.response.data) {
         console.log("The error is:", error.response.data.detail);
-        if (error.response && error.response.data) {
-            const { status, data } = error.response;
-            
-            if (status === 401) {
-              if (data.detail === "No active account found with the given credentials") {
-                throw new Error("Incorrect email or password.");
-              } else if (data.detail === "Token expired") {
-                throw new Error("Session expired. Please log in again.");
-              }
-            } else {
-              throw new Error("An error occurred during sign-in:", data.detail);
-            }
-          } else {
-            throw new Error(error.response.data.detail);
-          }
+        const { data } = error.response;
+        if (data.detail === "No active account found with the given credentials") {
+          throw new Error("Incorrect email or password.");
+        } else if (data.detail === "Token expired") {
+          throw new Error("Session expired. Please log in again.");
+        }
+      } else {
+        throw new Error("An error occurred during sign-in:", error);
+      }
     }
 }
 
@@ -39,9 +34,10 @@ export const getAuthToken = () => {
 
 // create a user
 export const signUp = async (
-    first_name, 
-    last_name, 
     email, 
+    first_name, 
+    last_name,
+    password,
     profession, 
     city, 
     country, 
@@ -49,22 +45,19 @@ export const signUp = async (
     bio_description, 
     status,
     profile_image,
-    skills,
-    is_active,
 ) => {
     const userData = {
-        first_name, 
-        last_name, 
-        email, 
-        profession, 
-        city, 
-        country, 
-        bio_title,
-        bio_description, 
-        status,
-        profile_image,
-        skills,
-        is_active,
+      email, 
+      first_name, 
+      last_name,
+      password,
+      profession, 
+      city, 
+      country, 
+      bio_title,
+      bio_description, 
+      status,
+      profile_image,
     };
     try {
         console.log("Data being sent", userData);
@@ -72,7 +65,12 @@ export const signUp = async (
         console.log("User created succesfully!");
         return response.data;
     } catch (err) {
-        console.log("Error during sign-up", err.response.data)
+        if (err.response && err.response.data) {
+          console.log("Error during sign-up:", err.response.data);
+        } else {
+          console.log("Sign-up failed:", err.message);
+        }
+        throw err;
     }
 }
 
