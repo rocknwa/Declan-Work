@@ -12,8 +12,22 @@ export const getAccessToken = async (email, password) => {
        console.log("the token has been stored woohoo");
        return token;
     } catch (error) {
-        console.log("The error is:", error.response.data);
-        throw new Error(error.response.data);
+        console.log("The error is:", error.response.data.detail);
+        if (error.response) {
+            const { status, data } = error.response;
+            
+            if (status === 401) {
+              if (data.detail === "No active account found with the given credentials") {
+                throw new Error("Incorrect email or password.");
+              } else if (data.detail === "Token expired") {
+                throw new Error("Session expired. Please log in again.");
+              }
+            } else {
+              throw new Error("An error occurred during sign-in:", data.detail);
+            }
+          } else {
+            throw new Error(error.response.data.detail);
+          }
     }
 }
 
@@ -68,7 +82,7 @@ export const signIn = async (email, password) => {
        await getAccessToken(email, password);
        console.log("user signed in");
    } catch (error) {
-        throw new Error(error.response.data);
+        throw new Error(error.message);
    }
 }
 

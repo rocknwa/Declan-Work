@@ -1,5 +1,6 @@
 import { signIn } from "@/api/authService";
 import { useAuth } from "@/hooks/useAuth";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -8,6 +9,8 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,14 +18,17 @@ export default function SignInPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Start loading state
+    setIsLoading(true);
+    setErrorMessage(""); 
+    setIsError(false);// Start loading state
     try {
       await signIn(email, password);
       setIsAuthenticated(true);
       navigate("/dashboard");
     } catch (err) {
       setIsAuthenticated(false);
-      console.log('Handle Login function failed', err);
+      setErrorMessage(err.message);
+      setIsError(true);
     } finally {
       setIsLoading(false); // Stop loading state
     }
@@ -43,7 +49,7 @@ export default function SignInPage() {
       <div className="w-[700px] mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
         <div className="mb-6">
           <h2 className="text-base font-semibold text-[#6A6A6A]">
-            Welcome Back Goody
+            Welcome Back
           </h2>
           <p className="text-[#202020] mt-2 text-2xl font-semibold">
             Log in to your account
@@ -85,7 +91,9 @@ export default function SignInPage() {
               placeholder="Enter Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1"
+              className={cn("w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1",
+                isError && "bg-red-200 border-red-300 ",
+              )}
               required
             />
           </div>
@@ -98,7 +106,9 @@ export default function SignInPage() {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1"
+                className={cn("w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1",
+                  isError && "bg-red-200 border-red-300 ",
+                )}
                 required
               />
               <button
@@ -129,6 +139,8 @@ export default function SignInPage() {
               />
             )}
           </button>
+
+          { isError && <p className="text-red-500 mt-3 text-sm">{errorMessage}</p>}
         </form>
 
         <p className="mt-6 text-sm text-[#667085]">
