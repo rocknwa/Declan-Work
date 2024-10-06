@@ -148,6 +148,9 @@ export default function DashboardNav() {
               </svg>
             </Button>
           </div>
+          <div className='hidden'>
+            <div></div>
+          </div>
         </div>
       </div>
     </nav>

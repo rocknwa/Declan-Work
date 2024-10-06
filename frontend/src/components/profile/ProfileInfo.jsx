@@ -91,10 +91,10 @@ const ProfileInfo = ({viewOnly}) => {
               }
           </div>
           <div className="flex items-center gap-3">
-            { !viewOnly && <Button variant="outline" className="rounded-full border-accent-success border-[2px]">
+            { !viewOnly && <Button variant="outline" className="rounded-full text-sm sm:text-base border-accent-success border-[2px]">
               <Link to='/public'>View Public Profile</Link>
             </Button>}
-            <Button className="rounded-full bg-[#17813E] hover:bg-accent-success flex gap-2">
+            <Button className="rounded-full items-center text-xs px-6 sm:text-base bg-[#17813E] hover:bg-accent-success flex gap-2">
               <img src="/icons/share-alt.svg" alt="Share icon" />
               Share
             </Button>

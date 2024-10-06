@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -52,7 +51,7 @@ export default function DashboardTable() {
       <div className='max-w-full mx-auto px-4 flex flex-col gap-4 sm:px-6 lg:px-8'>
         <Card className="rounded-[20px] ">
           <CardHeader className="px-7">
-            <CardTitle className="flex items-center gap-3">
+            <CardTitle className="flex flex-col sm:flex-row lg text-xl lg:text-2xl items-start sm:items-center gap-3">
               Active Projects
               <div className="bg-[#FAFAFA] border text-[#989898] flex flex-col items-center justify-center px-2 py-0.5 text-sm rounded-md">
                 <span>{fakeData.transactions?.length}</span>
