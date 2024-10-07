@@ -36,8 +36,8 @@ const SignupPage = () => {
 
 
    const handleSignUp = async () => {
-    setIsLoading(true);
-    try {
+     try {
+      setIsLoading(true);
       const userInfo = await signUp (
         email, 
         firstName, 
@@ -50,10 +50,11 @@ const SignupPage = () => {
         bio, 
         "available",
         profilePic,)
-        console.log("the returned data is:", userInfo);
+        // console.log("the returned data is:", userInfo);
+        return userInfo;
     } catch (err) {
         setIsLoading(false);
-        console.log('Handle signup function failed', err.message)
+        throw new Error(err.message)
       } finally {
         setIsLoading(false);
       }
@@ -62,7 +63,9 @@ const SignupPage = () => {
     try {
       await signIn (email, password);
       setIsAuthenticated(true);
-      navigate("/profile");
+      setTimeout(() => {
+        navigate("/profile");
+      }, 500);
     } catch (err) {
       setIsAuthenticated(false);
       console.log('Handle Login function failed', err.message)

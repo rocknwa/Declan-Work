@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 export default function SetProfile({ 
   setActive,
@@ -81,7 +82,37 @@ export default function SetProfile({
   //   setSkills(skills.filter((skill) => skill !== skillToRemove));
   // };
   
-  const allCriteriaMet = jobRole != "" && headline != "" && country != "" && city != "" && bio != "";
+  const allCriteriaMet = jobRole != "" && headline != "" && country != "" && city != "" && bio != "" && bio.length > 100;
+
+  const [errorMessage, setErrorMessage] = useState({
+    jobRole : false,
+    headline : false,
+    country : false,
+    city : false,
+    bio : false,
+  });
+  const [signUpError, setSignUpError] = useState("");
+  const handleSubmit = async () => {
+      setSignUpError("")
+      if (jobRole == "") {
+        setErrorMessage(prev => ({...prev, jobRole: true}));
+      }; if (headline == "") {
+        setErrorMessage(prev => ({...prev, headline: true}));
+      }; if (country == "") {
+        setErrorMessage(prev => ({...prev, country: true}));
+      }; if (city == "") {
+        setErrorMessage(prev => ({...prev, city: true}));
+      }; if (bio == "" || bio.length < 100) {
+        setErrorMessage(prev => ({...prev, bio: true}));
+      }; if(allCriteriaMet) {
+        try {
+          const response = await handleSignUp();
+          setActive("verifyEmail");
+        } catch (error) {
+          setSignUpError(error.message);
+        }
+      }
+  }
  
   return (
     <div className="lg:w-[750px] mx-auto border border-gray-200 rounded-2xl p-8">
@@ -95,9 +126,9 @@ export default function SetProfile({
 
       {/* Profile Picture Upload */}
       <div className="mb-6">
-        <p className="font-semibold text-sm text-black">Profile Picture</p>
+        <p className="font-semibold text-sm text-black">Profile Picture (optional)</p>
         <div className="flex items-center gap-4 mt-2">
-          <div className="w-[117px] h-[100px] border border-gray-300 rounded-lg flex items-center justify-center bg-gray-100">
+          <div className="lg:w-[117px] h-[100px] max-w-[117px] w-full border border-gray-300 rounded-lg flex items-center justify-center bg-gray-100">
             {profilePic ? (
               <img
                 src={profilePic}
@@ -140,7 +171,7 @@ export default function SetProfile({
           <div className="relative">
           <select
             value={jobRole}
-            onChange={(e) => setJobRole(e.target.value)}
+            onChange={(e) => {setJobRole(e.target.value); setErrorMessage(prev => ({...prev, jobRole: false}))}}
             className="w-full mt-1 appearance-none p-3 bg-transparent border border-gray-300 rounded-lg focus:outline-none"
           >
             <option>Select your job role</option>
@@ -152,6 +183,9 @@ export default function SetProfile({
           </select>
           <ChevronDown className="absolute inset-y-0 top-[30%] right-[4%] flex items-center pointer-events-none"  />
           </div>
+          {
+            errorMessage.jobRole && <p className="text-sm text-red-500 mt-1 ml-2">Select a Job role.</p>
+          }
         </div>
 
         <div className="mt-4">
@@ -159,10 +193,13 @@ export default function SetProfile({
           <input
             type="text"
             value={headline}
-            onChange={(e) => setHeadline(e.target.value)}
+            onChange={(e) => {setHeadline(e.target.value); setErrorMessage(pr=> ({...pr, headline:false}))}}
             placeholder='Add a brief description, e.g., "Product Designer with 5+ years of experience."'
             className="w-full mt-1 p-3 border bg-transparent border-gray-300 rounded-lg focus:outline-none"
           />
+           {
+            errorMessage.headline && <p className="text-sm text-red-500 mt-1 ml-2">This field is required.</p>
+          }
         </div>
 
         <div className="grid gap-4 mt-4">
@@ -171,7 +208,7 @@ export default function SetProfile({
             <div className="relative">
             <select
               value={country}
-              onChange={(e) => setCountry(e.target.value)}
+              onChange={(e) => {setCountry(e.target.value); setErrorMessage(pr=>({...pr, country:false}))}}
               className="w-full mt-1 p-3 appearance-none bg-transparent border border-gray-300 rounded-lg focus:outline-none"
             >
               <option>Select Country</option>
@@ -183,6 +220,9 @@ export default function SetProfile({
             </select>
             <ChevronDown className="absolute inset-y-0 top-[30%] right-[4%] flex items-center pointer-events-none"  />
             </div>
+            {
+              errorMessage.country && <p className="text-sm text-red-500 mt-1 ml-2">This field is required.</p>
+            }
           </div>
 
           <div>
@@ -190,12 +230,12 @@ export default function SetProfile({
             <div className="relative">
             <select
               value={city}
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => {setCity(e.target.value); setErrorMessage(pr=>({...pr, city: false}))}}
               className="w-full mt-1 p-3 appearance-none bg-transparent border border-gray-300 rounded-lg focus:outline-none"
             >
               <option>Select City</option>
               {country &&
-                cities[country].map((cityOption, index) => (
+                cities[country]?.map((cityOption, index) => (
                   <option key={index} value={cityOption}>
                     {cityOption}
                   </option>
@@ -204,6 +244,9 @@ export default function SetProfile({
             </select>
             <ChevronDown className="absolute inset-y-0 top-[30%] right-[4%] flex items-center pointer-events-none"  />
             </div>
+            {
+              errorMessage.city && <p className="text-sm text-red-500 mt-1 ml-2">This field is required.</p>
+            }
           </div>
         </div>
       </div>
@@ -220,11 +263,14 @@ export default function SetProfile({
         </p>
         <textarea
           value={bio}
-          onChange={(e) => setBio(e.target.value)}
+          onChange={(e) => {setBio(e.target.value); setErrorMessage(pr=>({...pr, bio: false}))}}
           className="w-full lg:h-auto h-[200px] mt-2 p-3 bg-transparent border lg:text-base text-sm border-gray-300 rounded-lg focus:outline-none"
           placeholder="Tip: Focus on your skills, experience, and what you’re looking for on Declanwork. Aim for 150-300 words."
           rows="4"
         ></textarea>
+        {
+          errorMessage.bio && <p className="text-sm text-red-500 mt-1 ml-2">Bio should not be less than 20 words.</p>
+        }
       </div>
 
       {/* Skills Section */}
@@ -306,19 +352,21 @@ export default function SetProfile({
           />
         </div> 
       </div>*/}
-
+      {
+        signUpError.length != 0 && <p className="text-red-500"> {signUpError} </p>
+      }
       <button
         className={`w-full relative mt-6 ${
-          allCriteriaMet ? "bg-[#00EF8B]" : "bg-gray-300"
+          allCriteriaMet ? "bg-[#00EF8B]" :  isLoading ? "bg-gray-300" : ""
         } text-[#202020] rounded-full py-3 font-medium text-sm`}
-        disabled={!allCriteriaMet}
-        onClick={() => {setActive("verifyEmail"); handleSignUp();}}
+        disabled={isLoading}
+        onClick={() => handleSubmit()}
       >
         Continue
         {isLoading && (
               <img
                 src="/icons/spinner.svg"
-                className="absolute w-[30px] h-[30px] top-[15%] left-[35%] lg:left-[42%] transition-transform transform rotate-180 repeat-infinite"
+                className="absolute w-[30px] h-[30px] top-[15%] left-[37%] lg:left-[40%] transition-transform transform rotate-180 repeat-infinite"
                 alt="Loading"
               />
             )}

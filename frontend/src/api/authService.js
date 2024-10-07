@@ -1,5 +1,9 @@
 import apiClient from "./apiClient";
 
+const checkOnline = () => {
+  return navigator.onLine;
+}
+
 //get JWT token with email and password 
 export const getAccessToken = async (email, password) => {
     try {
@@ -9,19 +13,21 @@ export const getAccessToken = async (email, password) => {
        });
        const token = response.data.access;
        localStorage.setItem("token", token);
-       console.log("the token has been stored woohoo");
+      //  console.log("the token has been stored woohoo");
        return token;
     } catch (error) {
       if (error.response && error.response.data) {
-        console.log("The error is:", error.response.data.detail);
+        // console.log("The error is:", error.response.data.detail);
         const { data } = error.response;
         if (data.detail === "No active account found with the given credentials") {
           throw new Error("Incorrect email or password.");
         } else if (data.detail === "Token expired") {
           throw new Error("Session expired. Please log in again.");
         }
+      } else if (!checkOnline()) {
+        throw new Error("Check your internet connection", error.message);
       } else {
-        throw new Error("An error occurred during sign-in:", error);
+        throw new Error(error.message)
       }
     }
 }
@@ -60,17 +66,18 @@ export const signUp = async (
       profile_image,
     };
     try {
-        console.log("Data being sent", userData);
         const response = await apiClient.post("/api/auth/users/", userData);
         console.log("User created succesfully!");
         return response.data;
     } catch (err) {
         if (err.response && err.response.data) {
-          console.log("Error during sign-up:", err.response.data);
+          // console.log("Error during sign-up:", err.response.data);
+          throw new Error("Error during sign up", err.response.data);
+        } else if (!checkOnline()) {
+          throw new Error("Check your internet connection", err.message);
         } else {
-          console.log("Sign-up failed:", err.message);
+          throw new Error(err.message)
         }
-        throw err;
     }
 }
 

@@ -90,7 +90,7 @@ export default function SignInPage() {
               type="email"
               placeholder="Enter Email Address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {setEmail(e.target.value); setIsError(false); setErrorMessage("");}}
               className={cn("w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1",
                 isError && "bg-red-200 border-red-300 ",
               )}
@@ -105,7 +105,7 @@ export default function SignInPage() {
                 type={isPasswordVisible ? "text" : "password"}
                 placeholder="Enter your password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {setPassword(e.target.value); setIsError(false); setErrorMessage("");}}
                 className={cn("w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1",
                   isError && "bg-red-200 border-red-300 ",
                 )}

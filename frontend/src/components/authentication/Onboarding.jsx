@@ -1,7 +1,19 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { showToast } from "../Sonner";
 
 export default function Onboarding({handleSignIn}) {
-
+  const [isLoading, setIsLoading] = useState(false);
+  const handleSubmit= async () => {
+    try {
+      setIsLoading(true);
+      const response = await handleSignIn();
+    } catch (error) {
+       showToast({type: "error", message: "An error occured!"});
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <div className="lg:w-[750px] mx-2 lg:mx-auto border bg-white border-gray-200 rounded-2xl px-3 py-8 lg:p-8 text-center">
       {/* Logo and Title */}
@@ -33,8 +45,18 @@ export default function Onboarding({handleSignIn}) {
       </div>
 
       {/* Finish Up Button */}
-      <button onClick={() => handleSignIn()} className="w-full bg-[#00EF8B] hover:bg-[#00EF8B] text-[#202020] rounded-full py-3 font-medium text-sm">
+      <button onClick={() => handleSubmit()} className={`w-full relative lg:mt-6 ${
+          isLoading ?"bg-gray-300" : "bg-[#00EF8B]" 
+        } text-[#202020] rounded-full py-3 font-medium text-sm`}
+        disabled={isLoading}>
         Finish Up
+        {isLoading && (
+              <img
+                src="/icons/spinner.svg"
+                className="absolute w-[30px] h-[30px] top-[15%] left-[34%] lg:left-[40%] transition-transform transform rotate-180 repeat-infinite"
+                alt="Loading"
+              />
+            )}
       </button>
     </div>
   );
