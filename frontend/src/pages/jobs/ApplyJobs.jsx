@@ -18,7 +18,7 @@ function ApplyJobs() {
   const navigate = useNavigate();
 
   const formSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         const formData = new FormData();
         formData.append('firstName', data.firstName);
         formData.append('secondName', data.secondName);

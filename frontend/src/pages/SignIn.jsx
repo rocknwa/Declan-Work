@@ -1,26 +1,55 @@
-import Header from "@/components/authentication/Header";
-import { useState } from "react";
+import { signIn } from "@/api/authService";
+import { useAuth } from "@/hooks/useAuth";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
+    setIsLoading(true);
+    setErrorMessage(""); 
+    setIsError(false);// Start loading state
+    try {
+      await signIn(email, password);
+      setIsAuthenticated(true);
+      navigate("/dashboard");
+    } catch (err) {
+      setIsAuthenticated(false);
+      setErrorMessage(err.message);
+      setIsError(true);
+    } finally {
+      setIsLoading(false); // Stop loading state
+    }
   };
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(location.state?.from || "/dashboard", { replace: true });
+    }
+  }, [isAuthenticated, navigate, location]);
+
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
-      <div className="w-[700px] mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
+      <div className="lg:w-[700px] lg:mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
         <div className="mb-6">
           <h2 className="text-base font-semibold text-[#6A6A6A]">
-            Welcome Back Goody
+            Welcome Back
           </h2>
           <p className="text-[#202020] mt-2 text-2xl font-semibold">
             Log in to your account
@@ -61,8 +90,10 @@ export default function SignInPage() {
               type="email"
               placeholder="Enter Email Address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1"
+              onChange={(e) => {setEmail(e.target.value); setIsError(false); setErrorMessage("");}}
+              className={cn("w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1",
+                isError && "bg-red-200 border-red-300 ",
+              )}
               required
             />
           </div>
@@ -72,10 +103,12 @@ export default function SignInPage() {
             <div className="relative">
               <input
                 type={isPasswordVisible ? "text" : "password"}
-                placeholder="Create password"
+                placeholder="Enter your password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1"
+                onChange={(e) => {setPassword(e.target.value); setIsError(false); setErrorMessage("");}}
+                className={cn("w-full p-3 border border-[#E9E9E9] text-[#202020] bg-transparent rounded-lg focus:outline-none mt-1",
+                  isError && "bg-red-200 border-red-300 ",
+                )}
                 required
               />
               <button
@@ -94,11 +127,20 @@ export default function SignInPage() {
 
           <button
             type="submit"
-            disabled={!email || !password}
-            className="w-full bg-[#21B557] disabled:bg-gray-300 disabled:text-[#989898] text-white rounded-full py-3 font-medium text-sm"
+            disabled={!email || !password || isLoading} // Disable button while loading
+            className="w-full relative bg-[#21B557] disabled:bg-gray-300 disabled:text-[#989898] text-white rounded-full py-3 font-medium text-sm"
           >
             Login
+            {isLoading && (
+              <img
+                src="/icons/spinner.svg"
+                className="absolute w-[30px] h-[30px] top-[15%] left-[35%] lg:left-[42%] transition-transform transform rotate-180 repeat-infinite"
+                alt="Loading"
+              />
+            )}
           </button>
+
+          { isError && <p className="text-red-500 mt-3 text-sm">{errorMessage}</p>}
         </form>
 
         <p className="mt-6 text-sm text-[#667085]">

@@ -1,7 +1,7 @@
 
 const ProfileCard = ({header, body}) => {
   return (
-    <div className=' border flex flex-col gap-5 p-4 rounded-[10px] '>
+    <div className='border flex flex-col gap-5 p-3 lg:p-4 rounded-[10px] '>
         <div className='font-semibold text-xl'>
             {header}
         </div>

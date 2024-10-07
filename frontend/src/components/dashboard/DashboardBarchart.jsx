@@ -71,11 +71,11 @@ export function DashboardBarchart() {
   return (
     <div className="">
       <div className='max-w-full mx-auto px-4 flex flex-col gap-4 sm:px-6 lg:px-8'>
-        <Card className="shadow-none rounded-[20px]">
+        <Card className="shadow-none rounded-[20px] overflow-x-scroll overflow-y-clip">
           <CardHeader>
             <div className="w-full flex justify-between items-start">
               <div className="flex flex-col gap-7 ">
-                <CardTitle>Earnings Report</CardTitle>
+                <CardTitle className="text-xl lg:text-2xl">Earnings Report</CardTitle>
                 <CardDescription className="flex gap-3 flex-col">
                   <p className="text-[#989898]">Income in 2024</p>
                   <div className="flex items-center justify-between gap-3">
@@ -92,8 +92,8 @@ export function DashboardBarchart() {
               </div>
             </div>
           </CardHeader>
-          <CardContent className="pt-4">
-            <ChartContainer className="max-h-[400px] ml-[-20px] w-full" config={chartConfig}>
+          <CardContent className="pt-4 w-full">
+            <ChartContainer className="max-h-[400px] min-w-[500px] ml-[-20px] sm:min-w-[100%]" config={chartConfig}>
               <BarChart
                 data={data} // Pass the selected data here
                 height={300} // Reduce height of the chart

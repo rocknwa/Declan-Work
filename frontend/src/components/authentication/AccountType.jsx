@@ -17,7 +17,7 @@ export default function AccountType({ setActive, accountType, setAccountType }) 
   };
 
   return (
-    <div className="w-[750px] mx-auto border border-gray-200 rounded-2xl p-6">
+    <div className="lg:w-[750px] min-w-full mx-auto border border-gray-200 rounded-2xl p-6">
       <div className="mb-6">
         <p className="text-lg text-[#989898] font-medium">
           Welcome to Declanwork!

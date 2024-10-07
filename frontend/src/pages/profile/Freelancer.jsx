@@ -10,7 +10,7 @@ import ProfileInfo from '@/components/profile/ProfileInfo'
 const Freelancer = () => {
   return (
       <>
-          <section className='flex p-4 flex-col gap-4'>
+          <section className='flex lg:p-4 mt-4 flex-col gap-4'>
             <ProfileInfo />
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className='flex gap-3 flex-col lg:flex-row'>

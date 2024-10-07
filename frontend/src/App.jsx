@@ -20,8 +20,11 @@ import SignInPage from './pages/SignIn';
 import NewPassword from './pages/NewPassword';
 import Header from './components/authentication/Header';
 import ForgotPassword from './pages/ForgotPassword';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Routes>
         {/* Routes for unauthenticated pages */}
@@ -56,14 +59,17 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </AuthProvider>
   );
 }
 
 function SignedInPages() {
   return (
     <>
+    <ProtectedRoute>
     <DashboardNav />
       <Outlet />
+    </ProtectedRoute>
     </>
   );
 }

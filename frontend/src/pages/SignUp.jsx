@@ -1,24 +1,87 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import { signIn, signUp } from "@/api/authService";
+
+import React, { useEffect, useState } from "react";
 import Onboarding from "@/components/authentication/Onboarding";
 import SetProfile from "@/components/authentication/SetProfile";
 import SignUp from "@/components/authentication/SignUp";
 import AccountType from "@/components/authentication/AccountType";
 import Sidebar from "@/components/authentication/Sidebar";
-import Header from "@/components/authentication/Header";
 import VerifyEmail from "@/components/authentication/VerifyEmail";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const SignupPage = () => {
   const [active, setActive] = useState("accountType");
   const [accountType, setAccountType] = useState("");
+  // State for form fields
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   const [jobRole, setJobRole] = useState("");
+   const [headline, setHeadline] = useState("");
+   const [country, setCountry] = useState("");
+   const [city, setCity] = useState("");
+   const [bio, setBio] = useState("");
+  //  const [skills, setSkills] = useState([]); // Skills array
+  //  const [portfolioLink, setPortfolioLink] = useState("");
+  //  const [resume, setResume] = useState(null); // Resume file upload
+   const [profilePic, setProfilePic] = useState(null); // Profile picture upload
+  // handle navigation
+   const navigate = useNavigate();
+   const location = useLocation();
+   const {isAuthenticated, setIsAuthenticated} = useAuth();
+   const [isLoading, setIsLoading] = useState(false);
+
+
+   const handleSignUp = async () => {
+     try {
+      setIsLoading(true);
+      const userInfo = await signUp (
+        email, 
+        firstName, 
+        lastName,
+        password,
+        jobRole, 
+        city, 
+        country, 
+        headline,
+        bio, 
+        "available",
+        profilePic,)
+        // console.log("the returned data is:", userInfo);
+        return userInfo;
+    } catch (err) {
+        setIsLoading(false);
+        throw new Error(err.message)
+      } finally {
+        setIsLoading(false);
+      }
+    };
+   const handleSignIn = async () => {
+    try {
+      await signIn (email, password);
+      setIsAuthenticated(true);
+      setTimeout(() => {
+        navigate("/profile");
+      }, 500);
+    } catch (err) {
+      setIsAuthenticated(false);
+      console.log('Handle Login function failed', err.message)
+      }
+    };
+
+
+    useEffect(()=> {
+      if(isAuthenticated) {
+        navigate(location.state?.from || "/dashboard", { replace: true }) //reroute if the user is signed in already
+       }
+    }, [isAuthenticated, location, navigate]);
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
-      <main className="flex-grow flex justify-center items-start pt-9 pl-4 relative pr-[500px]">
+      <main className="flex-grow flex justify-center items-start lg:pt-9 pt-6 lg:pl-4 relative lg:pr-[500px]">
         <div className="max-w-screen-xl mx-auto">
           {/* Card */}
           {active === "accountType" && (
@@ -43,11 +106,37 @@ const SignupPage = () => {
             />
           )}
 
-          {active === "setProfile" && <SetProfile setActive={setActive} />}
+          {active === "setProfile" && (
+            <SetProfile 
+              setActive={setActive}
+              jobRole={jobRole}
+              setJobRole={setJobRole}
+              headline={headline}
+              setHeadline={setHeadline}
+              country={country}
+              setCountry={setCountry}
+              city={city}
+              setCity={setCity}
+              bio={bio}
+              setBio={setBio}
+              // skills={skills}
+              // setSkills={setSkills}
+              // portfolioLink={portfolioLink}
+              // setPortfolioLink={setPortfolioLink}
+              // resume={resume}
+              // setResume={setResume}
+              profilePic={profilePic}
+              setProfilePic={setProfilePic} 
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              handleSignUp={handleSignUp}
+              />
+          )}
 
           {active === "verifyEmail" && <VerifyEmail setActive={setActive} />}
 
-          {active === "onboarding" && <Onboarding />}
+          {active === "onboarding" && 
+            <Onboarding handleSignIn={handleSignIn} />}
 
           {/* Fixed  */}
           <Sidebar active={active} />
