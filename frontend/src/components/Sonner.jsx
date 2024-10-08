@@ -1,15 +1,12 @@
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Check, X, Loader } from "lucide-react";
+import { checkOnline } from "@/lib/utils";
 
-// Function to check the internet connection
-const checkConnection = () => {
-  return navigator.onLine;
-};
 
 // showToast function
 const showToast = ({ type, message }) => {
-  if (!checkConnection()) {
+  if (!checkOnline()) {
     toast.error("No internet connection. Please check your connection.", {
       icon: <X className="text-accent-error" />,
       className: "border-l-4",

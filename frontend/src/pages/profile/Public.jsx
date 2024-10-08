@@ -6,8 +6,10 @@ import Certifications from "@/components/profile/profileDetails2/Certifications/
 import Portfolio from "@/components/profile/profileDetails2/Portfolio"
 import Projects from "@/components/profile/profileDetails2/projects/Projects"
 import ProfileInfo from "@/components/profile/ProfileInfo"
+import { useSelector } from "react-redux"
 
 const PublicProfile = () => {
+  const user = useSelector((state)=> state.user);
   return (
         <>
           <section className='flex flex-col p-4 gap-4'>

@@ -1,19 +1,16 @@
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import SelectAvailability from "./SelectAvailability";
-import { useState } from "react";
 import Location from "./Location/Location";
 
-const ProfileInfo = ({viewOnly}) => {
-  const data = {
-    name: "Izuchukwu Igwe",
-    location: "Lagos, Nigeria",
-    occupation: "Product Designer",
-    available: true,
-    rating: 4.5 // Rating value
-  }
+const ProfileInfo = ({ viewOnly }) => {
+  // Fetch user data from Redux store
+  const user = useSelector((state) => state.user);
 
-  const [available, setAvailable] = useState(data.available);
+  // Set availability based on user status
+  const [available, setAvailable] = useState(user.status === "available");
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
   // Function to render stars based on rating
@@ -43,7 +40,7 @@ const ProfileInfo = ({viewOnly}) => {
             <div className="relative">
               <div className="overflow-hidden rounded-full w-[50px] h-[50px]">
                 <img
-                  src="/assets/profile.jpg"
+                  src={user.profilePic || "/assets/profile.jpg"} // Use user's profile pic or fallback
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
@@ -52,11 +49,11 @@ const ProfileInfo = ({viewOnly}) => {
             </div>
             <div>
               <div className="flex lg:items-center gap-3 flex-col lg:flex-row items-start">
-                <h1 className="text-xl font-semibold">{data.name}</h1>
-                {renderStars(data.rating)} {/* Render stars based on rating */}
+                <h1 className="text-xl capitalize font-semibold">{`${user.firstName} ${user.lastName}`}</h1>
+                {renderStars(4.5)}
               </div>
               <div>
-                <p className="font-normal">{data.occupation}</p>
+                <p className="font-normal">{user.profession}</p>
               </div>
               <Location viewOnly={viewOnly} />
             </div>
@@ -72,7 +69,7 @@ const ProfileInfo = ({viewOnly}) => {
                 </Button>
               </div>
             }
-            { !viewOnly  && 
+            { !viewOnly && 
             <>
               <p>Status: {available ? "Available" : "Unavailable"}</p>
                 <img

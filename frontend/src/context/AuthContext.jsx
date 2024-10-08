@@ -1,3 +1,4 @@
+import { getAuthToken, verifyAccessToken } from "@/api/authService";
 import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
@@ -5,10 +6,11 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const checkAuthStatus = () => {
-        const token = localStorage.getItem("token");
+    const checkAuthStatus = async () => {
+        const token = getAuthToken();
         if (token) {
-          setIsAuthenticated(true);
+          const isValid = await verifyAccessToken();
+          setIsAuthenticated(isValid);
         } else {
           setIsAuthenticated(false);
         }

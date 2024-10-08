@@ -45,18 +45,19 @@ export default function Onboarding({handleSignIn}) {
       </div>
 
       {/* Finish Up Button */}
-      <button onClick={() => handleSubmit()} className={`w-full relative lg:mt-6 ${
+      <button onClick={() => handleSubmit()} className={`w-full text-[#202020] hover:bg-[#21B557] rounded-full font-medium lg:text-base text-sm flex items-center justify-center disabled:bg-gray-300 disabled:text-[#989898] lg:mt-6 ${
           isLoading ?"bg-gray-300" : "bg-[#00EF8B]" 
-        } text-[#202020] rounded-full py-3 font-medium text-sm`}
+        }`}
         disabled={isLoading}>
-        Finish Up
-        {isLoading && (
+        {isLoading ? (
               <img
                 src="/icons/spinner.svg"
-                className="absolute w-[30px] h-[30px] top-[15%] left-[34%] lg:left-[40%] transition-transform transform rotate-180 repeat-infinite"
+                className="w-[30px] h-[30px] my-2 spin"
                 alt="Loading"
               />
-            )}
+            ): 
+            <span className="my-3">Finish Up</span>
+            }
       </button>
     </div>
   );
