@@ -1,7 +1,9 @@
 import { signIn } from "@/api/authService";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { setUser } from "@/redux/slices/userSlice";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function SignInPage() {
@@ -16,14 +18,17 @@ export default function SignInPage() {
   const location = useLocation();
   const { isAuthenticated, setIsAuthenticated } = useAuth();
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMessage(""); 
     setIsError(false);// Start loading state
     try {
-      await signIn(email, password);
+      const user = await signIn(email, password, dispatch);
       setIsAuthenticated(true);
+      dispatch(setUser(user));
       navigate("/dashboard");
     } catch (err) {
       setIsAuthenticated(false);
@@ -128,16 +133,16 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={!email || !password || isLoading} // Disable button while loading
-            className="w-full relative bg-[#21B557] disabled:bg-gray-300 disabled:text-[#989898] text-white rounded-full py-3 font-medium text-sm"
+            className="w-full flex items-center justify-center bg-[#21B557] disabled:bg-gray-300 disabled:text-[#989898] text-white rounded-full font-medium text-sm"
           >
-            Login
-            {isLoading && (
+            {isLoading ? (
               <img
                 src="/icons/spinner.svg"
-                className="absolute w-[30px] h-[30px] top-[15%] left-[35%] lg:left-[42%] transition-transform transform rotate-180 repeat-infinite"
+                className="w-[30px] h-[30px] my-2 spin"
                 alt="Loading"
               />
-            )}
+            ) : <span className="my-3">Login</span> 
+            }
           </button>
 
           { isError && <p className="text-red-500 mt-3 text-sm">{errorMessage}</p>}

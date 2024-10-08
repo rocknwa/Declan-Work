@@ -1,97 +1,132 @@
+import { checkOnline } from "@/lib/utils";
 import apiClient from "./apiClient";
+import { getUser } from "./userService";
 
-const checkOnline = () => {
-  return navigator.onLine;
-}
-
-//get JWT token with email and password 
+// Function to get access token using email and password
 export const getAccessToken = async (email, password) => {
-    try {
-       const response = await apiClient.post("/api/auth/jwt/create", {
-        email,
-        password,
-       });
-       const token = response.data.access;
-       localStorage.setItem("token", token);
-      //  console.log("the token has been stored woohoo");
-       return token;
-    } catch (error) {
-      if (error.response && error.response.data) {
-        // console.log("The error is:", error.response.data.detail);
-        const { data } = error.response;
-        if (data.detail === "No active account found with the given credentials") {
-          throw new Error("Incorrect email or password.");
-        } else if (data.detail === "Token expired") {
-          throw new Error("Session expired. Please log in again.");
-        }
-      } else if (!checkOnline()) {
-        throw new Error("Check your internet connection", error.message);
-      } else {
-        throw new Error(error.message)
-      }
+  try {
+    const response = await apiClient.post("/api/auth/jwt/create", {
+      email,
+      password,
+    });
+    const { access, refresh } = response.data;
+    localStorage.setItem("accessToken", access);
+    localStorage.setItem("refreshToken", refresh);
+    return access;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+// Function to refresh the access token using the refresh token
+export const refreshAccessToken = async () => {
+  const refreshToken = localStorage.getItem("refreshToken");
+  if (!refreshToken) throw new Error("No refresh token available");
+
+  try {
+    const response = await apiClient.post("/api/auth/jwt/refresh/", {
+      refresh: refreshToken,
+    });
+    const newAccessToken = response.data.access;
+    localStorage.setItem("accessToken", newAccessToken); // Save the new token
+    return newAccessToken;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+// Function to verify if the current token is valid
+export const verifyAccessToken = async () => {
+  const accessToken = getAuthToken();
+  try {
+    await apiClient.post("/api/auth/jwt/verify/", { token: accessToken });
+    return true;
+  } catch (error) {
+    if (error.response && error.response.data.code === "token_not_valid") {
+      // Try refreshing the token if invalid
+      return refreshAccessToken();
     }
-}
-
-// get jwt token after they have been set
-export const getAuthToken = () => {
-    return localStorage.getItem("token");
-}
+    handleError(error);
+  }
+};
 
 
-// create a user
+// Function to sign up a new user
 export const signUp = async (
-    email, 
-    first_name, 
+  email,
+  first_name,
+  last_name,
+  password,
+  type,
+  profession,
+  city,
+  country,
+  bio_title,
+  bio_description,
+  status,
+  profile_image
+) => {
+  const userData = {
+    email,
+    first_name,
     last_name,
     password,
-    profession, 
-    city, 
-    country, 
+    type,
+    profession,
+    city,
+    country,
     bio_title,
-    bio_description, 
+    bio_description,
     status,
     profile_image,
-) => {
-    const userData = {
-      email, 
-      first_name, 
-      last_name,
-      password,
-      profession, 
-      city, 
-      country, 
-      bio_title,
-      bio_description, 
-      status,
-      profile_image,
-    };
-    try {
-        const response = await apiClient.post("/api/auth/users/", userData);
-        console.log("User created succesfully!");
-        return response.data;
-    } catch (err) {
-        if (err.response && err.response.data) {
-          // console.log("Error during sign-up:", err.response.data);
-          throw new Error("Error during sign up", err.response.data);
-        } else if (!checkOnline()) {
-          throw new Error("Check your internet connection", err.message);
-        } else {
-          throw new Error(err.message)
-        }
-    }
-}
-
-//login in to a user account.......... there is inconsistency in the naming login/signin/
-export const signIn = async (email, password) => {
-   try {
-       await getAccessToken(email, password);
-       console.log("user signed in");
-   } catch (error) {
-        throw new Error(error.message);
-   }
-}
-
-// Log out user by removing the token
-export const signOut = () => {
-    localStorage.removeItem('token');
   };
+
+  try {
+    const response = await apiClient.post("/api/auth/users/", userData);
+    return response.data;
+  } catch (err) {
+    handleError(err);
+  }
+};
+
+// Function to sign in a user
+export const signIn = async (email, password, dispatch) => {
+  try {
+    await getAccessToken(email, password);
+    const user = await getUser(dispatch);
+    console.log(user)
+    // sessionStorage.setItem('user', JSON.stringify(user)); //store the user data in session storage
+    console.log("User signed in");
+    return user;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+// Function to log out the user
+export const signOut = () => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  console.log("User logged out");
+};
+
+// Function to get access token from localStorage
+export const getAuthToken = () => {
+  return localStorage.getItem("accessToken");
+};
+
+// Error handler for network requests
+export const handleError = (error) => {
+  if (error.response && error.response.data) {
+    const { data } = error.response;
+    if (data.detail === "No active account found with the given credentials") {
+      throw new Error("Incorrect email or password.");
+    } else if (data.code === "token_not_valid") {
+      throw new Error("Session expired. Please log in again.");
+    }
+  } else if (!checkOnline()) {
+    throw new Error("Check your internet connection.");
+  } else {
+    throw new Error(error.message);
+  }
+};
