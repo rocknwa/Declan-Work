@@ -10,6 +10,8 @@ import Sidebar from "@/components/authentication/Sidebar";
 import VerifyEmail from "@/components/authentication/VerifyEmail";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { setUser } from "@/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const SignupPage = () => {
   const [active, setActive] = useState("accountType");
@@ -19,6 +21,7 @@ const SignupPage = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [type, setType] = useState("")
    const [jobRole, setJobRole] = useState("");
    const [headline, setHeadline] = useState("");
    const [country, setCountry] = useState("");
@@ -34,6 +37,8 @@ const SignupPage = () => {
    const {isAuthenticated, setIsAuthenticated} = useAuth();
    const [isLoading, setIsLoading] = useState(false);
 
+   const dispatch = useDispatch();
+
 
    const handleSignUp = async () => {
      try {
@@ -43,6 +48,7 @@ const SignupPage = () => {
         firstName, 
         lastName,
         password,
+        accountType,
         jobRole, 
         city, 
         country, 
@@ -61,8 +67,9 @@ const SignupPage = () => {
     };
    const handleSignIn = async () => {
     try {
-      await signIn (email, password);
+      const user = await signIn (email, password, dispatch);
       setIsAuthenticated(true);
+      dispatch(setUser(user));
       setTimeout(() => {
         navigate("/profile");
       }, 500);

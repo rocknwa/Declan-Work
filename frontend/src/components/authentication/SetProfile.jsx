@@ -386,27 +386,30 @@ export default function SetProfile({
           />
         </div> 
       </div>*/}
-			{/* {signUpError.length != 0 && (
-				<p className="text-red-500"> {signUpError} </p>
-			)} */}
-			<button
-				className={`w-full relative mt-6 ${
-					allCriteriaMet ? "bg-[#00EF8B]" : isLoading ? "bg-gray-300" : ""
-				} text-[#202020] rounded-full py-3 font-medium text-sm`}
-				disabled={isLoading}
-				onClick={() => handleSubmit()}
-			>
-				Continue
-				{isLoading && (
-					<img
-						src="/icons/spinner.svg"
-						className="absolute w-[30px] h-[30px] top-[15%] left-[37%] lg:left-[40%] transition-transform transform rotate-180 repeat-infinite"
-						alt="Loading"
-					/>
-				)}
-			</button>
-		</div>
-	);
+
+
+      {
+        signUpError.length != 0 && <p className="text-red-500"> {signUpError} </p>
+      }
+      <button
+        className={`w-full flex items-center justify-center hover:bg-[#21B557] transition-all disabled:bg-gray-300 disabled:text-[#989898] text-[#202020] rounded-full p-0 font-medium lg:text-base text-sm mt-6 ${
+          allCriteriaMet ? "bg-[#00EF8B]" :  isLoading ? "bg-gray-300" : "bg-gray-300"
+        }`}
+        disabled={isLoading}
+        onClick={() => handleSubmit()}
+      >
+        {isLoading ? (
+              <img
+                src="/icons/spinner.svg"
+                className="w-[30px] h-[30px] my-2 spin"
+                alt="Loading"
+              />
+            ) :
+            <span className="my-3">Continue</span>
+            }
+      </button>
+    </div>
+  );
 }
 
 SetProfile.propTypes = {
