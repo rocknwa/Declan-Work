@@ -24,7 +24,7 @@ function SearchJobsForm({jobs, setJobs, className}) {
     }
     
   return (
-    <div className={`flex flex-col m-0 md:m-4 p-2 md:p-0 ${className}`}>
+    <div className={`flex flex-col m-1 sm:m-2 md:m-4 p-2 ${className}`}>
         <form onSubmit={handleSubmit(onSubmit)}>
         <div className='flex flex-col items-start justify-center p-2 md:p-4'>
             <b className='text-2xl '>Job Matches</b>
@@ -32,7 +32,7 @@ function SearchJobsForm({jobs, setJobs, className}) {
         </div>
         <div className='flex flex-col border-2 border-gray-300 rounded-lg md:m-4 p-2 md:p-4 '>
             <div className='flex flex-col md:flex-row items-start justify-between'>
-                <div className='flex flex-col md:flex-row items-start justify-center w-full md:w-3/5 mb-1 mr-1'>
+                <div className='flex flex-col md:flex-row place-items-start justify-center w-full md:w-3/5  my-0.5 md:ml-3'>
                     <CustomInputDropdown
                         name="jobTitle"
                         control={control}
@@ -50,11 +50,11 @@ function SearchJobsForm({jobs, setJobs, className}) {
                         className="w-full"
                     />
                 </div>
-                <div className='flex items-start justify-center md:mt-4 md:ml-4'>
+                <div className='flex items-start justify-center mt-2 md:mt-4 ml-1 md:ml-4'>
                     <Button className='bg-[#21B557] text-white px-4 py-0.5 w-32 rounded-full' type='submit'>Search</Button>
                 </div>
             </div>
-            <div className='flex flex-col md:flex-row items-start justify-between py-2 md:p-4'>
+            <div className='flex flex-col md:flex-row items-start justify-between py-2 md:py-2 md:px-4'>
                 <div className='w-full md:w-3/5 flex '>
                 <div className='flex flex-col md:flex-row justify-center mr-1 w-full'>
                     <CustomDropdown control={control} name="company" label="Company" options={["Remote", "In-Office", "Hybrid"]} className="m-1 md:mx-0.5" />
