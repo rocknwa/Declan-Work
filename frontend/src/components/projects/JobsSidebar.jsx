@@ -57,7 +57,7 @@ export default JobsSidebar;
 
 
 
-const JobsCard = ({title, companyLogo, type, companyLocation, companyName, jobDescription}) => {
+export const JobsCard = ({title, companyLogo, type, companyLocation, companyName, jobDescription}) => {
   return (
     <div className="bg-white px-4 py-5 flex flex-col gap-3 rounded-[8px]">
         <div className="flex justify-between items-center">
