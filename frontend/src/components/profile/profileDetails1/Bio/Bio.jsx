@@ -2,27 +2,45 @@ import { DialogDemo } from '@/components/Dialog';
 import ProfileCard from '../../ProfileCard';
 import { Button } from '@/components/ui/button';
 import BioDialogBody from './BioDialogBody';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { showToast } from '@/components/Sonner';
 import BioBody from './BioBody';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateBio } from '@/api/profileService';
 
 const Bio = ({viewOnly}) => {
   const user = useSelector(state=> state.user);
   const [oneLineHeader, setOneLineHeader] = useState(user.bioTitle);
   const [about, setAbout] = useState(user.bioDescription);
 
-  const handleSave = (newOneLineHeader, newAbout) => {
+  const dispatch = useDispatch();
+
+  const handleSave = async (newOneLineHeader, newAbout) => {
     if (newOneLineHeader.trim() === "" || newAbout.trim() === "") {
       // Show error toast if fields are empty
       showToast({ type: "error", message: "Please fill out all fields before saving." });
     } else {
       // Save the data if all fields are valid
-      setOneLineHeader(newOneLineHeader);
-      setAbout(newAbout);
-      showToast({ type: "success", message: "Bio saved successfully!" });
+      try {
+        await updateBio(dispatch, {
+          bio_title: newOneLineHeader,
+          bio_description: newAbout
+        })
+        setOneLineHeader(newOneLineHeader);
+        setAbout(newAbout);
+        showToast({ type: "success", message: "Bio saved successfully!" });
+        
+      } catch (error) {
+        showToast({ type: "error", message: "Something went wrong" });
+        console.error(error);
+      }
     }
   };
+
+  useEffect(() => {
+      setOneLineHeader(user?.bioTitle);
+      setAbout(user?.bioDescription);
+    }, [user]);
 
   return (
     <ProfileCard

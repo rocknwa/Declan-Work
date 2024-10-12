@@ -5,6 +5,7 @@ import LocationDialogBody from './LocationDialogBody';
 import { Toaster } from '@/components/ui/sonner';
 import { showToast } from '@/components/Sonner';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Location = ({viewOnly}) => {
   const user = useSelector((state) => state.user);
@@ -25,6 +26,11 @@ const Location = ({viewOnly}) => {
   const [openCountry, setOpenCountry] = useState(false);
   const [openRegion, setOpenRegion] = useState(false);
 
+  useEffect(() => {
+    setCountry(user?.country);
+    setCity(user?.city);
+  }, [user?.country, user?.city]);
+  
   return (
     <div className="flex items-center gap-1">
       <img src="/icons/map-marker.svg" alt="Location icon" />
