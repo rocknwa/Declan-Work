@@ -7,11 +7,10 @@ import { showToast } from '@/components/Sonner';
 import { useSelector } from 'react-redux';
 
 const Location = ({viewOnly}) => {
-  const countryName = useSelector(state => state.user.country);
-  const cityName = useSelector(state => state.user.city);
+  const user = useSelector((state) => state.user);
 
-  const [country, setCountry] = useState(countryName);
-  const [city, setCity] = useState(cityName);
+  const [country, setCountry] = useState(user?.country);
+  const [city, setCity] = useState(user?.city);
 
   const handleSave = (newCountry, newCity) => {
     if(newCountry.length != 0 && newCity.length !=0 && newCountry != "" && newCity != "") {
