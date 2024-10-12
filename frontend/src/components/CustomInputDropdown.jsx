@@ -71,14 +71,14 @@ const CustomInputDropdown = forwardRef(function CustomInputDropdown({
     }
 
     return (
-        <div className={`relative w-full max-w-sm m-1 md:m-4 border-2 border-gray-300 rounded-md ${className}`} ref={dropdownRef}>
+        <div className={`relative w-full my-1 mx-0.5 md:mx-1 md:my-1 border-2 border-gray-300 rounded-md ${className}`} ref={dropdownRef}>
             {Icon && <Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" aria-hidden="true" />}
             <Input
                 {...field}
                 ref={inputRef}
                 type="text"
                 placeholder={defaultText}
-                className="pl-10 pr-10 h-12 text-base"
+                className={`px-10 h-12 text-base ${className}`}
                 onChange={handleInputChange}
                 onFocus={() => setIsDropdownOpen(true)}
             />

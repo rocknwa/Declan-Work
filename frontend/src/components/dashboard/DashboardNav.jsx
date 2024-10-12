@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import Hamburger from '../Hamburger';
 
 export default function DashboardNav() {
   const [isOpen, setIsOpen] = useState(false);
