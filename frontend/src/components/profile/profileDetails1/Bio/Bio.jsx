@@ -5,15 +5,12 @@ import BioDialogBody from './BioDialogBody';
 import { useState } from 'react';
 import { showToast } from '@/components/Sonner';
 import BioBody from './BioBody';
+import { useSelector } from 'react-redux';
 
 const Bio = ({viewOnly}) => {
-  const data = {
-    oneLineHeader: "Product Designer with 5 Years of Experience",
-    about: `I am a creative and detail-oriented freelance product designer with over 5 years of experience...`,
-  };
-
-  const [oneLineHeader, setOneLineHeader] = useState(data.oneLineHeader);
-  const [about, setAbout] = useState(data.about);
+  const user = useSelector(state=> state.user);
+  const [oneLineHeader, setOneLineHeader] = useState(user.bioTitle);
+  const [about, setAbout] = useState(user.bioDescription);
 
   const handleSave = (newOneLineHeader, newAbout) => {
     if (newOneLineHeader.trim() === "" || newAbout.trim() === "") {
