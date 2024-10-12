@@ -7,7 +7,7 @@ const Portfolio = ({viewOnly}) => {
             { !viewOnly  && <img src="/icons/edit-black.svg" className='w-4 h-4' alt="" />}
         </div>
         <div className=' 2xl:text-base'>
-            <p className="flex text-sm sm:text-base text-wrap">https://www.behance.net/izuchukwuigwe1</p>
+            <p className="flex text-sm sm:text-base text-wrap break-all">https://www.behance.net/izuchukwuigwe1</p>
         </div>
     </div>
   )
