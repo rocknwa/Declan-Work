@@ -47,7 +47,7 @@ const SkillsDialogBody = ({ skills: initialSkills, onSave }) => {
           {suggestedSkills.map((suggestedSkill, id) => (
             <div
               key={id}
-              className={`border-[2px] px-2 py-1 rounded-md cursor-pointer text-medium
+              className={`border-[2px] px-2 py-1 rounded-md cursor-pointer text-sm lg:text-base
               ${skills.includes(suggestedSkill) ? "border-[#6acd8c]" : "border-[#bababa]"}`}
               onClick={() => {
                 if (skills.includes(suggestedSkill)) {
@@ -66,7 +66,7 @@ const SkillsDialogBody = ({ skills: initialSkills, onSave }) => {
             .map((skill, id) => (
               <div
                 key={id}
-                className="border-[2px] cursor-pointer px-2 py-1 rounded-md text-medium border-[#6acd8c]"
+                className="border-[2px] cursor-pointer px-2 py-1 rounded-md text-sm lg:text-base border-[#6acd8c]"
                 onClick={() => removeSkill(skill)}
               >
                 {skill}
