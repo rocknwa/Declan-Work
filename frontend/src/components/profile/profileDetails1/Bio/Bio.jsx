@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { showToast } from '@/components/Sonner';
 import BioBody from './BioBody';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateBio } from '@/api/profileService';
+import { updateProfile } from '@/api/profileService';
 
 const Bio = ({viewOnly}) => {
   const user = useSelector(state=> state.user);
@@ -22,7 +22,7 @@ const Bio = ({viewOnly}) => {
     } else {
       // Save the data if all fields are valid
       try {
-        await updateBio(dispatch, {
+        await updateProfile(dispatch, {
           bio_title: newOneLineHeader,
           bio_description: newAbout
         })
