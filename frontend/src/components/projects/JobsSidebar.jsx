@@ -9,6 +9,7 @@ const JobsSidebar = () => {
             companyLocation: "Berlin, Germany",
             companyLogo: "/icons/logo-pitch.png",
             jobDescription: "Pitch is looking for Customer Manager to join marketing t ...",
+            tags: ["Design", "Business"]
         },
         {
             title: "Email Marketing",
@@ -17,6 +18,7 @@ const JobsSidebar = () => {
             companyLocation: "Berlin, Germany",
             companyLogo: "/icons/logo-r.png",
             jobDescription: "Pitch is looking for Customer Manager to join marketing t ...",
+            tags: ["Design", "Business"]
         },
         {
             title: "Email Marketing",
@@ -25,6 +27,7 @@ const JobsSidebar = () => {
             companyLocation: "Berlin, Germany",
             companyLogo: "/icons/logo-pitch.png",
             jobDescription: "Pitch is looking for Customer Manager to join marketing t ...",
+            tags: ["Design", "Business"]
         },
         {
             title: "Email Marketing",
@@ -33,13 +36,14 @@ const JobsSidebar = () => {
             companyLocation: "Berlin, Germany",
             companyLogo: "/icons/logo-pitch.png",
             jobDescription: "Pitch is looking for Customer Manager to join marketing t ...",
+            tags: ["Design", "Business"]
         },
     ]
   return (
     <div className="bg-[#E9E9E9] text-sm lg:w-[497px] lg:pb-[40px] p-4 rounded-[16px]">
         <p className="font-semibold mb-4">Jobs that match your projects</p>
         <div className="grid grid-cols-2 gap-y-4 gap-x-2">
-            { jobs.map(({title, type, companyLogo, companyLocation, companyName, jobDescription}, id) => 
+            { jobs.map(({title, type, companyLogo, companyLocation, companyName, jobDescription, tags}, id) => 
             (<JobsCard 
                 key={id} 
                 title={title} 
@@ -47,7 +51,9 @@ const JobsSidebar = () => {
                 companyLogo={companyLogo} 
                 companyLocation={companyLocation} 
                 companyName={companyName} 
-                jobDescription={jobDescription} />))}
+                jobDescription={jobDescription} 
+                tags={tags}
+                />))}
         </div>
     </div>
   )
@@ -57,9 +63,9 @@ export default JobsSidebar;
 
 
 
-const JobsCard = ({title, companyLogo, type, companyLocation, companyName, jobDescription}) => {
+export const JobsCard = ({title, companyLogo, type, companyLocation, companyName, jobDescription, tags, className}) => {
   return (
-    <div className="bg-white px-4 py-5 flex flex-col gap-3 rounded-[8px]">
+    <div className={`bg-white px-4 py-5 flex flex-col gap-3 rounded-[8px] ${className}`}>
         <div className="flex justify-between items-center">
             <div className="rounded-full flex items-center overflow-hidden"><img className="rounded-full" src={companyLogo} alt="" /></div>
             <Badge className="border-[#00C774] py-1.5 text-[#00C774] capitalize" variant="outline">{type}</Badge>
@@ -78,7 +84,10 @@ const JobsCard = ({title, companyLogo, type, companyLocation, companyName, jobDe
             </p>
         </div>
         <div className="flex items-start">
-            <Badge className="bg-[#EB85331A] hover:bg-[#EB85331A] hover:cursor-default text-[#FFB836]">Marketing</Badge>
+            {tags.map((tag, index)=> (
+                <Badge key={index} className="bg-[#EB85331A] hover:bg-[#EB85331A] hover:cursor-default text-[#FFB836] mr-0.5">{tag}</Badge>
+            ))}
+            
         </div>
     </div>
   )
