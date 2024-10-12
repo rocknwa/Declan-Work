@@ -107,7 +107,6 @@ export const signIn = async (email, password, dispatch) => {
 export const signOut = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
-  localStorage.clear();
   console.log("User logged out");
 };
 

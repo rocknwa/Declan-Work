@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 
 const Freelancer = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const dispatch = useDispatch();
     useEffect(()=> {
         setIsLoading(true)
@@ -20,6 +21,7 @@ const Freelancer = () => {
               await getUser(dispatch); // Pass dispatch to 
               setIsLoading(false);
             } catch (error) {
+              setError(error.message)
               console.error("Error fetching user data:", error);
             }
           };
@@ -27,7 +29,14 @@ const Freelancer = () => {
           fetchUserData();
     }, [dispatch])
   if(isLoading) {
-    return <div className='min-w-full min-h-full flex items-center justify-center'><div className='mx-auto mt-[200px] text-xl font-semibold'>Getting your data ...</div></div>
+    return (
+    <div className='min-w-full min-h-full flex items-center justify-center'>
+      { error ?
+        <div className='mx-auto mt-[200px] text-xl font-semibold text-red-500'>{error}</div> :
+        <div className='mx-auto mt-[200px] text-xl font-semibold'>Getting your data ...</div>
+      }
+    </div>
+    )
   }
 
   return (
