@@ -4,29 +4,45 @@ import { useState } from 'react';
 import LocationDialogBody from './LocationDialogBody';
 import { Toaster } from '@/components/ui/sonner';
 import { showToast } from '@/components/Sonner';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { updateProfile } from '@/api/profileService';
 
 const Location = ({viewOnly}) => {
-  const data = {
-    country: "Nigeria",
-    city: "Lagos"
-  };
+  const user = useSelector((state) => state.user);
 
-  const [country, setCountry] = useState(data.country);
-  const [city, setCity] = useState(data.city);
+  const [country, setCountry] = useState(user?.country);
+  const [city, setCity] = useState(user?.city);
 
-  const handleSave = (newCountry, newCity) => {
+  const dispatch = useDispatch();
+
+  const handleSave = async (newCountry, newCity) => {
     if(newCountry.length != 0 && newCity.length !=0 && newCountry != "" && newCity != "") {
-      setCountry(newCountry);
-    setCity(newCity);
-    showToast({type: "success", message:"Location successfully changed"});
-  } else {
-    showToast({type: "error", message:"Please select all fields!"});
-    }
-  };
+      try {
+        await updateProfile(dispatch, {
+          country: newCountry,
+          city: newCity
+        })
+        setCountry(newCountry);
+        setCity(newCity);
+        showToast({type: "success", message:"Location successfully changed"});
+      } catch (error) {
+        showToast({ type: "error", message: "Something went wrong" });
+        console.error(error);
+      }
+    } else {
+      showToast({type: "error", message:"Please select all fields!"});
+      }
+    };
 
   const [openCountry, setOpenCountry] = useState(false);
   const [openRegion, setOpenRegion] = useState(false);
 
+  useEffect(() => {
+    setCountry(user?.country);
+    setCity(user?.city);
+  }, [user]);
+  
   return (
     <div className="flex items-center gap-1">
       <img src="/icons/map-marker.svg" alt="Location icon" />

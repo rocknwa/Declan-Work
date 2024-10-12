@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { showToast } from '@/components/Sonner'
 
 const Skills = ({viewOnly}) => {
-  const initialSkills = ['3d', 'Illustration', 'Cinema 4D', 'Photo Manipulation', 'Video Editing', 'Data Analysis'];
+  const initialSkills = ['3d', 'Illustration', 'Cinema 4D', 'Photo Manipulation',];
   const[skills, setSkills] = useState(initialSkills);
   const handleSave = (newSkills) => {
     if(newSkills.length == 4) {
