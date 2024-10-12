@@ -23,7 +23,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import HomeNav from './components/Home/HomeNav';
-import HomePg from './pages/Landing Page/HomePg';
+import HomePg from './pages/landingpage/HomePg';
 
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -31,60 +31,23 @@ import { getUser } from './api/userService';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
-  return (
-    <AuthProvider>
-    <Router>
-      <Routes>
-        {/* Routes for unauthenticated pages */}
-        <Route element={<HomePage />}>
-          <Route path="/Home" element={<HomePg />} />
-        </Route>
-        <Route element={<PublicPages />}>
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/new-password" element={<NewPassword />} />
-        </Route>
-        {/* Routes for authenticated pages */}
-        <Route element={<SignedInPages />}> 
-          <Route path='/' element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="jobs" element={<JobListings />} />
-            <Route path="jobs/:companyName" element={<JobListings />} />
-            <Route path="jobs/:companyName/:jobId" element={<JobDetails />} />
-            <Route path="jobs/:companyName/:jobId/apply" element={<ApplyJobs />} />
-            <Route path="jobs/:companyName/:jobId/congrats" element={<AppSuccess />} />
-          <Route path="profile" element={<Freelancer />} />
-          <Route path="public" element={<PublicProfile />} />
-          <Route path="projects" element={<Projects />}>
-            <Route path='' element={< AllProjects />}>
-              <Route index element={< ActiveProjects/>} />
-              <Route path="active" element={< ActiveProjects/>} />
-              <Route path="completed" element={< CompletedProjects/>} />
-              <Route path="applications"  element={< Applications/>} />
-            </Route>
-          </Route>
-          <Route path='about-us' element={<AboutUs />} />
-          <Route path='messages' element={<Messages />} />
-          <Route path='my-wallet' element={<MyWallet />} />
-        </Route>
-      </Routes>
-    </Router>
-    </AuthProvider>
-  const dispatch = useDispatch();
-  const {isAuthenticated} = useAuth();
+      const dispatch = useDispatch();
+      const {isAuthenticated} = useAuth();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-        getUser(dispatch);
-    }
-}, [isAuthenticated, dispatch]);
+      useEffect(() => {
+        if (isAuthenticated) {
+            getUser(dispatch);
+        }
+    }, [isAuthenticated, dispatch]);
 
     return (
       <AuthProvider>
       <Router>
         <Routes>
-          {/* Routes for unauthenticated pages */}
+           {/* Routes for unauthenticated pages */}
+          <Route element={<HomePage />}>
+            <Route path="/Home" element={<HomePg />} />
+          </Route>
           <Route element={<PublicPages />}>
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SignInPage />} />
