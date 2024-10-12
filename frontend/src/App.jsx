@@ -22,12 +22,18 @@ import Header from './components/authentication/Header';
 import ForgotPassword from './pages/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
+import HomeNav from './components/Home/HomeNav';
+import HomePg from './pages/Landing Page/HomePg';
+
 function App() {
   return (
     <AuthProvider>
     <Router>
       <Routes>
         {/* Routes for unauthenticated pages */}
+        <Route element={<HomePage />}>
+          <Route path="/Home" element={<HomePg />} />
+        </Route>
         <Route element={<PublicPages />}>
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SignInPage />} />
@@ -60,6 +66,15 @@ function App() {
       </Routes>
     </Router>
     </AuthProvider>
+  );
+}
+
+function HomePage(){
+  return (
+    <>
+      <HomeNav />
+      <Outlet className=' mt-20'/>
+    </>
   );
 }
 
