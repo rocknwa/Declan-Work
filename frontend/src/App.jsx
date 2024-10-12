@@ -22,26 +22,32 @@ import Header from './components/authentication/Header';
 import ForgotPassword from './pages/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
+import HomeNav from './components/Home/HomeNav';
+import HomePg from './pages/landingpage/HomePg';
+
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from './api/userService';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
-  const dispatch = useDispatch();
-  const {isAuthenticated} = useAuth();
+      const dispatch = useDispatch();
+      const {isAuthenticated} = useAuth();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-        getUser(dispatch);
-    }
-}, [isAuthenticated, dispatch]);
+      useEffect(() => {
+        if (isAuthenticated) {
+            getUser(dispatch);
+        }
+    }, [isAuthenticated, dispatch]);
 
     return (
       <AuthProvider>
       <Router>
         <Routes>
-          {/* Routes for unauthenticated pages */}
+           {/* Routes for unauthenticated pages */}
+          <Route element={<HomePage />}>
+            <Route path="/Home" element={<HomePg />} />
+          </Route>
           <Route element={<PublicPages />}>
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SignInPage />} />
@@ -74,6 +80,15 @@ function App() {
         </Routes>
       </Router>
       </AuthProvider>
+  );
+}
+
+function HomePage(){
+  return (
+    <>
+      <HomeNav />
+      <Outlet className=' mt-20'/>
+    </>
   );
 }
 
