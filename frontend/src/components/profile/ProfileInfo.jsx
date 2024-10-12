@@ -3,9 +3,12 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import SelectAvailability from "./SelectAvailability";
+
 import Location from "./Location/Location";
+import { getUserData } from "@/api/userService";
 
 const ProfileInfo = ({ viewOnly }) => {
+
   // Fetch user data from Redux store
   const user = useSelector((state) => state.user);
 
@@ -13,24 +16,28 @@ const ProfileInfo = ({ viewOnly }) => {
   const [available, setAvailable] = useState(user.status === "available");
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
-  // Function to render stars based on rating
-  const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+	// Function to render stars based on rating
+	const renderStars = (rating) => {
+		const fullStars = Math.floor(rating);
+		const hasHalfStar = rating % 1 !== 0;
+		const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
-    return (
-      <div className="flex gap-1">
-        {Array(fullStars).fill().map((_, index) => (
-          <img key={index} src="/icons/star.svg" alt="Full star" />
-        ))}
-        {hasHalfStar && <img src="/icons/star-half.svg" alt="Half star" />}
-        {Array(emptyStars).fill().map((_, index) => (
-          <img key={index} src="/icons/star-empty.svg" alt="Empty star" />
-        ))}
-      </div>
-    );
-  }
+		return (
+			<div className="flex gap-1">
+				{Array(fullStars)
+					.fill()
+					.map((_, index) => (
+						<img key={index} src="/icons/star.svg" alt="Full star" />
+					))}
+				{hasHalfStar && <img src="/icons/star-half.svg" alt="Half star" />}
+				{Array(emptyStars)
+					.fill()
+					.map((_, index) => (
+						<img key={index} src="/icons/star-empty.svg" alt="Empty star" />
+					))}
+			</div>
+		);
+	};
 
   return (
     <div>
