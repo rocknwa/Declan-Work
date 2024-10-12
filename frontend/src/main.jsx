@@ -12,11 +12,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <AuthProvider>
-	<SnackbarProvider action={(snackbarId) => (
-		<button onClick={() => closeSnackbar(snackbarId)}>Dismiss</button>
-	)}>
-        <App />
-	</SnackbarProvider>
+        <SnackbarProvider action={(snackbarId) => (
+          <button onClick={() => closeSnackbar(snackbarId)}>Dismiss</button>
+        )}>
+              <App />
+        </SnackbarProvider>
       </AuthProvider>
     </Provider>
   </StrictMode>

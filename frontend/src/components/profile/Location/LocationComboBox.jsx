@@ -1,6 +1,4 @@
-"use client";
 
-import * as React from "react";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -18,38 +16,20 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ChevronDown } from "lucide-react";
+import { Country, State } from "country-state-city";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const countries = [
-  { value: "usa", label: "United States" },
-  { value: "canada", label: "Canada" },
-  { value: "nigeria", label: "Nigeria" },
-  { value: "india", label: "India" },
-];
 
-const cityByCountry = {
-  usa: [
-    { value: "california", label: "California" },
-    { value: "texas", label: "Texas" },
-  ],
-  canada: [
-    { value: "ontario", label: "Ontario" },
-    { value: "quebec", label: "Quebec" },
-  ],
-  nigeria: [
-    { value: "lagos", label: "Lagos" },
-    { value: "abuja", label: "Abuja" },
-  ],
-  india: [
-    { value: "maharashtra", label: "Maharashtra" },
-    { value: "kerala", label: "Kerala" },
-  ],
-};
+export function LocationComboboxDemo({ country, city, setCountry, setCity }) {
+  const countryData = Country.getAllCountries();
+  const [openCountry, setOpenCountry] = useState(false);
+  const [openRegion, setOpenRegion] = useState(false);
+  const [stateData, setStateData] = useState([]);
 
-export function LocationComboboxDemo({country, region, setCountry, setRegion}) {
-  const [openCountry, setOpenCountry] = React.useState(false);
-  const [openRegion, setOpenRegion] = React.useState(false);
-
-  const regions = country ? cityByCountry[country] || [] : [];
+  useEffect(() => {
+    setStateData(State.getStatesOfCountry(country?.isoCode));
+  }, [country]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 w-full">
@@ -62,13 +42,11 @@ export function LocationComboboxDemo({country, region, setCountry, setRegion}) {
             aria-expanded={openCountry}
             className="w-full max-w-[400px] rounded-[10px] bg-[#fafafa] justify-between"
           >
-            {country
-              ? countries.find((c) => c.value === country)?.label
-              : "Select country..."}
+            {country ? country.name : "Select country..."}
             <ChevronDown
               className={cn(
                 "ml-2 h-4 w-4 shrink-0 transition-transform",
-                openCountry ? "rotate-180" : "rotate-0" 
+                openCountry ? "rotate-180" : "rotate-0"
               )}
             />
           </Button>
@@ -79,21 +57,22 @@ export function LocationComboboxDemo({country, region, setCountry, setRegion}) {
             <CommandList>
               <CommandEmpty>No country found.</CommandEmpty>
               <CommandGroup>
-                {countries.map((c) => (
+                {countryData.map((c) => (
                   <CommandItem
-                    key={c.value}
-                    value={c.value}
+                    key={c.isoCode}
+                    value={c.name}
                     onSelect={(currentValue) => {
-                      setCountry(currentValue === country ? "" : currentValue);
-                      setRegion(""); // Reset region on country change
+                      const selectedCountry = countryData.find((c) => c.name === currentValue);
+                      setCountry(selectedCountry);
+                      setCity(""); // Reset city on country change
                       setOpenCountry(false);
                     }}
                   >
-                    {c.label}
+                    {c.name}
                     <CheckIcon
                       className={cn(
                         "ml-auto h-4 w-4",
-                        country === c.value ? "opacity-100" : "opacity-0"
+                        country?.name === c.name ? "opacity-100" : "opacity-0"
                       )}
                     />
                   </CommandItem>
@@ -104,8 +83,8 @@ export function LocationComboboxDemo({country, region, setCountry, setRegion}) {
         </PopoverContent>
       </Popover>
 
-      {/* Region Selection */}
-      {(
+      {/* city Selection */}
+      { (
         <Popover open={openRegion} onOpenChange={setOpenRegion}>
           <PopoverTrigger asChild>
             <Button
@@ -115,13 +94,11 @@ export function LocationComboboxDemo({country, region, setCountry, setRegion}) {
               className="w-full max-w-[400px] rounded-[10px] bg-[#fafafa] justify-between"
               disabled={!country}
             >
-              {region
-                ? regions.find((r) => r.value === region)?.label
-                : "Select City"}
+              {city ? city.name : "Select City"}
               <ChevronDown
                 className={cn(
                   "ml-2 h-4 w-4 shrink-0 transition-transform",
-                  openRegion ? "rotate-180" : "rotate-0" 
+                  openRegion ? "rotate-180" : "rotate-0"
                 )}
               />
             </Button>
@@ -130,22 +107,23 @@ export function LocationComboboxDemo({country, region, setCountry, setRegion}) {
             <Command>
               <CommandInput placeholder="Search city..." className="h-9" />
               <CommandList>
-                <CommandEmpty>No region found.</CommandEmpty>
+                <CommandEmpty>No city found.</CommandEmpty>
                 <CommandGroup>
-                  {regions.map((r) => (
+                  {stateData.map((r) => (
                     <CommandItem
-                      key={r.value}
-                      value={r.value}
+                      key={r.isoCode}
+                      value={r.name}
                       onSelect={(currentValue) => {
-                        setRegion(currentValue === region ? "" : currentValue);
+                        const selectedRegion = stateData.find((r) => r.name === currentValue);
+                        setCity(selectedRegion);
                         setOpenRegion(false);
                       }}
                     >
-                      {r.label}
+                      {r.name}
                       <CheckIcon
                         className={cn(
                           "ml-auto h-4 w-4",
-                          region === r.value ? "opacity-100" : "opacity-0"
+                          city?.name === r.name ? "opacity-100" : "opacity-0"
                         )}
                       />
                     </CommandItem>

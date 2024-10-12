@@ -3,13 +3,13 @@ import { LocationComboboxDemo } from './LocationComboBox';
 
 const LocationDialogBody = ({ onSave, setOpenCountry, setOpenRegion }) => {
   const [country, setCountry] = useState("");
-  const [region, setRegion] = useState("");
+  const [city, setCity] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(country, region); // Pass the updated values back to the parent
+    onSave(country.name, city.name); // Pass the updated values back to the parent
     setOpenCountry(false); // Close the country popover
-    setOpenRegion(false); // Close the region popover
+    setOpenRegion(false); // Close the city popover
   };
 
   return (
@@ -17,9 +17,9 @@ const LocationDialogBody = ({ onSave, setOpenCountry, setOpenRegion }) => {
       <div className="grid w-full relative lg:max-w-full sm:max-w-sm items-center gap-1.5">
         <LocationComboboxDemo
           country={country}
-          region={region}
+          city={city}
           setCountry={setCountry}
-          setRegion={setRegion}
+          setCity={setCity}
         />
       </div>
     </form>

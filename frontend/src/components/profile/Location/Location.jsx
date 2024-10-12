@@ -4,15 +4,14 @@ import { useState } from 'react';
 import LocationDialogBody from './LocationDialogBody';
 import { Toaster } from '@/components/ui/sonner';
 import { showToast } from '@/components/Sonner';
+import { useSelector } from 'react-redux';
 
 const Location = ({viewOnly}) => {
-  const data = {
-    country: "Nigeria",
-    city: "Lagos"
-  };
+  const countryName = useSelector(state => state.user.country);
+  const cityName = useSelector(state => state.user.city);
 
-  const [country, setCountry] = useState(data.country);
-  const [city, setCity] = useState(data.city);
+  const [country, setCountry] = useState(countryName);
+  const [city, setCity] = useState(cityName);
 
   const handleSave = (newCountry, newCity) => {
     if(newCountry.length != 0 && newCity.length !=0 && newCountry != "" && newCity != "") {

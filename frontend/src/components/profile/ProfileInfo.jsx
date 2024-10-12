@@ -5,7 +5,6 @@ import { Button } from "../ui/button";
 import SelectAvailability from "./SelectAvailability";
 
 import Location from "./Location/Location";
-import { getUserData } from "@/api/userService";
 
 const ProfileInfo = ({ viewOnly }) => {
 
