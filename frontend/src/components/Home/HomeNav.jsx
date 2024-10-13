@@ -10,7 +10,7 @@ export default function DashboardNav() {
   const location = useLocation();
   const navigate = useNavigate();
   return (
-    <nav className="fixed top-0 left-0 right-0 z-10 bg-white border-b border-[#E9E9E9]">
+    <nav className="fixed top-0 left-0 right-0 z-20 bg-white border-b border-[#E9E9E9]">
       <div className="max-w-full mx-auto px-2 md:px-4 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
