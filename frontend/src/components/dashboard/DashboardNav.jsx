@@ -9,10 +9,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import Hamburger from '../Hamburger';
+import Hamburger, { MobileNav } from '../Hamburger';
 
 export default function DashboardNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const location = useLocation();
   return (
     <nav className="bg-white border-b border-[#E9E9E9]">
@@ -29,8 +30,8 @@ export default function DashboardNav() {
               end
               className={({ isActive }) =>
                 isActive
-                  ? "inline-flex items-center text-sm font-medium text-[#000]"
-                  : "inline-flex items-center text-sm font-medium text-[#989898]"
+                  ? "inline-flex items-center text-base font-medium text-[#000]"
+                  : "inline-flex items-center text-base font-medium text-[#989898]"
               }
             >
               Dashboard
@@ -38,9 +39,9 @@ export default function DashboardNav() {
             <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
               <DropdownMenuTrigger asChild>
                 <div
-                  className="flex items-center text-sm cursor-pointer font-medium text-[#989898] hover:text-gray-900 justify-center gap-1"
+                  className="flex items-center text-base cursor-pointer font-medium text-[#989898] hover:text-gray-900 justify-center gap-1"
                 >
-                  <span className={`${location.pathname === "/jobs" ? "text-[#000]" : ""} text-sm`}>Job Matches</span>
+                  <span className={`${location.pathname === "/jobs" ? "text-[#000]" : ""} text-base`}>Job Matches</span>
                   <div className="w-[20px] transition-transform flex items-center justify-center">
                     <img
                       src="/icons/arrow-down-grey.svg"
@@ -96,7 +97,7 @@ export default function DashboardNav() {
             <NavLink
               to="/projects"
               className={({ isActive }) =>
-                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+                isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
             >
               My Projects
@@ -104,7 +105,7 @@ export default function DashboardNav() {
             <NavLink
               to="/about-us"
               className={({ isActive }) =>
-                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+                isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
             >
               About Us
@@ -112,7 +113,7 @@ export default function DashboardNav() {
             <NavLink
               to="/messages"
               className={({ isActive }) =>
-                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+                isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
             >
               Messages
@@ -120,7 +121,7 @@ export default function DashboardNav() {
             <NavLink
               to="/my-wallet"
               className={({ isActive }) =>
-                isActive ? "inline-flex items-center text-sm font-medium text-[#000]" : "inline-flex items-center text-sm font-medium text-[#989898]"
+                isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
             >
               My Wallet
@@ -131,17 +132,14 @@ export default function DashboardNav() {
             <div className="hidden sm:flex sm:items-center sm:space-x-4">
               <AccountAddress />
             </div>
-            <div className="flex items-center lg:hidden">
-              <Button variant="ghost" size="icon">
+            <div onClick={() => setIsHamburgerOpen(true)} className="flex items-center lg:hidden">
+              <Button variant="ghost" className="focus:bg-none hover:bg-none" size="icon">
                 <span className="sr-only">Open main menu</span>
-                <Hamburger />
+                <Hamburger/>
               </Button>
-              
-            </div>
-            <div className='hidden'>
-              <div></div>
             </div>
             </div>
+            { isHamburgerOpen && <MobileNav isHamburgerOpen={isHamburgerOpen} setIsHamburgerOpen={setIsHamburgerOpen}  />}
         </div>
       </div>
     </nav>

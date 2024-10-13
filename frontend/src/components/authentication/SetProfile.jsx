@@ -1,7 +1,8 @@
+import { Country, State } from "country-state-city";
 import { ChevronDown } from "lucide-react";
 import { enqueueSnackbar } from "notistack";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SetProfile({
 	setActive,
@@ -22,7 +23,9 @@ export default function SetProfile({
 	// resume,
 	// setResume,
 	profilePic,
+	profilePicFile,
 	setProfilePic,
+	setProfilePicFile,
 	isLoading,
 	handleSignUp,
 }) {
@@ -32,13 +35,29 @@ export default function SetProfile({
 		"Front-End Developer",
 		"Back-End Developer",
 		"Social Media Manager",
+		"Graphic Designer",
+		"UI UX Designer",
+		"Community Manager",
+		"Content Writer",
+		"QA Tester"
 	];
-	const countries = ["Nigeria", "USA", "Canada"];
-	const cities = {
-		Nigeria: ["Lagos", "Abuja", "Port Harcourt"],
-		USA: ["New York", "Los Angeles", "Chicago"],
-		Canada: ["Toronto", "Vancouver", "Montreal"],
-	};
+
+	const countries = Country.getAllCountries();
+	const [stateData, setStateData] = useState([]);
+
+	useEffect(() => {
+		if (country) {
+			const selectedCountry = countries.find(c => c.name === country);
+			if (selectedCountry) {
+				setStateData(State.getStatesOfCountry(selectedCountry.isoCode));
+			} else {
+				setStateData([]); // Clear city list when no country is selected
+			}
+		} else {
+			setStateData([]);
+		}
+	}, [country]);
+
 
 	// const availableSkills = [
 	//   "Communication",
@@ -53,11 +72,12 @@ export default function SetProfile({
 	const handleProfilePicUpload = (e) => {
 		const file = e.target.files[0];
 		if (file) {
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				setProfilePic(reader.result); // Display the uploaded image
-			};
-			reader.readAsDataURL(file);
+		const reader = new FileReader();
+		reader.onloadend = () => {
+			setProfilePic(reader.result); // Convert to base64 string for display
+		};
+		reader.readAsDataURL(file); // Convert image to base64
+		setProfilePicFile(file); //file for upload
 		}
 	};
 
@@ -227,7 +247,7 @@ export default function SetProfile({
 						<label className="text-sm text-black">Country</label>
 						<div className="relative">
 							<select
-								value={country}
+								value={country || ""}
 								onChange={(e) => {
 									setCountry(e.target.value);
 									setErrorMessage((pr) => ({ ...pr, country: false }));
@@ -235,9 +255,9 @@ export default function SetProfile({
 								className="w-full mt-1 p-3 appearance-none bg-transparent border border-gray-300 rounded-lg focus:outline-none"
 							>
 								<option>Select Country</option>
-								{countries.map((countryOption, index) => (
-									<option key={index} value={countryOption}>
-										{countryOption}
+								{countries.map((c) => (
+									<option key={c.isoCode} value={c.name}>
+										{c.name}
 									</option>
 								))}
 							</select>
@@ -254,7 +274,7 @@ export default function SetProfile({
 						<label className="text-sm text-black">City</label>
 						<div className="relative">
 							<select
-								value={city}
+								value={city || ""}
 								onChange={(e) => {
 									setCity(e.target.value);
 									setErrorMessage((pr) => ({ ...pr, city: false }));
@@ -262,10 +282,9 @@ export default function SetProfile({
 								className="w-full mt-1 p-3 appearance-none bg-transparent border border-gray-300 rounded-lg focus:outline-none"
 							>
 								<option>Select City</option>
-								{country &&
-									cities[country]?.map((cityOption, index) => (
-										<option key={index} value={cityOption}>
-											{cityOption}
+								{ stateData?.map((c) => (
+										<option key={c.isoCode} value={c.name}>
+											{c.name}
 										</option>
 									))}
 							</select>

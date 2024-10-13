@@ -71,7 +71,7 @@ const ProfileInfo = ({ viewOnly }) => {
             <div className="relative">
               <div className="overflow-hidden rounded-full w-[50px] h-[50px]">
                 <img
-                  src={user.profileImage || "/assets/profile.jpg"} // Use user's profile image or fallback
+                  src={user.profileImage || "/assets/sample.png"} // Use user's profile image or fallback
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
