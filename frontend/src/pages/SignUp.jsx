@@ -30,7 +30,8 @@ const SignupPage = () => {
   //  const [skills, setSkills] = useState([]); // Skills array
   //  const [portfolioLink, setPortfolioLink] = useState("");
   //  const [resume, setResume] = useState(null); // Resume file upload
-   const [profilePic, setProfilePic] = useState(null); // Profile picture upload
+  const [profilePic, setProfilePic] = useState(null); // Base64 string for preview
+  const [profilePicFile, setProfilePicFile] = useState(null); // File object for upload
   // handle navigation
    const navigate = useNavigate();
    const location = useLocation();
@@ -38,36 +39,63 @@ const SignupPage = () => {
    const [isLoading, setIsLoading] = useState(false);
 
    const dispatch = useDispatch();
+   
+  //  const handleSignUp = async () => {
+  //   const formData = new FormData();
+  //   formData.append("email", email);
+  //   formData.append("first_name", firstName);
+  //   formData.append("last_name", lastName);
+  //   formData.append("password", password);
+  //   formData.append("type", accountType);
+  //   formData.append("profession", jobRole);
+  //   formData.append("city", city);
+  //   formData.append("country", country);
+  //   formData.append("bio_title", headline);
+  //   formData.append("bio_description", bio);
+  //   formData.append("status", "available");
+    
+  //   // if (profilePicFile) {
+  //   //   formData.append("profile_image", profilePicFile);
+  //   // }
+    
+  //   try {
+  //     const response = await signUp(formData);
+  //     return response;
+  //   } catch (err) {
+  //     throw new Error(err.message);
+  //   }
+  // };
 
-
-   const handleSignUp = async () => {
-     try {
-      setIsLoading(true);
-      const userInfo = await signUp (
-        email, 
-        firstName, 
-        lastName,
-        password,
-        accountType,
-        jobRole, 
-        city, 
-        country, 
-        headline,
-        bio, 
-        "available",
-        profilePic,)
-        // console.log("the returned data is:", userInfo);
-        return userInfo;
-    } catch (err) {
-        setIsLoading(false);
-        throw new Error(err.message)
-      } finally {
-        setIsLoading(false);
-      }
-    };
-   const handleSignIn = async () => {
+  const handleSignUp = async () => {
     try {
-      const user = await signIn (email, password, dispatch);
+     setIsLoading(true);
+     const userInfo = await signUp (
+       email, 
+       firstName, 
+       lastName,
+       password,
+       accountType,
+       jobRole, 
+       city, 
+       country, 
+       headline,
+       bio, 
+       "available",
+      //  profilePic,
+      )
+       // console.log("the returned data is:", userInfo);
+       return userInfo;
+   } catch (err) {
+       setIsLoading(false);
+       throw new Error(err.message)
+     } finally {
+       setIsLoading(false);
+     }
+   };
+  
+  const handleSignIn = async () => {
+    try {
+      const user = await signIn(email, password, dispatch);
       setIsAuthenticated(true);
       dispatch(setUser(user));
       setTimeout(() => {
@@ -75,9 +103,9 @@ const SignupPage = () => {
       }, 500);
     } catch (err) {
       setIsAuthenticated(false);
-      console.log('Handle Login function failed', err.message)
-      }
-    };
+      console.error('Login failed:', err.message);
+    }
+  };
 
 
     useEffect(()=> {
@@ -133,7 +161,9 @@ const SignupPage = () => {
               // resume={resume}
               // setResume={setResume}
               profilePic={profilePic}
+              profilePicFile={profilePicFile}
               setProfilePic={setProfilePic} 
+              setProfilePicFile={setProfilePicFile} 
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               handleSignUp={handleSignUp}
