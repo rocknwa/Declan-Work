@@ -14,7 +14,7 @@ function LandingPg2() {
               <CardAnimation />
             </div>
           </div>
-          <div className='p-8 md:p-4 lg:w-2/5 flex flex-col justify-center items-start gap-2 md:gap-4 lg:gap-6  lg:mt-20 h-full'>
+          <div className=' lg:w-2/5 flex flex-col justify-center items-start gap-2 md:gap-4 lg:gap-6  lg:mt-20 h-full'>
             <div className='w-full'>
               <p className='lg:w-3/5 text-[#0E4C25] text-3xl md:text-5xl font-bold'>Manage your freelance business like a pro</p>
             </div>
