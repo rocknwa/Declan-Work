@@ -6,7 +6,7 @@ function DraggableDivs({initialX, initialY, text, className, style}) {
           drag
           dragMomentum={false}
           initial={{ x: initialX, y: initialY }}
-          className={`text-center absolute cursor-pointer text-[0.5rem] sm:text-xs md:text-sm px-2 py-1 lg:text-base lg:px-4 lg:py-2 rounded-full shadow-md ${className}`}
+          className={`text-center absolute cursor-pointer text-[0.5rem] text-lg md:text-md px-2 py-1 lg:text-base lg:px-4 lg:py-2 rounded-full shadow-md ${className}`}
           style={style}
         >
           {text}
