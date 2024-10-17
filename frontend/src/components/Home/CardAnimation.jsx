@@ -35,13 +35,13 @@ function CardAnimation() {
   return (
     <div className='w-full relative lg:mt-1 md:mr-7'>
         <div className='absolute left-[10%] top-16 w-80 transform  z-1 hidden md:flex'>
-            <img src="/assets/Left-job-card.svg" alt="" />
+            <img src="/assets/Left-job-card.svg" alt="" className='block max-w-full'/>
         </div>
         <div className='absolute left-[50%] top-4 w-[26rem] transform -translate-x-1/2 z-10'>
-            <img src="/assets/Middle-job-card.svg" alt="" />
+            <img src="/assets/Middle-job-card.svg" alt="" className='block max-w-full'/>
         </div>
         <div className='absolute right-[7%] top-10 rotate-3 w-92 transform  z-1 hidden md:flex'>
-            <img src="/assets/Right-job-card.svg" alt="" />
+            <img src="/assets/Right-job-card.svg" alt="" className='block max-w-full'/>
         </div>
     </div>
   )
