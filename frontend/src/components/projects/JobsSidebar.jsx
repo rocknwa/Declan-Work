@@ -42,7 +42,7 @@ const JobsSidebar = () => {
   return (
     <div className="bg-[#E9E9E9] text-sm lg:w-[497px] lg:pb-[40px] p-4 rounded-[16px]">
         <p className="font-semibold mb-4">Jobs that match your projects</p>
-        <div className="grid grid-cols-2 gap-y-4 gap-x-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-2">
             { jobs.map(({title, type, companyLogo, companyLocation, companyName, jobDescription, tags}, id) => 
             (<JobsCard 
                 key={id} 

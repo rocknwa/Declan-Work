@@ -4,7 +4,7 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 const AllProjects = () => {
   const location = useLocation();
   return (
-    <div className="flex gap-[70px] w-full">
+    <div className="flex flex-col md:flex-row gap-[70px] w-full">
         <div className="w-full">
         <div className="py-4">
             <h1 className="font-bold text-[#202020] text-2xl">My Projects</h1>
