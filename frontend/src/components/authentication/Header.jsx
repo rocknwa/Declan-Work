@@ -7,7 +7,7 @@ export default function Header() {
           <div className="flex items-center mx-4 mt-0 sm:mx-16 mb-2 sm:mb-0">
             <a href="/home">
               <img
-                src="/assets/DeclanWorkLogo.png"
+                src="/icons/declan-logo.svg"
                 alt="Declan Work"
                 className="h-13 w-44 mr-2"
               />
