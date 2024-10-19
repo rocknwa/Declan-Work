@@ -52,6 +52,19 @@ export const verifyAccessToken = async () => {
 
 
 // Function to sign up a new user
+// export const signUp = async (formData) => {
+//   try {
+//     const response = await apiClient.post("/api/auth/users/", formData, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//       },
+//     });
+//     return response.data;
+//   } catch (err) {
+//     handleError(err);
+//   }
+// };
+
 export const signUp = async (
   email,
   first_name,
@@ -64,7 +77,6 @@ export const signUp = async (
   bio_title,
   bio_description,
   status,
-  profile_image
 ) => {
   const userData = {
     email,
@@ -78,7 +90,6 @@ export const signUp = async (
     bio_title,
     bio_description,
     status,
-    profile_image,
   };
 
   try {
@@ -89,12 +100,13 @@ export const signUp = async (
   }
 };
 
+
 // Function to sign in a user
 export const signIn = async (email, password, dispatch) => {
   try {
     await getAccessToken(email, password);
     const user = await getUser(dispatch);
-    console.log(user)
+    // console.log(user)
     // sessionStorage.setItem('user', JSON.stringify(user)); //store the user data in session storage
     console.log("User signed in");
     return user;

@@ -81,7 +81,7 @@ const CompletedProjects = () => {
         },
     ]
   return (
-    <div className='grid grid-cols-2 gap-x-6 gap-y-4 w-full justify-between'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 w-full justify-between'>
         {
             completedData.map(({projectName, client, rating, projectStart, projectEnd}, id) => (
                 <ProjectCard key={id} projectName={projectName} client={client} rating={rating} projectStart={projectStart} projectEnd={projectEnd} />

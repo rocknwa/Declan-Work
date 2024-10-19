@@ -1,5 +1,5 @@
 import React from 'react';
-import USFlag from '../../public/assets/USAFlag.png'
+import USFlag from '@/assets/USAFlag.png'
 
 const CountrySelector = () => {
   return (
