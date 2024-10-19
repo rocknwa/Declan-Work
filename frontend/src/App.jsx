@@ -3,6 +3,8 @@ import {
 	Route,
 	Routes,
 	Outlet,
+	useNavigate,
+	useLocation,
 } from "react-router-dom";
 import SignupPage from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
@@ -34,7 +36,6 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./api/userService";
 import { useAuth } from "./hooks/useAuth";
-import CheckIsLoggedIn from "./components/CheckIsLoggedIn";
 
 function App() {
 	const dispatch = useDispatch();
@@ -52,7 +53,7 @@ function App() {
 				<Routes>
 					{/* Routes for unauthenticated pages */}
 					<Route element={<HomePage />}>
-						<Route path="/" element={<CheckIsLoggedIn />} />
+						<Route path="/" element={<div>Loading</div>} />
 						<Route path="/Home" element={<HomePg />} />
 					</Route>
 					<Route element={<PublicPages />}>
@@ -97,6 +98,13 @@ function App() {
 }
 
 function HomePage() {
+	const navigate = useNavigate();
+	const { isAuthenticated } = useAuth();
+
+	useEffect(() => {
+		if (isAuthenticated) navigate("/dashboard");
+		if (!isAuthenticated) navigate("/Home");
+	}, [isAuthenticated, navigate]);
 	return (
 		<>
 			<HomeNav />
