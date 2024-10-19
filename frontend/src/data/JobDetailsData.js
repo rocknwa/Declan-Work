@@ -1,8 +1,10 @@
+import companyLogo from '@/assets/CompanyLogo.png';
+
 export const JobDetailsData = {
     jobTitle: "Interactive Developer",
     companyName: "Maza",
     hours: "40 hrs/wk",
-    companyLogo: "../../public/assets/CompanyLogo.png",
+    companyLogo: companyLogo,
     location: "Remote",
     salary: "$100,000 - $120,000",
     postedAt: "13 hours ago",

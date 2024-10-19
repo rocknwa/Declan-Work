@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import FreelancerIcon from "../../../public/assets/user.png";
-import HirerIcon from "../../../public/assets/manager.png";
+import FreelancerIcon from "@/assets/user.png";
+import HirerIcon from "@/assets/manager.png";
 
 export default function AccountType({ setActive, accountType, setAccountType }) {
   
