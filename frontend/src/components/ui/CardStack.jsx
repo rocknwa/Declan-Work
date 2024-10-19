@@ -28,7 +28,7 @@ export const CardStack = ({
   };
 
   return (
-    (<div className={`relative h-[19rem] w-9/12 lg:h-[21rem] lg:w-9/12 xl:h-[24rem] xl:w-11/12 flex justify-center items-center`}>
+    (<div className={`relative h-[19rem] w-9/12 lg:h-[21rem] lg:w-9/12 xl:h-[24rem] xl:w-11/12 max-w-[110rem] flex justify-center items-center`}>
       {cards.map((card, index) => {
         return (
           (<motion.div

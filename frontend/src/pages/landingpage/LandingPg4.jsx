@@ -5,7 +5,7 @@ import { navItems } from '@/data/LP4StaticData'
 function LandingPg4() {
   const [selectedItem, setSelectedItem] = useState('signup')
   return (
-    <div className='w-full h-full px-4 md:px-10 lg:px-14 bg-[#21B557] flex flex-col justify-around items-center'>
+    <div id="how-it-works" className='w-full h-full px-4 md:px-10 lg:px-14 bg-[#21B557] flex flex-col justify-around items-center'>
         <div className='w-full py-10'>
             <span className='text-4xl text-[#093218] font-bold'>How it works</span>
         </div>

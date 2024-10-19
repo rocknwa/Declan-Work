@@ -2,8 +2,10 @@ import React from 'react'
 import TestimonialCarousel from '../../components/Home/TestimonialCarousel'
 import CardAnimation from '@/components/Home/CardAnimation'
 import { Button } from '@/components/ui/button'
+import { useNavigate } from 'react-router-dom'
 
 function LandingPg2() {
+  const navigate = useNavigate()
   return (
     <div className='flex flex-col justify-between items-center w-full px-5 py-2 h-fit'>
         <TestimonialCarousel />
@@ -22,7 +24,7 @@ function LandingPg2() {
               <p className='text-gray-500 text-xl md:text-md'>Everything you need to launch, build and grow your freelance career.</p>
             </div>
             <div className=' place-self-start'>
-              <Button className='bg-[#21B557] text-black size-lg sm:size-sm'>Get Started</Button>
+              <Button className='bg-[#21B557] text-black size-lg sm:size-sm' onClick={()=>navigate('/signup')}>Get Started</Button>
             </div>
           </div>
         </div>

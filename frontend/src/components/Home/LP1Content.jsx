@@ -13,7 +13,9 @@ function LP1Content() {
           <p>Discover a new way to work with Declanwork, the Web3-focused freelance platform designed to connect you with forward-thinking clients. Unlock opportunities, showcase your skills, and get paid securely—all in one place.</p>
         </div>
         <div className="flex items-center mt-3 lg:mt-5">
-          <Button className=" mr-1 bg-transparent text-black hover:bg-gray-200 px-4 py-2" onClick={()=>{navigate('#how-it-works')}}>
+          <Button className=" mr-1 bg-transparent text-black hover:bg-gray-200 px-4 py-2" onClick={()=>{navigate('#how-it-works')
+          document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
+          }}>
           <img src="/icons/play.svg" alt="play" className="w-4 h-4 inline-block mr-2"/>
           How it Works</Button>
           <Button className=" bg-[#21B557] text-black px-4 py-2 rounded-full" onClick={()=>navigate('/signup')}>Get Started</Button>
