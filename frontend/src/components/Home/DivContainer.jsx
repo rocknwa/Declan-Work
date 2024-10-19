@@ -21,7 +21,7 @@ function DivContainer() {
               return (
                 <DraggableDivs
                   key={index}
-                  className={` ${div.className}`}
+                  className={` ${div.className} text-sm md:text-base`}
                   style={{  position: 'absolute', ...div.style}} 
                   text={div.text}
                   />

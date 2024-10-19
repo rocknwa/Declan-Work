@@ -9,7 +9,7 @@ function HowItWorksNav({selectedItem, setSelectedItem}) {
     }, [setSelectedItem])
 
   return (
-    <nav className='w-full flex justify-around items-center rounded-full bg-white py-2 px-1 shrink'>
+    <nav className='w-full flex overflow-scroll no-scrollbar justify-around items-center rounded-full bg-white py-2 px-1 shrink'>
         <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 md:px-4 ${selectedItem === 'signup' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('signup')}>
           <NavLink className={`py-2 min-h-[1900px]:px-2 text-[#093218] text-xs md:text-[1.1em] rounded-full`}>Sign Up and Create Profile</NavLink>
         </Button>
