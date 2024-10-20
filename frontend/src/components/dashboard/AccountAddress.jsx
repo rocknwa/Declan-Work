@@ -16,6 +16,7 @@ const AccountAddress = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const {isAuthenticated, setIsAuthenticated} = useAuth();
+    const { address } = useAccount();
     const handleLogOut = () => {
         signOut();
         setIsAuthenticated(false);

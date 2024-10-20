@@ -17,6 +17,7 @@ export default function DashboardNav() {
   const location = useLocation();
   return (
     <nav className="bg-white border-b border-[#E9E9E9]">
+      {/* <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-[1400px]"> */}
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
