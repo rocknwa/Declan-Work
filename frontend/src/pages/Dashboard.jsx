@@ -4,6 +4,7 @@ import DashboardTable from '@/components/dashboard/DashboardTable'
 import { useEffect } from 'react'
 import { getUser } from '@/api/userService'
 import { useDispatch } from 'react-redux'
+import ComingSoon from '@/components/ComingSoon'
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Dashboard = () => {
                 <Overview />
                 <DashboardBarchart />
                 <DashboardTable />
+                <div className="hidden"><ComingSoon/></div>
             </section>
         </>
     )

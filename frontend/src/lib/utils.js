@@ -19,3 +19,11 @@ export const toCamelCase = (obj) => {
 export const checkOnline = () => {
   return navigator.onLine;
 };
+
+// Utility function to shorten an account address
+export function shortenAddress(address) {
+  if (!address) return ''; // Handle invalid addresses
+  const start = address.slice(0, 6);
+  const end = address.slice(-4);
+  return `${start}...${end}`;
+}

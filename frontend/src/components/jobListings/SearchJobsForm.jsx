@@ -30,8 +30,8 @@ function SearchJobsForm({jobs, setJobs, className}) {
             <b className='text-2xl '>Job Matches</b>
             {jobs && <p className='text-sm  text-gray-500'>We found {jobs.length} jobs that match your profile</p>}
         </div>
-        <div className='flex flex-col border-2 border-gray-300 rounded-lg md:m-4 p-2 md:p-4 '>
-            <div className='flex flex-col md:flex-row items-start justify-between'>
+        <div className='flex custom:flex-col flex-col border-2 border-gray-300 rounded-lg md:m-4 p-2 md:p-4 '>
+            <div className='flex custom:flex-col flex-col md:flex-row lg:flex-row items-start justify-between'>
                 <div className='flex flex-col md:flex-row place-items-start justify-center w-full md:w-3/5  my-0.5 md:ml-3'>
                     <CustomInputDropdown
                         name="jobTitle"
