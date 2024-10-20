@@ -14,19 +14,19 @@ const PublicProfile = () => {
         <>
           <section className='flex flex-col p-4 gap-4'>
             <ProfileInfo viewOnly = {true} />
-            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <div className='flex gap-3 flex-col lg:flex-row'>
-                <div className='lg:w-[35%] w-full flex flex-col gap-3'>
-                    <Bio viewOnly = {true} />
-                    <Skills viewOnly = {true} />
-                    <Resume viewOnly = {true} />
-                    <Education viewOnly = {true} />
-                </div>
-                <div className='lg:w-[65%] w-full flex flex-col gap-3'>
-                    <Portfolio viewOnly = {true} />
-                    <Projects viewOnly = {true} />
-                    <Certifications viewOnly = {true}/>
-                </div>    
+            <div className="max-w-full min-w-full mx-auto px-4 sm:px-6 lg:px-8">
+                <div className='flex gap-3 flex-col lg:flex-row lg:w-[1024px] lg:min-w-full w-full'>
+                  <div className='lg:w-[35%] w-full flex flex-col gap-3'>
+                      <Bio viewOnly = {true} />
+                      <Skills viewOnly = {true} />
+                      <Resume viewOnly = {true} />
+                      <Education viewOnly = {true} />
+                  </div>
+                  <div className='lg:w-[65%] w-full flex flex-col gap-3'>
+                      <Portfolio viewOnly = {true} />
+                      <Projects viewOnly = {true} />
+                      <Certifications viewOnly = {true}/>
+                  </div>    
                 </div>
             </div>
           </section>

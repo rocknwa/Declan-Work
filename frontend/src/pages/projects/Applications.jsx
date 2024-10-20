@@ -1,69 +1,77 @@
 import { Button } from "@/components/ui/button"
 import logo_nu from '@/assets/logo-nu.png'
+import { NavLink } from "react-router-dom"
 
 const Applications = () => {
     const projectApplicationsData = [
-        {
-            jobTitle: "Interactive Developer",
-            company: "MAZA",
-            type: "Contract",
-            salaryRange: "$900,00 - $1000,00",
-            location: "Lagos, Nigeria",
-            timePosted: "3 mins. ago",
-            logoUrl: logo_nu,
-        },
-        {
-            jobTitle: "Interactive Developer",
-            company: "MAZA",
-            type: "Contract",
-            salaryRange: "$900,00 - $1000,00",
-            location: "Lagos, Nigeria",
-            timePosted: "3 mins. ago",
-            logoUrl: logo_nu,
-        },
-        {
-            jobTitle: "Interactive Developer",
-            company: "MAZA",
-            type: "Contract",
-            salaryRange: "$900,00 - $1000,00",
-            location: "Lagos, Nigeria",
-            timePosted: "3 mins. ago",
-            logoUrl: logo_nu,
-        },
-        {
-            jobTitle: "Interactive Developer",
-            company: "MAZA",
-            type: "Contract",
-            salaryRange: "$900,00 - $1000,00",
-            location: "Lagos, Nigeria",
-            timePosted: "3 mins. ago",
-            logoUrl: logo_nu,
-        },
-        {
-            jobTitle: "Interactive Developer",
-            company: "MAZA",
-            type: "Contract",
-            salaryRange: "$900,00 - $1000,00",
-            location: "Lagos, Nigeria",
-            timePosted: "3 mins. ago",
-            logoUrl: logo_nu,
-        },
-        {
-            jobTitle: "Interactive Developer",
-            company: "MAZA",
-            type: "Contract",
-            salaryRange: "$900,00 - $1000,00",
-            location: "Lagos, Nigeria",
-            timePosted: "3 mins. ago",
-            logoUrl: logo_nu,
-        },
+        // {
+        //     jobTitle: "Interactive Developer",
+        //     company: "MAZA",
+        //     type: "Contract",
+        //     salaryRange: "$900,00 - $1000,00",
+        //     location: "Lagos, Nigeria",
+        //     timePosted: "3 mins. ago",
+        //     logoUrl: logo_nu,
+        // },
+        // {
+        //     jobTitle: "Interactive Developer",
+        //     company: "MAZA",
+        //     type: "Contract",
+        //     salaryRange: "$900,00 - $1000,00",
+        //     location: "Lagos, Nigeria",
+        //     timePosted: "3 mins. ago",
+        //     logoUrl: logo_nu,
+        // },
+        // {
+        //     jobTitle: "Interactive Developer",
+        //     company: "MAZA",
+        //     type: "Contract",
+        //     salaryRange: "$900,00 - $1000,00",
+        //     location: "Lagos, Nigeria",
+        //     timePosted: "3 mins. ago",
+        //     logoUrl: logo_nu,
+        // },
+        // {
+        //     jobTitle: "Interactive Developer",
+        //     company: "MAZA",
+        //     type: "Contract",
+        //     salaryRange: "$900,00 - $1000,00",
+        //     location: "Lagos, Nigeria",
+        //     timePosted: "3 mins. ago",
+        //     logoUrl: logo_nu,
+        // },
+        // {
+        //     jobTitle: "Interactive Developer",
+        //     company: "MAZA",
+        //     type: "Contract",
+        //     salaryRange: "$900,00 - $1000,00",
+        //     location: "Lagos, Nigeria",
+        //     timePosted: "3 mins. ago",
+        //     logoUrl: logo_nu,
+        // },
+        // {
+        //     jobTitle: "Interactive Developer",
+        //     company: "MAZA",
+        //     type: "Contract",
+        //     salaryRange: "$900,00 - $1000,00",
+        //     location: "Lagos, Nigeria",
+        //     timePosted: "3 mins. ago",
+        //     logoUrl: logo_nu,
+        // },
     ]
     return (
         <div className="flex flex-col gap-2 w-full">
             {
-                projectApplicationsData.map(({ jobTitle, company, type, salaryRange, location, timePosted, logoUrl }, id) => (
-                    <JobCard key={id} jobTitle={jobTitle} company={company} type={type} salaryRange={salaryRange} location={location} timePosted={timePosted} logoUrl={logoUrl} />
-                ))
+                projectApplicationsData.length != 0 ?
+                <div>
+                    {projectApplicationsData.map(({ jobTitle, company, type, salaryRange, location, timePosted, logoUrl }, id) => (
+                        <JobCard key={id} jobTitle={jobTitle} company={company} type={type} salaryRange={salaryRange} location={location} timePosted={timePosted} logoUrl={logoUrl} />
+                    ))}
+                </div> :
+                <div className="w-full min-h-full flex flex-col gap-2 py-10 lg:p-20 items-center">
+                    <p className="text-2xl text-center font-semibold">You have not applied to any opportunity</p>
+                    <NavLink to="/jobs"><Button className="hover:bg-[#277042]">Find jobs</Button></NavLink>
+                </div>
             }
         </div>
     )

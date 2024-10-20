@@ -8,14 +8,23 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu";
 import { NavLink, useNavigate } from "react-router-dom";
-import { cn } from "@/lib/utils";
+import { cn, shortenAddress } from "@/lib/utils";
 import { signOut } from "@/api/authService";
 import { useAuth } from "@/hooks/useAuth";
+import { useAccount } from 'wagmi';
+import {
+    Address,
+    Avatar,
+    EthBalance,
+    Identity,
+    Name,
+  } from '@coinbase/onchainkit/identity';
 
 const AccountAddress = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const {isAuthenticated, setIsAuthenticated} = useAuth();
+    const { address } = useAccount();
     const handleLogOut = () => {
         signOut();
         setIsAuthenticated(false);
@@ -29,7 +38,7 @@ const AccountAddress = () => {
             <Button variant="outline" className="rounded-full p-1 hover:bg-[#F0F0F0]" size="sm">
                 <div className="flex items-center justify-center gap-2">
                     <img src="/icons/Avatar.svg" alt="" />
-                    <span>0x0595...PQ59</span>
+                    <span>{shortenAddress(address)}</span>
                     <img src="/icons/arrow-down-01.svg" className={cn("transition-transform", isOpen ? "rotate-180" : "rotate-0")} alt="" />
                 </div>
             </Button>
