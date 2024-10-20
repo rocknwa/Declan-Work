@@ -132,7 +132,7 @@ export default function DashboardNav() {
             <div className="hidden sm:flex sm:items-center sm:space-x-4">
               <AccountAddress />
             </div>
-            <div onClick={() => setIsHamburgerOpen(true)} className="flex items-center lg:hidden">
+            <div onClick={() => setIsHamburgerOpen(true)} className="sm:flex items-center lg:hidden">
               <Button variant="ghost" className="focus:bg-none hover:bg-none" size="icon">
                 <span className="sr-only">Open main menu</span>
                 <Hamburger/>
