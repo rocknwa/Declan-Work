@@ -7,7 +7,7 @@ function LP1Content() {
     <div className="flex flex-col justify-center items-center h-full text-center my-auto sm:mb-10">
         <div className="w-4/5 lg:w-2/3">
         {/*text-4xl md:text-5xl lg:text-7xl */}
-          <h1 className="text-7xl  text-[#0E4C25] font-bold">Building Bridges Between Talents and Employers</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl  text-[#0E4C25] font-bold">Building Bridges Between Talents and Employers</h1>
         </div>
         <div className="text-gray-500 text-sm sm:text-lg lg:text-xl mt-2 lg:mt-5 w-3/5">
           <p>Discover a new way to work with Declanwork, the Web3-focused freelance platform designed to connect you with forward-thinking clients. Unlock opportunities, showcase your skills, and get paid securely—all in one place.</p>
