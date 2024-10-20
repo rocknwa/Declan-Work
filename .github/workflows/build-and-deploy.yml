@@ -18,17 +18,36 @@ jobs:
       with:
         node-version: '18'
     
+    - name: Log current directory
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "Directory contents:"
+        ls -la
+
     - name: Install dependencies
-      run: npm ci
-    
+      run: |
+        echo "Installing dependencies in root directory"
+        npm ci
+        echo "Installing dependencies in frontend directory"
+        cd frontend && npm ci
+
     - name: Build project
-      run: npm run build
+      run: |
+        echo "Building project in frontend directory"
+        cd frontend
+        npm run build
       working-directory: ./frontend
     
+    - name: Log build output
+      run: |
+        echo "Build output directory contents:"
+        ls -la ./frontend/dist
+
     - name: Deploy to FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./frontend/dist/ 
+        local-dir: ./frontend/dist/
