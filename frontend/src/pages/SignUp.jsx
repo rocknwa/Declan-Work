@@ -1,23 +1,35 @@
+import { signIn, signUp } from "@/api/authService";
+import { showToast } from "@/components/Sonner";
 import { useAuth } from "@/hooks/useAuth";
-import LoginButton from "@/onchainkit/LoginButton";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from 'wagmi';
+import AppSuccess from "./jobs/AppSuccess";
+import { setUser } from "@/redux/slices/userSlice";
+import { SignUpButton } from "@/onchainkit/LoginButton";
 
 export default function SignupPage() {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [type, setType] = useState("");
-
+  const dispatch = useDispatch();
+  
   const [passwordActive, setPasswordActive] = useState(false);
   const [isLengthValid, setIsLengthValid] = useState(false);
   const [hasNumber, setHasNumber] = useState(false);
   const [hasUpperLowerCase, setHasUpperLowerCase] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+    const {account} = useAccount();
+    const {setIsAuthenticated} = useAuth();
+    const navigate = useNavigate();
 
   // Function to handle password input and validation
   const handlePasswordChange = (e) => {
@@ -31,21 +43,54 @@ export default function SignupPage() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  const allCriteriaMet = isLengthValid && hasNumber && hasUpperLowerCase && email.length != 0;
+  const allCriteriaMet = isLengthValid && hasNumber && hasUpperLowerCase && email.length != 0 && firstName.length != 0 && lastName.length != 0;
 
-  const {account} = useAccount();
-  const {setIsAuthenticated} = useAuth();
-  const navigate = useNavigate();
-  // const dispatch = useDispatch();
 
-  useEffect(()=> {
-    if(account?.isConnected) {
-      console.log("i'm connceted")
+  const handleSignUp = async () => {
+    setIsError(false);// Start loading state
+    try {
+     setIsLoading(true);
+     const userInfo = await signUp (
+      email,
+      firstName,
+      lastName,
+      password,
+      "freelancer",   // passing "freelancer" as type
+      "",             // type = "" removed; empty string can be passed directly
+      "",             // profession
+      "",             // city
+      "",
+      "",
+      "",
+      "unavailable"
+      )
+       console.log(userInfo);
+      console.log("account created");
+      showToast({type: "success", message: "Your account had been created. Logging  in"})
+      const user = await signIn(email, password, dispatch);
+      console.log("account signed in");
       setIsAuthenticated(true);
-      // dispatch(setUser(user));
-      navigate("/dashboard");
-    }
-  }, [account, navigate, setIsAuthenticated])
+      dispatch(setUser(user));
+      navigate("/profile");
+    } catch (err) {
+        setIsAuthenticated(false);
+        setErrorMessage(err.message);
+        setIsError(true);
+        setIsLoading(false);
+       throw new Error(err.message)
+     } finally {
+       setIsLoading(false);
+     }
+   };
+
+  // useEffect(()=> {
+  //   if(account?.isConnected) {
+  //     console.log("i'm connceted")
+  //     setIsAuthenticated(true);
+  //     // dispatch(setUser(user));
+  //     navigate("/dashboard");
+  //   }
+  // }, [account, navigate, setIsAuthenticated])
   return (
     <div className="lg:max-w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
       <div className="text-center mb-6">
@@ -60,7 +105,7 @@ export default function SignupPage() {
       <div className="space-y-4 flex items-center w-full">
           <div className="flex items-center mx-auto relative">
             { !account  && <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[34%]" alt="" /> }
-          <LoginButton/></div>
+          <SignUpButton text="Sign Up with a wallet"/></div>
       </div>
 
       <div className="flex items-center my-6">
@@ -68,30 +113,34 @@ export default function SignupPage() {
         <p className="px-4">OR CONTINUE WITH</p>
         <div className="flex-grow border-t border-gray-300"></div>
       </div>
-{/* 
+
+        <div className="flex min-w-full justify-betweeen">
+          <label htmlFor={firstName} className="block text-base text-black ml-1 mb-1 ">First name</label>
+          <label htmlFor={lastName} className="block text-base text-black custom:ml-[100px] ml-[120px] md:ml-[300px] mb-1 lg:ml-[280px]">Last name</label>
+        </div>
       <div className="grid grid-cols-2 gap-4">
         <input
           type="text"
           placeholder="Enter First Name"
-          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-blue-500"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Enter Last Name"
-          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-blue-500"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
-      </div> */}
+      </div>
 
       <div className="mt-4">
         <label className="block text-base text-black ml-1 mb-1 ">Email</label>
         <input
           type="email"
           placeholder="Enter Email Address"
-          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -102,7 +151,7 @@ export default function SignupPage() {
         <input
           type={showPassword ? "text" : "password"} // Toggle between 'text' and 'password'
           placeholder="Create password"
-          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
           value={password}
           onChange={(e) => {setPasswordActive(true); handlePasswordChange(e)}}
         />
@@ -140,14 +189,23 @@ export default function SignupPage() {
         </div>}
 
       <button
-        disabled={!allCriteriaMet}
-        className={`w-full mt-6 ${
-          allCriteriaMet ? "bg-[#00EF8B]" : "bg-gray-300"
-        } text-[#202020] rounded-full py-3 font-medium text-sm`}
-      > 
-        Continue
+        className={`w-full flex items-center justify-center hover:bg-[#21B557] transition-all disabled:bg-gray-300 disabled:text-[#989898] text-[#202020] rounded-full p-0 font-medium lg:text-base text-sm mt-6 ${
+          allCriteriaMet ? "bg-[#00EF8B]" :  isLoading ? "bg-gray-300" : "bg-gray-300"
+        }`}
+        disabled={isLoading || !allCriteriaMet}
+        onClick={() => handleSignUp()}
+      >
+        {isLoading ? (
+              <img
+                src="/icons/spinner.svg"
+                className="w-[30px] h-[30px] my-2 spin"
+                alt="Loading"
+              />
+            ) :
+            <span className="my-3">Continue</span>
+            }
       </button>
-
+      { isError && <p className="text-red-500 text-center mt-3 text-sm">{errorMessage}</p>}
       <p className="mt-9 text-center text-sm text-[#667085]">
           Already have an account?{" "}
           <a href="/signin" className="text-[#21B557] font-medium cursor-pointer">
