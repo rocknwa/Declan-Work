@@ -88,15 +88,15 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     
-    --ock-font-family: 'Open Sauce Sans';
+    /* --ock-font-family: 'Open Sauce Sans';
     --ock-border-radius: 17.5rem !important;
     --ock-text-inverse: #202020 !important;
-    --ock-bg-default: red !important;
+    --ock-bg-default: inherit !important;
     --ock-bg-primary: inherit;
     --ock-bg-primary-active: inherit;
-    --ock-bg-secondary: #BAE8CB;
+    --ock-bg-secondary: #BAE8CB; */
     
-    /* --ock-text-foreground: 'your-custom-value';
+    /* 
     --ock-border-radius-inner: 'your-custom-value';
     --ock-text-foreground-muted: 'your-custom-value';
     --ock-text-error: 'your-custom-value';
@@ -105,15 +105,12 @@ body {
     --ock-text-warning: 'your-custom-value';
     --ock-text-disabled: 'your-custom-value';
  
-    --ock-bg-default-hover: 'your-custom-value';
-    --ock-bg-default-active: 'your-custom-value';
+ 
     --ock-bg-alternate: 'your-custom-value';
-    --ock-bg-alternate-hover: 'your-custom-value';
     --ock-bg-alternate-active: 'your-custom-value';
     --ock-bg-inverse: 'your-custom-value';
     --ock-bg-inverse-hover: 'your-custom-value';
     --ock-bg-inverse-active: 'your-custom-value';
-    --ock-bg-primary-hover: 'your-custom-value';
     --ock-bg-primary-washed: 'your-custom-value';
     --ock-bg-primary-disabled: 'your-custom-value';
     --ock-bg-secondary-hover: 'your-custom-value';
@@ -124,7 +121,6 @@ body {
     --ock-bg-default-reverse: 'your-custom-value';
  
     --ock-icon-color-primary: 'your-custom-value';
-    --ock-icon-color-foreground: 'your-custom-value';
     --ock-icon-color-foreground-muted: 'your-custom-value';
     --ock-icon-color-inverse: 'your-custom-value';
     --ock-icon-color-error: 'your-custom-value';
@@ -164,23 +160,37 @@ body {
 
 
     --ock-font-family: 'Open Sauce Sans';
-    --ock-border-radius: 17.5rem !important;
-    --ock-text-inverse: #202020 !important;
-    --ock-bg-default: red !important;
-    --ock-bg-primary: white !important;
+    --ock-border-radius: 17.5rem ;
+    --ock-text-inverse: #151515;
+    --ock-bg-default: #f4f5f7 ;
+    --ock-bg-default-hover: #d8d8d8;
+    --ock-bg-default-active: #d8d8d8;
+    --ock-bg-primary: white ;
+    --ock-bg-primary-hover: #d8d8d8;
     --ock-bg-primary-active: inherit;
-    --ock-bg-secondary: #BAE8CB;
+    --ock-bg-secondary: white;
+    --ock-bg-secondary-hover: #d8d8d8;
+    --ock-bg-secondary-active: #d8d8d8;
+    --ock-text-foreground: #151515;
+    --ock-icon-color-foreground: #1a1919;
+    /* --ock-bg-alternate-hover: yellow; */
   }
 
-  .light, .default-light {
+  /* .light, .default-light {
     --ock-font-family: 'Open Sauce Sans';
-    --ock-border-radius: 17.5rem !important;
-    --ock-text-inverse: #202020 !important;
-    --ock-bg-default: red !important;
-    --ock-bg-primary: inherit;
+    --ock-border-radius: 17.5rem ;
+    --ock-text-inverse: #ffffff ;
+    --ock-bg-default: #f4f5f7 ;
+    --ock-bg-default-hover: #d8d8d8;
+    --ock-bg-default-active: 'your-custom-value';
+    --ock-bg-primary: white ;
     --ock-bg-primary-active: inherit;
-    --ock-bg-secondary: #BAE8CB;
-  }
+    --ock-bg-secondary: white;
+    --ock-bg-secondary-hover: #d8d8d8;
+    --ock-bg-secondary-active: #d8d8d8;
+    --ock-text-foreground: #151515;
+    --ock-icon-color-foreground: #1a1919;
+  } */
   
   * {
     @apply border-border;

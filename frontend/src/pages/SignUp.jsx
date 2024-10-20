@@ -1,5 +1,10 @@
+import { useAuth } from "@/hooks/useAuth";
 import LoginButton from "@/onchainkit/LoginButton";
+import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useAccount } from 'wagmi';
 
 export default function SignupPage() {
   // const [firstName, setFirstName] = useState("");
@@ -26,9 +31,21 @@ export default function SignupPage() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   const allCriteriaMet = isLengthValid && hasNumber && hasUpperLowerCase && email.length != 0;
 
+  const {account} = useAccount();
+  const {setIsAuthenticated} = useAuth();
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+
+  useEffect(()=> {
+    if(account?.isConnected) {
+      console.log("i'm connceted")
+      setIsAuthenticated(true);
+      // dispatch(setUser(user));
+      navigate("/dashboard");
+    }
+  }, [account, navigate, setIsAuthenticated])
   return (
     <div className="lg:max-w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
       <div className="text-center mb-6">
@@ -42,7 +59,7 @@ export default function SignupPage() {
 
       <div className="space-y-4 flex items-center w-full">
           <div className="flex items-center mx-auto relative">
-            <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[35%]" alt="" />
+            { !account  && <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[34%]" alt="" /> }
           <LoginButton/></div>
       </div>
 
