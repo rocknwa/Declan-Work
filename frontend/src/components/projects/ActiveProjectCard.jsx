@@ -1,4 +1,5 @@
-import clientImage from '@/assets/client.png'
+import ClientImage from "@/assets/client.png";
+
 
 const ActiveProjectCard = ({ projectTitle, client, milestones, deliveredIn }) => {
     return (
@@ -7,7 +8,7 @@ const ActiveProjectCard = ({ projectTitle, client, milestones, deliveredIn }) =>
                 <p className="font-semibold text-black">{projectTitle}</p>
                 <div className="flex gap-2 text-[#4D4D4D] items-center">
                     <p>Client: {client}</p>
-                    <img src={clientImage} alt="" />
+                    <img src={ClientImage} alt="" />
                 </div>
             </div>
             <div className="flex flex-col items-center gap-2">

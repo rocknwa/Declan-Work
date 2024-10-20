@@ -1,4 +1,4 @@
-import React, {  useCallback } from 'react'
+import {  useCallback } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button } from '../ui/button'
 

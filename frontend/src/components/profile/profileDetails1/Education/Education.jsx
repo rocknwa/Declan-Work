@@ -5,21 +5,21 @@ import { showToast } from '@/components/Sonner';
 
 const Education = ({viewOnly}) => {
   const initialData = [
-    {
-      certName: {
-        degree: "Bsc.",
-        areaOfStudy: "Computer Science",
-      },
-      institution: "University of Nigeria",
-      startDate: {
-        month: "June",
-        year: "2021",
-      },
-      endDate: {
-        month: "July",
-        year: "2022",
-      },
-    },
+    // {
+    //   certName: {
+    //     degree: "Bsc.",
+    //     areaOfStudy: "Computer Science",
+    //   },
+    //   institution: "University of Nigeria",
+    //   startDate: {
+    //     month: "June",
+    //     year: "2021",
+    //   },
+    //   endDate: {
+    //     month: "July",
+    //     year: "2022",
+    //   },
+    // },
   ];
 
   const [educationData, setEducationData] = useState(initialData);

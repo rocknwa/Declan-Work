@@ -52,12 +52,14 @@ export default function DashboardTable() {
         <div className="max-w-full mx-auto px-4 flex flex-col gap-4 sm:px-6 lg:px-8">
           <Card className="rounded-[20px] ">
             <CardHeader className="px-7">
-              <CardTitle className="flex flex-col sm:flex-row text-xl lg:text-2xl items-start sm:items-center gap-3">
-                Active Projects
-                <div className="bg-[#FAFAFA] border text-[#989898] flex items-center justify-center px-2 py-0.5 text-sm rounded-md">
-                  <span>{data.transactions?.length}</span>
+              <CardTitle className="flex flex-col lg:flex-row lg:text-2xl items-start lg:items-center gap-3">
+                <div className="flex flex-row gap-2 justify-center item-center">
+                  Active Projects
+                  <div className="bg-[#FAFAFA] lg:mt-1 border text-[#989898] flex items-center w-fit  h-fit justify-center px-2 py-0.5 text-sm rounded-md">
+                    <span>{data.transactions?.length}</span>
+                  </div>
                 </div>
-                <span className="ml-1 cursor-pointer text-[#21B557] text-base">
+                <span className="lg:ml-2 mt-1 cursor-pointer text-[#21B557] text-sm lg:text-base">
                   View All
                 </span>
               </CardTitle>
