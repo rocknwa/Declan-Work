@@ -1,5 +1,15 @@
 {
+<<<<<<< HEAD
   "dependencies": {
     "react-icons": "^5.3.0"
   }
 }
+=======
+  "scripts": {
+    "build": "cd frontend && npm run build"
+  },
+  "dependencies": {
+    "react-icons": "^5.3.0"
+  }
+}
+>>>>>>> a7fc8bab94397d9bfc8841d05de1ee4fb5e4e4c0
