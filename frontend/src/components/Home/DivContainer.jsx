@@ -19,11 +19,11 @@ const divs = [
     text: "UI/UX DESIGNER",
     positions: {
       default: { top: '0.2214vh', left: '7.0703vw' },
-      sm: { top: '-2rem', left: '5vw' },
+      sm: { top: '-2rem', left: '5vw', },
       md: { top: '0.5vh', left: '6vw' },
       lg: { top: '0.2214vh', left: '7.0703vw' }
     },
-    className: "bg-red-200"
+    className: "bg-red-200 hidden md:block"
   },
   {
     text: "SOCIAL MEDIA MANAGER",
@@ -44,7 +44,7 @@ const divs = [
     md: { top: '0.5vh', left: '6vw' },
     lg: { top: '60.7217vh', left: '75.5902vw' }
   },
-    className: "bg-green-200"
+    className: "bg-green-200 hidden md:block"
   },
   {
     text: "BACKEND DEVELOPER",
@@ -54,7 +54,7 @@ const divs = [
       md: { top: '38vh', left: '60vw' },
       lg: { top: '37.9598vh', left: '80.2797vw' }
     },
-    className: "bg-yellow-200"
+    className: "bg-yellow-200 hidden md:block"
   },
   {
     text: "FULLSTACK DEVELOPER",
@@ -74,7 +74,7 @@ const divs = [
       md: { top: '75vh', left: '20vw' },
       lg: { top: '80vh', left: '30vw' }
     },
-    className: "bg-pink-200"
+    className: "bg-pink-200 hidden md:block"
   },
   {
     text: "PRODUCT MANAGER",
@@ -84,7 +84,7 @@ const divs = [
       md: { top: '63vh', left: '15vw' },
       lg: { top: '68vh', left: '5vw' }
     },
-    className: "bg-indigo-200"
+    className: "bg-indigo-200 hidden md:block"
   },
   {
     text: "ML ENGINEER",
@@ -94,7 +94,7 @@ const divs = [
       md: { top: '80vh', left: '55vw' },
       lg: { top: '85vh', left: '60vw' }
     },
-    className: "bg-gray-200"
+    className: "bg-gray-200 hidden md:block"
   },
   {
     text: "QA TESTER",
@@ -104,7 +104,7 @@ const divs = [
       md: { top: '12vh', left: '12vw' },
       lg: { top: '15vh', left: '10vw' }
     },
-    className: "bg-orange-200"
+    className: "bg-orange-200 hidden md:block"
   },
   {
     text: "SOLANA DEVELOPER",
@@ -114,7 +114,7 @@ const divs = [
       md: { top: '42vh', left: '8vw' },
       lg: { top: '45vh', left: '3vw' }
     },
-    className: "bg-teal-200"
+    className: "bg-teal-200 hidden md:block"
   },
 ];
 
@@ -122,17 +122,16 @@ const divs = [
 function DivContainer() {
   const [screenSize, setScreenSize] = useState('default');
 
-  // Hook to detect screen size and update the state
   useEffect(() => {
     const updateScreenSize = () => {
       const width = window.innerWidth;
-      if (width < 640) setScreenSize('sm'); // Small screens
-      else if (width >= 640 && width < 1024) setScreenSize('md'); // Medium screens
-      else setScreenSize('lg'); // Large screens
+      if (width < 640) setScreenSize('sm');
+      else if (width >= 640 && width < 1024) setScreenSize('md');
+      else setScreenSize('lg');
     };
 
     window.addEventListener('resize', updateScreenSize);
-    updateScreenSize(); // Initialize on mount
+    updateScreenSize();
 
     return () => window.removeEventListener('resize', updateScreenSize);
   }, []);

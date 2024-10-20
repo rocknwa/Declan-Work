@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import {  useCallback } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button } from '../ui/button'
 
@@ -9,21 +9,21 @@ function HowItWorksNav({selectedItem, setSelectedItem}) {
     }, [setSelectedItem])
 
   return (
-    <nav className='w-full flex overflow-scroll no-scrollbar justify-around items-center rounded-full bg-white py-2 px-1 shrink'>
-        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 md:px-4 ${selectedItem === 'signup' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('signup')}>
-          <NavLink className={`py-2 min-h-[1900px]:px-2 text-[#093218] text-xs md:text-[1.1em] rounded-full`}>Sign Up and Create Profile</NavLink>
+    <nav className='w-full flex flex-wrap justify-center sm:justify-around items-center overflow-x-auto rounded-full bg-white py-2 px-1'>
+        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 py-1 m-1 sm:m-0 sm:px-4 ${selectedItem === 'signup' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('signup')}>
+          <NavLink className={`py-1 sm:py-2 text-[#093218] text-xs sm:text-sm md:text-base lg:text-lg rounded-full`}>Sign Up</NavLink>
         </Button>
-        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 md:px-4 ${selectedItem === 'job' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('job')}>
-          <NavLink className={`py-2 min-h-[1900px]:px-2 text-[#093218] text-xs md:text-[1.1em] rounded-full`}>Job Matching</NavLink>
+        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 py-1 m-1 sm:m-0 sm:px-4 ${selectedItem === 'job' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('job')}>
+          <NavLink className={`py-1 sm:py-2 text-[#093218] text-xs sm:text-sm md:text-base lg:text-lg rounded-full`}>Job Matching</NavLink>
         </Button>
-        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 md:px-4 ${selectedItem === 'secure' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('secure')}>
-          <NavLink className={`py-2 min-h-[1900px]:px-2 text-[#093218] text-xs md:text-[1.1em] rounded-full`}>Secure Transactions</NavLink>
+        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 py-1 m-1 sm:m-0 sm:px-4 ${selectedItem === 'secure' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('secure')}>
+          <NavLink className={`py-1 sm:py-2 text-[#093218] text-xs sm:text-sm md:text-base lg:text-lg rounded-full`}>Transactions</NavLink>
         </Button>
-        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 py-1 md:px-4 ${selectedItem === 'project' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('project')}>
-          <NavLink className={`py-2 min-h-[1900px]:px-2 text-[#093218] text-xs md:text-[1.1em] rounded-full`}>Manage Projects</NavLink>
+        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 py-1 m-1 sm:m-0 sm:px-4 ${selectedItem === 'project' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('project')}>
+          <NavLink className={`py-1 sm:py-2 text-[#093218] text-xs sm:text-sm md:text-base lg:text-lg rounded-full`}>Projects</NavLink>
         </Button>
-        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 md:px-4 ${selectedItem === 'feedback' ? 'bg-[#BAE8CB]' : ''}`}  onClick={()=>handleClickedItem('feedback')}>
-          <NavLink className={`py-2 min-h-[1900px]:px-2 text-[#093218] text-xs md:text-[1.1em] rounded-full`}>Feedbacks and Rating</NavLink>
+        <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 py-1 m-1 sm:m-0 sm:px-4 ${selectedItem === 'feedback' ? 'bg-[#BAE8CB]' : ''}`}  onClick={()=>handleClickedItem('feedback')}>
+          <NavLink className={`py-1 sm:py-2 text-[#093218] text-xs sm:text-sm md:text-base lg:text-lg rounded-full`}>Feedback</NavLink>
         </Button>
     </nav>
   )
