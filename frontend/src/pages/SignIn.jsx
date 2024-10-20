@@ -51,7 +51,7 @@ export default function SignInPage() {
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
-      <div className="lg:w-[700px] lg:mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
+      <div className="lg:w-[700px] lg:mx-auto my-9 border bg-white border-[#E9E9E9] rounded-2xl p-6 text-center">
         <div className="mb-6">
           <h2 className="text-base font-semibold text-[#6A6A6A]">
             Welcome Back

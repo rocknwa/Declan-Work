@@ -125,10 +125,11 @@ function SignedInPages() {
 }
 function PublicPages() {
 	return (
-		<>
+		<div className="bg-[#fafafa]">
 			<Header />
 			<Outlet />
-		</>
+			<div className="text-center p-8 mt-8 text-xs text-[#0E4C25]">Need Help? [Contact Support]</div>
+		</div>
 	);
 }
 export default App;
