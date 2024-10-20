@@ -1,12 +1,12 @@
+import LoginButton from "@/onchainkit/LoginButton";
 import { useState } from "react";
-import PropTypes from "prop-types";
 
 export default function SignupPage() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setType] = useState("");
+  // const [type, setType] = useState("");
 
   const [passwordActive, setPasswordActive] = useState(false);
   const [isLengthValid, setIsLengthValid] = useState(false);
@@ -30,7 +30,7 @@ export default function SignupPage() {
   const allCriteriaMet = isLengthValid && hasNumber && hasUpperLowerCase && email.length != 0;
 
   return (
-    <div className="lg:w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
+    <div className="lg:max-w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
       <div className="text-center mb-6">
         <p className="text-base text-[#6A6A6A]">
           Welcome to Declanwork
@@ -40,15 +40,10 @@ export default function SignupPage() {
         </p>
       </div>
 
-      <div className="space-y-4">
-        <button className="w-full flex items-center justify-center gap-3 py-2 border border-gray-300 rounded-full text-gray-600 hover:bg-gray-100">
-          <img
-            src="/icons/wallet.svg"
-            alt="Wallet icon"
-            className="w-5 h-5"
-          />
-          Sign up with Wallet
-        </button>
+      <div className="space-y-4 flex items-center w-full">
+          <div className="flex items-center mx-auto relative">
+            <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[35%]" alt="" />
+          <LoginButton/></div>
       </div>
 
       <div className="flex items-center my-6">
@@ -154,15 +149,3 @@ export default function SignupPage() {
     </div>
   );
 }
-
-SignupPage.propTypes = {
-  setActive: PropTypes.func.isRequired,
-  firstName: PropTypes.string.isRequired,
-  setFirstName: PropTypes.func.isRequired,
-  lastName: PropTypes.string.isRequired,
-  setLastName: PropTypes.func.isRequired,
-  email: PropTypes.string.isRequired,
-  setEmail: PropTypes.func.isRequired,
-  password: PropTypes.string.isRequired,
-  setPassword: PropTypes.func.isRequired,
-};
