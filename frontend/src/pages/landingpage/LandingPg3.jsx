@@ -29,7 +29,7 @@ export const Highlight = ({
 
 function LandingPg3() {
   return (
-    <div className='w-full h-full px-8 md:px-4 '>
+    <div className='w-full h-full md:px-4 '>
       <div className='flex flex-col justify-center items-center p-6'>
         <div className='w-full text-5xl xl:text-3xl text-[#0E4C25] font-extrabold text-left lg:text-center'>Why Declanwork?</div>
         <div className='w-full text-gray-500 lg:w-2/3 xl:w-1/2 mt-4  text-left lg:text-center'>DeclanWork offers numerous advantages that set it apart from traditional freelancing platforms and make it an attractive option for freelancers and clients alike</div>
