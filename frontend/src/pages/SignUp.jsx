@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useAccount } from 'wagmi';
 import { setUser, setWalletConnected } from "@/redux/slices/userSlice";
 import { SignUpButton } from "@/onchainkit/LoginButton";
+import { SignUpOnboard } from "./PrevSignUp";
+import { updateProfile } from "@/api/profileService";
 
 export default function SignupPage() {
   const [firstName, setFirstName] = useState("");
@@ -51,25 +53,24 @@ export default function SignupPage() {
     setIsError(false);// Start loading state
     try {
      setIsLoading(true);
-     const userInfo = await signUp (
-      email,
-      firstName,
-      lastName,
-      password,
-      "freelancer",   // passing "freelancer" as type
-      "",             // type = "" removed; empty string can be passed directly
-      "",             // profession 
-      "",             // city
-      "",
-      "",
-      "",
-      "unavailable"
-      )
-      showToast({type: "success", message: "Your account had been created. Logging  in"})
-      const user = await signIn(email, password, dispatch);
-      setIsAuthenticated(true);
-      dispatch(setUser(user));
-      navigate("/signup/onboarding");
+    //  const userInfo = await updateProfile (dispatch,
+      // email,
+      // firstName,
+      // lastName,
+      // password,
+    //    // Default value for type
+    //   profession,       // Default value for profession
+    //   city,             // Default value for city
+    //   country,
+    //   bio_title,
+    //   bio_description,
+    //   status = "available" 
+    //   )
+    //   showToast({type: "success", message: "Your account had been created. Logging  in"})
+    //   const user = await signIn(email, password, dispatch);
+    //   setIsAuthenticated(true);
+    //   dispatch(setUser(user));
+      // navigate("/signup/onboarding");
     } catch (err) {
         setIsAuthenticated(false);
         setErrorMessage(err.message);
@@ -80,16 +81,37 @@ export default function SignupPage() {
        setIsLoading(false);
      }
    };
+   const handleSignUpWithWallet = async () => {
+    try {
+      setEmail(`${walletAddress}@declanwork.xyz`);
+      setPassword("Nonepassword");
+     } catch (err) {
+         setIsAuthenticated(false);
+         setErrorMessage(err.message);
+         setIsError(true);
+         setIsLoading(false);
+        throw new Error(err.message)
+      }
+   }
 
-  useEffect(() => {
-    if (isConnected && address) {
-      setIsAuthenticated(true);
-      dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
-      navigate("/signup/onboarding");
-    }
-  }, [isConnected, address, dispatch, navigate, setIsAuthenticated]);
+    // useEffect(() => {
+    //   if (isConnected && address) {
+    //     handleSignUpWithWallet();
+    //     setIsAuthenticated(true);
+    //     dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
+    //     navigate("/signup/onboarding");
+    //   }
+    // }, [isConnected, address, dispatch, navigate, setIsAuthenticated]);
+    useEffect(() => {
+      if (isConnected && address) {
+        dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
+        handleSignUpWithWallet(); // Proceed with wallet signup if connected
+      }
+    }, [isConnected, address, dispatch, navigate, setIsAuthenticated]);
   return (
-    <div className="lg:max-w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
+    <div>
+   { !isWalletConnected?  
+   <div className="lg:max-w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
       <div className="text-center mb-6">
         <p className="text-base text-[#6A6A6A]">
           Welcome to Declanwork
@@ -218,6 +240,13 @@ export default function SignupPage() {
           Privacy Policy
         .
       </p>
+    </div>
+     : <SignUpOnboard
+      email= {email}
+      firstName={firstName}
+      lastName={lastName}
+      password={password} />
+    }
     </div>
   );
 }

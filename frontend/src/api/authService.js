@@ -71,11 +71,11 @@ export const signUp = async (
   last_name,
   password,
   type = "freelancer",   // Default value for type
-  profession = "",       // Default value for profession
-  city = "",             // Default value for city
-  country = "",
-  bio_title = "",
-  bio_description = "",
+  profession,       // Default value for profession
+  city,             // Default value for city
+  country,
+  bio_title,
+  bio_description,
   status = "available"    
 ) => {
   const userData = {

@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 import { signIn, signUp } from "@/api/authService";
 
@@ -14,14 +15,19 @@ import { setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "@/api/profileService";
 
-export const SignUpOnboard = () => {
+export const SignUpOnboard = ({
+      email,
+      firstName,
+      lastName,
+      password,
+}) => {
   const [active, setActive] = useState("accountType");
   const [accountType, setAccountType] = useState("");
   // State for form fields
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [type, setType] = useState("")
    const [jobRole, setJobRole] = useState("");
    const [headline, setHeadline] = useState("");
@@ -70,7 +76,7 @@ export const SignUpOnboard = () => {
   const handleSignUp = async () => {
     try {
      setIsLoading(true);
-     const userInfo = await updateProfile (dispatch,
+     const userInfo = await signUp (
        email, 
        firstName, 
        lastName,
@@ -128,7 +134,7 @@ export const SignUpOnboard = () => {
             />
           )}
 
-          {active === "sign-up" && (
+          {/* {active === "sign-up" && (
             <SignUp
               setActive={setActive}
               firstName={firstName}
@@ -140,7 +146,7 @@ export const SignUpOnboard = () => {
               password={password}
               setPassword={setPassword}
             />
-          )}
+          )} */}
 
           {active === "setProfile" && (
             <SetProfile 
@@ -183,4 +189,3 @@ export const SignUpOnboard = () => {
     </div>
   );
 };
-
