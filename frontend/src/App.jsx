@@ -32,7 +32,7 @@ import { AuthProvider } from "./context/AuthContext";
 import HomeNav from "./components/Home/HomeNav";
 import HomePg from "./pages/landingpage/HomePg";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./api/userService";
 import { useAuth } from "./hooks/useAuth";
@@ -108,7 +108,7 @@ function HomePage() {
 		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
 		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
 		if (!isAuthenticated) navigate("/Home");
-	}, [isAuthenticated, navigate]);
+	}, [isAuthenticated, navigate, isWalletConnected]);
 	return (
 		<>
 			<HomeNav />

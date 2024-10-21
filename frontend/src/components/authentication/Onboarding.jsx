@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { showToast } from "../Sonner";
+import Logo from  "@/assets/DeclanWorkLogo.png"
 
 export default function Onboarding({handleSignIn}) {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +21,7 @@ export default function Onboarding({handleSignIn}) {
       <div className="mb-6">
         <div className="w-[127px] h-[41px] mx-auto">
           <img
-            src="/assets/DeclanWorkLogo.png"
+            src={Logo}
             alt="DeclanWork Logo"
             className="mx-auto mb-4"
           />

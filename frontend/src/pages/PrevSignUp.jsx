@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { updateProfile } from "@/api/profileService";
 
 export const SignUpOnboard = () => {
   const [active, setActive] = useState("accountType");
@@ -69,7 +70,7 @@ export const SignUpOnboard = () => {
   const handleSignUp = async () => {
     try {
      setIsLoading(true);
-     const userInfo = await signUp (
+     const userInfo = await updateProfile (dispatch,
        email, 
        firstName, 
        lastName,
@@ -91,7 +92,7 @@ export const SignUpOnboard = () => {
      } finally {
        setIsLoading(false);
      }
-   };
+    };
   
   const handleSignIn = async () => {
     try {
@@ -100,7 +101,7 @@ export const SignUpOnboard = () => {
       dispatch(setUser(user));
       setTimeout(() => {
         navigate("/profile");
-      }, 500);
+      }, 100);
     } catch (err) {
       setIsAuthenticated(false);
       console.error('Login failed:', err.message);
