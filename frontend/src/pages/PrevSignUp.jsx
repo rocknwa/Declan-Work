@@ -13,7 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 
-const SignupPage = () => {
+export const SignUpOnboard = () => {
   const [active, setActive] = useState("accountType");
   const [accountType, setAccountType] = useState("");
   // State for form fields
@@ -183,4 +183,3 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;

@@ -3,11 +3,10 @@ import { showToast } from "@/components/Sonner";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from 'wagmi';
-import AppSuccess from "./jobs/AppSuccess";
-import { setUser } from "@/redux/slices/userSlice";
+import { setUser, setWalletConnected } from "@/redux/slices/userSlice";
 import { SignUpButton } from "@/onchainkit/LoginButton";
 
 export default function SignupPage() {
@@ -27,7 +26,9 @@ export default function SignupPage() {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-    const {account} = useAccount();
+    const { address, isConnected } = useAccount(); // Wagmi hook to get wallet info
+    const { walletAddress, isWalletConnected } = useSelector((state) => state.user);
+    // const { isWalletConnected, id, email, firstName, profession } = useSelector((state) => state.user);
     const {setIsAuthenticated} = useAuth();
     const navigate = useNavigate();
 
@@ -57,40 +58,36 @@ export default function SignupPage() {
       password,
       "freelancer",   // passing "freelancer" as type
       "",             // type = "" removed; empty string can be passed directly
-      "",             // profession
+      "",             // profession 
       "",             // city
       "",
       "",
       "",
       "unavailable"
       )
-       console.log(userInfo);
-      console.log("account created");
       showToast({type: "success", message: "Your account had been created. Logging  in"})
       const user = await signIn(email, password, dispatch);
-      console.log("account signed in");
       setIsAuthenticated(true);
       dispatch(setUser(user));
-      navigate("/profile");
+      navigate("/signup/onboarding");
     } catch (err) {
         setIsAuthenticated(false);
         setErrorMessage(err.message);
         setIsError(true);
         setIsLoading(false);
        throw new Error(err.message)
-     } finally {
+     } finally { 
        setIsLoading(false);
      }
    };
 
-  // useEffect(()=> {
-  //   if(account?.isConnected) {
-  //     console.log("i'm connceted")
-  //     setIsAuthenticated(true);
-  //     // dispatch(setUser(user));
-  //     navigate("/dashboard");
-  //   }
-  // }, [account, navigate, setIsAuthenticated])
+  useEffect(() => {
+    if (isConnected && address) {
+      setIsAuthenticated(true);
+      dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
+      navigate("/signup/onboarding");
+    }
+  }, [isConnected, address, dispatch, navigate, setIsAuthenticated]);
   return (
     <div className="lg:max-w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
       <div className="text-center mb-6">
@@ -104,7 +101,7 @@ export default function SignupPage() {
 
       <div className="space-y-4 flex items-center w-full">
           <div className="flex items-center mx-auto relative">
-            { !account  && <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[34%]" alt="" /> }
+            { !address  && <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[34%]" alt="" /> }
           <SignUpButton text="Sign Up with a wallet"/></div>
       </div>
 

@@ -36,6 +36,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./api/userService";
 import { useAuth } from "./hooks/useAuth";
+import { SignUpOnboard } from "./pages/PrevSignUp";
 
 function App() {
 	const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
 					</Route>
 					<Route element={<PublicPages />}>
 						<Route path="/signup" element={<SignupPage />} />
+						<Route path="/signup/onboarding" element={<SignUpOnboard />} />
 						<Route path="/signin" element={<SignInPage />} />
 						<Route path="/forgot-password" element={<ForgotPassword />} />
 						<Route path="/new-password" element={<NewPassword />} />
