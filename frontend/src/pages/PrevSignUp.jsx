@@ -108,11 +108,11 @@ export const SignUpOnboard = () => {
   };
 
 
-    useEffect(()=> {
-      if(isAuthenticated) {
-        navigate(location.state?.from || "/dashboard", { replace: true }) //reroute if the user is signed in already
-       }
-    }, [isAuthenticated, location, navigate]);
+    // useEffect(()=> {
+    //   if(isAuthenticated) {
+    //     navigate(location.state?.from || "/dashboard", { replace: true }) //reroute if the user is signed in already
+    //    }
+    // }, [isAuthenticated, location, navigate]);
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">

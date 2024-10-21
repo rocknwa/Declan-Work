@@ -102,9 +102,11 @@ function App() {
 function HomePage() {
 	const navigate = useNavigate();
 	const { isAuthenticated } = useAuth();
+	const { walletAddress, isWalletConnected } = useSelector((state) => state.user);
 
 	useEffect(() => {
-		if (isAuthenticated) navigate("/dashboard");
+		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
+		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
 		if (!isAuthenticated) navigate("/Home");
 	}, [isAuthenticated, navigate]);
 	return (
