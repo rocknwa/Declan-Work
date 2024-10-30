@@ -181,23 +181,22 @@ body {
   }
 
 
-@layer base {
-
-  /* .light, .default-light {
+  .light, .default-light {
     --ock-font-family: 'Open Sauce Sans';
     --ock-border-radius: 17.5rem ;
-    --ock-text-inverse: #ffffff ;
+    --ock-text-inverse: #151515;
     --ock-bg-default: #f4f5f7 ;
     --ock-bg-default-hover: #d8d8d8;
-    --ock-bg-default-active: 'your-custom-value';
+    --ock-bg-default-active: #d8d8d8;
     --ock-bg-primary: white ;
+    --ock-bg-primary-hover: #d8d8d8;
     --ock-bg-primary-active: inherit;
     --ock-bg-secondary: white;
     --ock-bg-secondary-hover: #d8d8d8;
     --ock-bg-secondary-active: #d8d8d8;
     --ock-text-foreground: #151515;
     --ock-icon-color-foreground: #1a1919;
-  } */
+  }
   
   * {
     @apply border-border;
@@ -206,6 +205,4 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
-
 }
