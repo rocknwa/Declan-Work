@@ -6,6 +6,7 @@ import Location from "./Location/Location";
 import { showToast } from '../Sonner';
 import { Button } from '../ui/button';
 import { updateProfile } from '@/api/profileService';
+import defaultImage from "@/assets/sample.png";
 
 const ProfileInfo = ({ viewOnly }) => {
   const dispatch = useDispatch();
@@ -65,13 +66,13 @@ const ProfileInfo = ({ viewOnly }) => {
 
   return (
     <div>
-      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full min-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-[15px] box-shadow-soft border p-6 flex flex-col lg:flex-row gap-[20px] lg:gap-0 items-center justify-between">
           <div className="flex gap-6 items-center">
             <div className="relative">
               <div className="overflow-hidden rounded-full w-[50px] h-[50px]">
                 <img
-                  src={user.profileImage || "/assets/sample.png"} // Use user's profile image or fallback
+                  src={user.profileImage || defaultImage} // Use user's profile image or fallback
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

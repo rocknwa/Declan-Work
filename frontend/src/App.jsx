@@ -32,10 +32,11 @@ import { AuthProvider } from "./context/AuthContext";
 import HomeNav from "./components/Home/HomeNav";
 import HomePg from "./pages/landingpage/HomePg";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./api/userService";
 import { useAuth } from "./hooks/useAuth";
+import { SignUpOnboard } from "./pages/PrevSignUp";
 
 function App() {
 	const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
 					</Route>
 					<Route element={<PublicPages />}>
 						<Route path="/signup" element={<SignupPage />} />
+						<Route path="/signup/onboarding" element={<SignUpOnboard />} />
 						<Route path="/signin" element={<SignInPage />} />
 						<Route path="/forgot-password" element={<ForgotPassword />} />
 						<Route path="/new-password" element={<NewPassword />} />
@@ -100,11 +102,13 @@ function App() {
 function HomePage() {
 	const navigate = useNavigate();
 	const { isAuthenticated } = useAuth();
+	const { walletAddress, isWalletConnected } = useSelector((state) => state.user);
 
 	useEffect(() => {
-		if (isAuthenticated) navigate("/dashboard");
+		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
+		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
 		if (!isAuthenticated) navigate("/Home");
-	}, [isAuthenticated, navigate]);
+	}, [isAuthenticated, navigate, isWalletConnected]);
 	return (
 		<>
 			<HomeNav />
@@ -125,10 +129,11 @@ function SignedInPages() {
 }
 function PublicPages() {
 	return (
-		<>
+		<div className="bg-[#fafafa]">
 			<Header />
 			<Outlet />
-		</>
+			<div className="text-center p-8 mt-8 text-xs text-[#0E4C25]">Need Help? [Contact Support]</div>
+		</div>
 	);
 }
 export default App;

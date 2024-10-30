@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coinbase/onchainkit": "^0.34.1",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
@@ -28,6 +29,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "country-state-city": "^3.2.1",
+    "date-fns": "^3.6.0",
     "framer-motion": "^11.11.8",
     "lucide-react": "^0.439.0",
     "next-themes": "^0.3.0",
@@ -44,7 +46,8 @@
     "redux-persist": "^6.0.0",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.3",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "wagmi": "^2.12.20"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

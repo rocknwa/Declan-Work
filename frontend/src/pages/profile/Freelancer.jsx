@@ -43,8 +43,8 @@ const Freelancer = () => {
       <>
           <section className='flex lg:p-4 mt-4 flex-col gap-4'>
             <ProfileInfo />
-            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <div className='flex gap-3 flex-col lg:flex-row'>
+            <div className="max-w-full min-w-full mx-auto px-4 sm:px-6 lg:px-8">
+                <div className='flex gap-3 flex-col lg:flex-row lg:w-[1024px] lg:min-w-full w-full'>
                 <div className='lg:w-[35%] w-full flex flex-col gap-3'>
                     <Bio />
                     <Skills />

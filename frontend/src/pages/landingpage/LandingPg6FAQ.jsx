@@ -34,7 +34,7 @@ function LandingPg6FAQ() {
         <h1 className='text-3xl text-[#0E4C25] p-1'>FAQs</h1>
         <div className='p-1 w-1/2 md:w-1/4'>We’ve compiled the most often-asked questions that we hear and compiled those answers here.</div>
       </div>
-      <div className='flex flex-col justify-center items-center w-full px-14'>
+      <div className='flex flex-col justify-center items-center w-full px-5'>
         <CustomAccordion items={accordionItems} />
       </div>
     </div>

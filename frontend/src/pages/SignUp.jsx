@@ -1,186 +1,252 @@
-/* eslint-disable no-unused-vars */
 import { signIn, signUp } from "@/api/authService";
-
-import React, { useEffect, useState } from "react";
-import Onboarding from "@/components/authentication/Onboarding";
-import SetProfile from "@/components/authentication/SetProfile";
-import SignUp from "@/components/authentication/SignUp";
-import AccountType from "@/components/authentication/AccountType";
-import Sidebar from "@/components/authentication/Sidebar";
-import VerifyEmail from "@/components/authentication/VerifyEmail";
-import { useLocation, useNavigate } from "react-router-dom";
+import { showToast } from "@/components/Sonner";
 import { useAuth } from "@/hooks/useAuth";
-import { setUser } from "@/redux/slices/userSlice";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useAccount } from 'wagmi';
+import { setUser, setWalletConnected } from "@/redux/slices/userSlice";
+import { SignUpButton } from "@/onchainkit/LoginButton";
+import { SignUpOnboard } from "./PrevSignUp";
+import { updateProfile } from "@/api/profileService";
 
-const SignupPage = () => {
-  const [active, setActive] = useState("accountType");
-  const [accountType, setAccountType] = useState("");
-  // State for form fields
+export default function SignupPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setType] = useState("")
-   const [jobRole, setJobRole] = useState("");
-   const [headline, setHeadline] = useState("");
-   const [country, setCountry] = useState("");
-   const [city, setCity] = useState("");
-   const [bio, setBio] = useState("");
-  //  const [skills, setSkills] = useState([]); // Skills array
-  //  const [portfolioLink, setPortfolioLink] = useState("");
-  //  const [resume, setResume] = useState(null); // Resume file upload
-  const [profilePic, setProfilePic] = useState(null); // Base64 string for preview
-  const [profilePicFile, setProfilePicFile] = useState(null); // File object for upload
-  // handle navigation
-   const navigate = useNavigate();
-   const location = useLocation();
-   const {isAuthenticated, setIsAuthenticated} = useAuth();
-   const [isLoading, setIsLoading] = useState(false);
+  // const [type, setType] = useState("");
+  const dispatch = useDispatch();
+  
+  const [passwordActive, setPasswordActive] = useState(false);
+  const [isLengthValid, setIsLengthValid] = useState(false);
+  const [hasNumber, setHasNumber] = useState(false);
+  const [hasUpperLowerCase, setHasUpperLowerCase] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-   const dispatch = useDispatch();
-   
-  //  const handleSignUp = async () => {
-  //   const formData = new FormData();
-  //   formData.append("email", email);
-  //   formData.append("first_name", firstName);
-  //   formData.append("last_name", lastName);
-  //   formData.append("password", password);
-  //   formData.append("type", accountType);
-  //   formData.append("profession", jobRole);
-  //   formData.append("city", city);
-  //   formData.append("country", country);
-  //   formData.append("bio_title", headline);
-  //   formData.append("bio_description", bio);
-  //   formData.append("status", "available");
-    
-  //   // if (profilePicFile) {
-  //   //   formData.append("profile_image", profilePicFile);
-  //   // }
-    
-  //   try {
-  //     const response = await signUp(formData);
-  //     return response;
-  //   } catch (err) {
-  //     throw new Error(err.message);
-  //   }
-  // };
+    const { address, isConnected } = useAccount(); // Wagmi hook to get wallet info
+    const { walletAddress, isWalletConnected } = useSelector((state) => state.user);
+    // const { isWalletConnected, id, email, firstName, profession } = useSelector((state) => state.user);
+    const {setIsAuthenticated} = useAuth();
+    const navigate = useNavigate();
+
+  // Function to handle password input and validation
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    setIsLengthValid(value.length >= 8);
+    setHasNumber(/\d/.test(value));
+    setHasUpperLowerCase(/[a-z]/.test(value) && /[A-Z]/.test(value));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const allCriteriaMet = isLengthValid && hasNumber && hasUpperLowerCase && email.length != 0 && firstName.length != 0 && lastName.length != 0;
+
 
   const handleSignUp = async () => {
+    setIsError(false);// Start loading state
     try {
      setIsLoading(true);
-     const userInfo = await signUp (
-       email, 
-       firstName, 
-       lastName,
-       password,
-       accountType,
-       jobRole, 
-       city, 
-       country, 
-       headline,
-       bio, 
-       "available",
-      //  profilePic,
-      )
-       // console.log("the returned data is:", userInfo);
-       return userInfo;
-   } catch (err) {
-       setIsLoading(false);
+    //  const userInfo = await updateProfile (dispatch,
+      // email,
+      // firstName,
+      // lastName,
+      // password,
+    //    // Default value for type
+    //   profession,       // Default value for profession
+    //   city,             // Default value for city
+    //   country,
+    //   bio_title,
+    //   bio_description,
+    //   status = "available" 
+    //   )
+    //   showToast({type: "success", message: "Your account had been created. Logging  in"})
+    //   const user = await signIn(email, password, dispatch);
+    //   setIsAuthenticated(true);
+    //   dispatch(setUser(user));
+      // navigate("/signup/onboarding");
+    } catch (err) {
+        setIsAuthenticated(false);
+        setErrorMessage(err.message);
+        setIsError(true);
+        setIsLoading(false);
        throw new Error(err.message)
-     } finally {
+     } finally { 
        setIsLoading(false);
      }
    };
-  
-  const handleSignIn = async () => {
+   const handleSignUpWithWallet = async () => {
     try {
-      const user = await signIn(email, password, dispatch);
-      setIsAuthenticated(true);
-      dispatch(setUser(user));
-      setTimeout(() => {
-        navigate("/profile");
-      }, 500);
-    } catch (err) {
-      setIsAuthenticated(false);
-      console.error('Login failed:', err.message);
-    }
-  };
+      setEmail(`${walletAddress}@declanwork.xyz`);
+      setPassword("Nonepassword");
+     } catch (err) {
+         setIsAuthenticated(false);
+         setErrorMessage(err.message);
+         setIsError(true);
+         setIsLoading(false);
+        throw new Error(err.message)
+      }
+   }
 
-
-    useEffect(()=> {
-      if(isAuthenticated) {
-        navigate(location.state?.from || "/dashboard", { replace: true }) //reroute if the user is signed in already
-       }
-    }, [isAuthenticated, location, navigate]);
-
+    // useEffect(() => {
+    //   if (isConnected && address) {
+    //     handleSignUpWithWallet();
+    //     setIsAuthenticated(true);
+    //     dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
+    //     navigate("/signup/onboarding");
+    //   }
+    // }, [isConnected, address, dispatch, navigate, setIsAuthenticated]);
+    useEffect(() => {
+      if (isConnected && address) {
+        dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
+        handleSignUpWithWallet(); // Proceed with wallet signup if connected
+      }
+    }, [isConnected, address, dispatch, navigate, setIsAuthenticated]);
   return (
-    <div className="min-h-screen bg-[#fafafa] flex flex-col">
-      <main className="flex-grow flex justify-center items-start lg:pt-9 pt-6 lg:pl-4 relative lg:pr-[500px]">
-        <div className="max-w-screen-xl mx-auto">
-          {/* Card */}
-          {active === "accountType" && (
-            <AccountType
-              setActive={setActive}
-              accountType={accountType}
-              setAccountType={setAccountType}
-            />
-          )}
+    <div>
+   { !isWalletConnected?  
+   <div className="lg:max-w-[750px] w-full lg:mx-auto border mt-9 bg-white border-gray-200 rounded-2xl p-6">
+      <div className="text-center mb-6">
+        <p className="text-base text-[#6A6A6A]">
+          Welcome to Declanwork
+        </p>
+        <p className="text-2xl text-[#202020] font-semibold mt-2">
+          Create your account
+        </p>
+      </div>
 
-          {active === "sign-up" && (
-            <SignUp
-              setActive={setActive}
-              firstName={firstName}
-              setFirstName={setFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-            />
-          )}
+      <div className="space-y-4 flex items-center w-full">
+          <div className="flex items-center mx-auto relative">
+            { !address  && <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[34%]" alt="" /> }
+          <SignUpButton text="Sign Up with a wallet"/></div>
+      </div>
 
-          {active === "setProfile" && (
-            <SetProfile 
-              setActive={setActive}
-              jobRole={jobRole}
-              setJobRole={setJobRole}
-              headline={headline}
-              setHeadline={setHeadline}
-              country={country}
-              setCountry={setCountry}
-              city={city}
-              setCity={setCity}
-              bio={bio}
-              setBio={setBio}
-              // skills={skills}
-              // setSkills={setSkills}
-              // portfolioLink={portfolioLink}
-              // setPortfolioLink={setPortfolioLink}
-              // resume={resume}
-              // setResume={setResume}
-              profilePic={profilePic}
-              profilePicFile={profilePicFile}
-              setProfilePic={setProfilePic} 
-              setProfilePicFile={setProfilePicFile} 
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-              handleSignUp={handleSignUp}
-              />
-          )}
+      <div className="flex items-center my-6">
+        <div className="flex-grow border-t border-gray-300"></div>
+        <p className="px-4">OR CONTINUE WITH</p>
+        <div className="flex-grow border-t border-gray-300"></div>
+      </div>
 
-          {active === "verifyEmail" && <VerifyEmail setActive={setActive} />}
-
-          {active === "onboarding" && 
-            <Onboarding handleSignIn={handleSignIn} />}
-
-          {/* Fixed  */}
-          <Sidebar active={active} />
+        <div className="flex min-w-full justify-betweeen">
+          <label htmlFor={firstName} className="block text-base text-black ml-1 mb-1 ">First name</label>
+          <label htmlFor={lastName} className="block text-base text-black custom:ml-[100px] ml-[120px] md:ml-[300px] mb-1 lg:ml-[280px]">Last name</label>
         </div>
-      </main>
+      <div className="grid grid-cols-2 gap-4">
+        <input
+          type="text"
+          placeholder="Enter First Name"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Enter Last Name"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
+
+      <div className="mt-4">
+        <label className="block text-base text-black ml-1 mb-1 ">Email</label>
+        <input
+          type="email"
+          placeholder="Enter Email Address"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+
+      <div className="mt-4 relative">
+        <label className="block text-base text-black ml-1 mb-1 ">Create a Password</label>
+        <input
+          type={showPassword ? "text" : "password"} // Toggle between 'text' and 'password'
+          placeholder="Create password"
+          className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:border-gray-500"
+          value={password}
+          onChange={(e) => {setPasswordActive(true); handlePasswordChange(e)}}
+        />
+        <button
+          type="button"
+          className="absolute top-[68%] right-3 transform -translate-y-1/2 text-gray-500"
+          onClick={togglePasswordVisibility}
+        >
+          {showPassword ? "Hide" : "Show"} {/* Toggle button text */}
+        </button>
+      </div>
+      { passwordActive && password.length !=0 &&
+        <div className="mt-3 text-sm space-y-2">
+          <p
+            className={`flex items-center ${
+              isLengthValid ? "text-green-500" : "text-gray-500"
+            }`}
+          >
+            ✔ At least 8 Characters
+          </p>
+          <p
+            className={`flex items-center ${
+              hasNumber ? "text-green-500" : "text-gray-500"
+            }`}
+          >
+            ✔ At least 1 number
+          </p>
+          <p
+            className={`flex items-center ${
+              hasUpperLowerCase ? "text-green-500" : "text-gray-500"
+            }`}
+          >
+            ✔ Both upper and lower case letter
+          </p>
+        </div>}
+
+      <button
+        className={`w-full flex items-center justify-center hover:bg-[#21B557] transition-all disabled:bg-gray-300 disabled:text-[#989898] text-[#202020] rounded-full p-0 font-medium lg:text-base text-sm mt-6 ${
+          allCriteriaMet ? "bg-[#00EF8B]" :  isLoading ? "bg-gray-300" : "bg-gray-300"
+        }`}
+        disabled={isLoading || !allCriteriaMet}
+        onClick={() => handleSignUp()}
+      >
+        {isLoading ? (
+              <img
+                src="/icons/spinner.svg"
+                className="w-[30px] h-[30px] my-2 spin"
+                alt="Loading"
+              />
+            ) :
+            <span className="my-3">Continue</span>
+            }
+      </button>
+      { isError && <p className="text-red-500 text-center mt-3 text-sm">{errorMessage}</p>}
+      <p className="mt-9 text-center text-sm text-[#667085]">
+          Already have an account?{" "}
+          <a href="/signin" className="text-[#21B557] font-medium cursor-pointer">
+            Log in
+          </a>
+        </p>
+
+
+      <p className="mt-4 text-center text-[#21B557] font-medium text-sm">
+        By clicking continue, you agree to our{" "}
+          Terms of Service
+        and{" "}
+          Privacy Policy
+        .
+      </p>
+    </div>
+     : <SignUpOnboard
+      email= {email}
+      firstName={firstName}
+      lastName={lastName}
+      password={password} />
+    }
     </div>
   );
-};
-
-export default SignupPage;
+}

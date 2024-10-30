@@ -9,7 +9,7 @@ const CertificationsBody = ({ viewOnly, certificationData, handleSave, handleRem
         <div className='flex mt-4 flex-col gap-4 2xl:text-base'>
             <div className="flex flex-wrap gap-x-10 gap-y-2">
                 {
-                    certificationData.map(({certName, provider, issueDate, expirationDate, certUrl, certId}, id) => (
+                    certificationData.length != 0 ? certificationData.map(({certName, provider, issueDate, expirationDate, certUrl, certId}, id) => (
                         <CertificationsCard 
                             viewOnly={viewOnly}
                             key={id} 
@@ -20,7 +20,11 @@ const CertificationsBody = ({ viewOnly, certificationData, handleSave, handleRem
                             expirationYear={expirationDate.year} 
                             handleRemove={handleRemove}
                             />
-                    ))
+                    )) :
+                    <div className="mt-[-20px] w-full px-4 py-6 text-center">
+                        <p className="font-semibold text-xl text-[#4b4b4b]">Add your Certifications</p>
+                        <p>Help showcase your expertise, build credibility!</p>
+                    </div>
                 }
             </div>
             <div>

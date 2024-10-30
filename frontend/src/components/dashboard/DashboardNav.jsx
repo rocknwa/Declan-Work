@@ -17,6 +17,7 @@ export default function DashboardNav() {
   const location = useLocation();
   return (
     <nav className="bg-white border-b border-[#E9E9E9]">
+      {/* <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-[1400px]"> */}
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -132,7 +133,7 @@ export default function DashboardNav() {
             <div className="hidden sm:flex sm:items-center sm:space-x-4">
               <AccountAddress />
             </div>
-            <div onClick={() => setIsHamburgerOpen(true)} className="flex items-center lg:hidden">
+            <div onClick={() => setIsHamburgerOpen(true)} className="sm:flex items-center lg:hidden">
               <Button variant="ghost" className="focus:bg-none hover:bg-none" size="icon">
                 <span className="sr-only">Open main menu</span>
                 <Hamburger/>

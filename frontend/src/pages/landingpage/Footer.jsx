@@ -4,7 +4,7 @@ import { Github } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#21B257] to-[#E9F8EE] rounded-t-3xl p-8 w-10/12">
+    <footer className="bg-gradient-to-b from-[#21B257] to-[#E9F8EE] rounded-t-3xl p-8 w-11/12">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div className="text-2xl font-bold mb-4 md:mb-0 grow">
