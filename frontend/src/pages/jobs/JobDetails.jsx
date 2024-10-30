@@ -28,7 +28,7 @@ function JobDetails() {
   return (
     <div className='flex flex-col min-h-screen p-5'>
       <div className='Apply-Section'>
-        <BreadCrumb paths={['jobs', `${job.companyName}`, `${job.jobId}`]} />
+        <BreadCrumb path={`/jobs/${job.companyName}/${job.jobId}`} />
         <div className='flex'>
           <div className='flex flex-row justify-start w-full items-center py-0 md:py-2 lg:py-4 pr-2 bg-white'>
             <div className='flex justify-center items-center mr-4 w-10 md:w-15 lg:w-20 custom:w-20'>

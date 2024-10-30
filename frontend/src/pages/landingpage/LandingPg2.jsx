@@ -2,8 +2,10 @@ import React from 'react'
 import TestimonialCarousel from '../../components/Home/TestimonialCarousel'
 import CardAnimation from '@/components/Home/CardAnimation'
 import { Button } from '@/components/ui/button'
+import { useNavigate } from 'react-router-dom'
 
 function LandingPg2() {
+  const navigate = useNavigate()
   return (
     <div className='flex flex-col justify-between items-center w-full px-5 py-2 h-fit'>
       <TestimonialCarousel />
