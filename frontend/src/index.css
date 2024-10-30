@@ -135,6 +135,7 @@ body {
     --ock-line-heavy: 'your-custom-value';
     --ock-line-inverse: 'your-custom-value'; */
   }
+
   .dark, .default-dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -179,6 +180,9 @@ body {
     /* --ock-bg-alternate-hover: yellow; */
   }
 
+
+@layer base {
+
   /* .light, .default-light {
     --ock-font-family: 'Open Sauce Sans';
     --ock-border-radius: 17.5rem ;
@@ -203,3 +207,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
