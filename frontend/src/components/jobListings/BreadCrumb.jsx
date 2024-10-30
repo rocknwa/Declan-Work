@@ -7,29 +7,37 @@ import {
   BreadcrumbPage,
   BreadcrumbList,
 } from '@/components/ui/breadcrumb';
-import React,{ useState } from 'react';
+import React,{ useState, useEffect, useRef } from 'react';
 
 
-function BreadCrumb({ paths = []}) {
+function BreadCrumb({ path, className=''}) {
   const [isExpanded, setIsExpanded] = useState(false)
   const toggleExpand = () => setIsExpanded(!isExpanded)
+  const segments = useRef([])
+  useEffect(() => {
+    if (path.endsWith('/')) {
+      segments.current = path.slice(0, -1).replace(/[-/]/gi, " ").slice(1).split('/').filter(Boolean).map(segment => segment.charAt(0).toUpperCase() + segment.slice(1));
+    } else {
+      segments.current = path.replace(/[-]/gi, " ").slice(1).split('/').filter(Boolean).map(segment => segment.charAt(0).toUpperCase() + segment.slice(1));
+    }
+  }, [path])
 
-  const renderBreadcrumbItems = () => {
-    if (paths.length <= 5 || isExpanded) {
-      return paths.map((path, index) => (
+  const renderBreadcrumbItems = (segmentArray) => {
+    if (segmentArray.length <= 5 || isExpanded) {
+      return segmentArray.map((path, index) => (
         <React.Fragment key={index}>
         <BreadcrumbItem >
-          {index < paths.length - 1 ? (
+          {index < segmentArray.length - 1 ? (
             <BreadcrumbLink asChild>
-              <a href={`/${paths.slice(0, index + 1).join('/')}`}>
+              <a href={`/${segmentArray.slice(0, index + 1).join('/')}`}>
                 {path}
               </a>
             </BreadcrumbLink>
           ) : (
-            <BreadcrumbPage>{path}</BreadcrumbPage>
+            <BreadcrumbPage className='text-[#0E4C25]'>{path}</BreadcrumbPage>
           )}
         </BreadcrumbItem>
-        {index < paths.length - 1 && <BreadcrumbSeparator/>}
+        {index < segmentArray.length - 1 && <BreadcrumbSeparator/>}
         </React.Fragment>
       ))
     } else {
@@ -38,7 +46,7 @@ function BreadCrumb({ paths = []}) {
           <BreadcrumbItem >
             <BreadcrumbLink asChild>
               <a href="/">
-                {paths[0]}
+                {segmentArray[0]}
               </a>
             </BreadcrumbLink>
           </BreadcrumbItem>
@@ -47,11 +55,11 @@ function BreadCrumb({ paths = []}) {
             <BreadcrumbEllipsis onClick={toggleExpand} />
           </BreadcrumbItem>
           <BreadcrumbSeparator />
-          {paths.slice(-2).map((path, index) => (
+          {segmentArray.slice(-2).map((path, index) => (
             <BreadcrumbItem key={index} >
               {index === 0 ? (
                 <BreadcrumbLink asChild>
-                  <a href={`/${paths.slice(0, -1).join('/')}`}>
+                  <a href={`/${segmentArray.slice(0, -1).join('/')}`} >
                     {path}
                   </a>
                 </BreadcrumbLink>
@@ -67,9 +75,9 @@ function BreadCrumb({ paths = []}) {
   }
 
   return (
-    <Breadcrumb>
+    <Breadcrumb className={`${className}`}>
       <BreadcrumbList>
-        {renderBreadcrumbItems(paths)}
+        {renderBreadcrumbItems(segments.current)}
       </BreadcrumbList>
     </Breadcrumb>
   )

@@ -31,6 +31,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import HomeNav from "./components/Home/HomeNav";
 import HomePg from "./pages/landingpage/HomePg";
+import Payments from "./pages/Payments";
 
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -90,6 +91,7 @@ function App() {
 						<Route path="about-us" element={<AboutUs />} />
 						<Route path="messages" element={<Messages />} />
 						<Route path="my-wallet" element={<MyWallet />} />
+						<Route path="payments" element={<Payments />} />
 					</Route>
 				</Routes>
 			</Router>

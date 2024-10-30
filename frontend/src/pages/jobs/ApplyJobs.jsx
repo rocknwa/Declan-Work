@@ -65,7 +65,7 @@ function ApplyJobs() {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen overflow-x-hidden'>
         <div className='w-full ml-6 mb-2 mt-4 align-self-start'>
-            <BreadCrumb paths={['jobs', `${job.companyName}`, `${job.jobId}`,'Application Form']}  />
+            <BreadCrumb path={`/jobs/${job.companyName}/${job.jobId}/Application Form`}  />
         </div>
         <div className='flex w-full items-center justify-center bg-black text-white h-16'>
             <div className='w-3/5 flex items-center justify-between '>
