@@ -4,9 +4,9 @@ import { Button } from '../ui/button'
 
 function HowItWorksNav({selectedItem, setSelectedItem}) {
     
-    const handleClickedItem = useCallback((item) => {
+    const handleClickedItem = (item) => {
         setSelectedItem(item)
-    }, [setSelectedItem])
+    }
 
   return (
     <nav className='w-full flex flex-wrap justify-center sm:justify-around items-center overflow-x-auto rounded-full bg-white py-2 px-1'>

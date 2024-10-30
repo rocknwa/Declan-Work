@@ -51,8 +51,8 @@ export default function SignupPage() {
 
   const handleSignUp = async () => {
     setIsError(false);// Start loading state
+    setIsLoading(true);
     try {
-     setIsLoading(true);
     //  const userInfo = await updateProfile (dispatch,
       // email,
       // firstName,
@@ -70,7 +70,7 @@ export default function SignupPage() {
     //   const user = await signIn(email, password, dispatch);
     //   setIsAuthenticated(true);
     //   dispatch(setUser(user));
-      // navigate("/signup/onboarding");
+      navigate("/signup/onboarding");
     } catch (err) {
         setIsAuthenticated(false);
         setErrorMessage(err.message);
@@ -81,6 +81,8 @@ export default function SignupPage() {
        setIsLoading(false);
      }
    };
+
+
    const handleSignUpWithWallet = async () => {
     try {
       setEmail(`${walletAddress}@declanwork.xyz`);
@@ -107,7 +109,8 @@ export default function SignupPage() {
         dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
         handleSignUpWithWallet(); // Proceed with wallet signup if connected
       }
-    }, [isConnected, address, dispatch, navigate, setIsAuthenticated]);
+    }, [isConnected, address, dispatch]);
+  
   return (
     <div>
    { !isWalletConnected?  
