@@ -1,10 +1,12 @@
 import { signIn } from "@/api/authService";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import LoginButton from "@/onchainkit/LoginButton";
 import { setUser } from "@/redux/slices/userSlice";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAccount } from 'wagmi';
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ export default function SignInPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, setIsAuthenticated } = useAuth();
-
+  const {account} = useAccount();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -51,7 +53,7 @@ export default function SignInPage() {
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
-      <div className="lg:w-[700px] lg:mx-auto my-9 border border-[#E9E9E9] rounded-2xl p-6 text-center">
+      <div className="lg:w-[700px] lg:mx-auto my-9 border bg-white border-[#E9E9E9] rounded-2xl p-6 text-center">
         <div className="mb-6">
           <h2 className="text-base font-semibold text-[#6A6A6A]">
             Welcome Back
@@ -62,7 +64,7 @@ export default function SignInPage() {
         </div>
 
         {/* Social Sign In */}
-        <div className="space-y-4 mb-6">
+        {/* <div className="space-y-4 mb-6">
           <button className="w-full flex items-center justify-center border border-[#E9E9E9] py-2 rounded-full text-sm">
             <img
               src="/icons/google_symbol.svg"
@@ -79,8 +81,16 @@ export default function SignInPage() {
             />
             Sign In with LinkedIn
           </button>
-        </div>
+        </div> */}
 
+
+        {/* Wallet Sign In */}  
+        <div className="space-y-4 mb-3 lg:mb-6 flex items-center w-full">
+          <div className="flex items-center mx-auto relative">
+            { !account  && <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[33%]" alt="" /> }
+          <LoginButton text="Sign in with a Wallet"/></div>
+        </div>
+       
         <div className="flex items-center mb-4">
           <div className="h-[1px] bg-[#E9E9E9] flex-1"></div>
           <p className="text-[#202020] flex-1">OR CONTINUE WITH</p>

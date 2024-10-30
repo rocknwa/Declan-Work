@@ -1,4 +1,5 @@
 import CountrySelector from '../CountrySelector'
+import Logo from "@/assets/DeclanWorkLogo.png"
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
           <div className="flex items-center mx-4 mt-0 sm:mx-16 mb-2 sm:mb-0">
             <a href="/home">
               <img
-                src="/icons/declan-logo.svg"
+                src={Logo}
                 alt="Declan Work"
                 className="h-13 w-44 mr-2"
               />

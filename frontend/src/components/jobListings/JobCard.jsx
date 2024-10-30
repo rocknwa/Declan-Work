@@ -23,10 +23,12 @@ function JobCard({jobTitle, companyName, companyLogo, location, salary, postedAt
                 <h1 className="text-md md:text-lg font-bold text-gray-600 custom:text-lg cursor-pointer" onClick={handleClick}>{jobTitle}</h1>
                 <BookmarkButton jobId={jobId} />
             </div>
-            <div className="w-full flex flex-col md:flex-row justify-start text-xs md:text-sm custom:text-sm">
-                <span className="ml-2 sm:ml-0 font-bold text-gray-600">{companyName}&nbsp;</span>
-                <span className="text-gray-600"> •&nbsp;{jobType} </span>
-                <span className='text-[#21B557] font-bold'> •&nbsp;{salary}</span>
+            <div className="w-full flex flex-row md:flex-row justify-start mb-1 text-xs md:text-sm custom:text-sm">
+                <span className="lg:ml-2 sm:ml-0 font-bold text-gray-600">{companyName}&nbsp;</span>
+                <span className="text-gray-600"> •&nbsp;</span>
+                <span className="text-gray-600"> {jobType} </span>
+                <span className='text-[#21B557] ml-1 mr-0.5 font-bold'> •&nbsp;</span>
+                <span className='text-[#21B557] font-bold'> {salary}</span>
             </div>
             <div className="w-full flex flex-row justify-between text-xs md:text-sm custom:text-sm">
                 <span className="bg-gray-200 mt-1 rounded-md px-2 py-1">{location}</span>

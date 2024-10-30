@@ -31,12 +31,12 @@ export const Highlight = ({
 
 function LandingPg3() {
   return (
-    <div className='w-full h-full px-8 md:px-4 '>
+    <div className='w-full h-full md:px-4 '>
       <div className='flex flex-col justify-center items-center p-6'>
         <div className='w-full text-2xl md:text-3xl xl:text-5xl text-[#0E4C25] font-extrabold text-left lg:text-center'></div>
         <div className='w-full text-gray-500 lg:w-2/3 xl:w-1/2 mt-4  text-left lg:text-center'>DeclanWork offers numerous advantages that set it apart from traditional freelancing platforms and make it an attractive option for freelancers and clients alike</div>
       </div>
-      <div className="py-28 md:py-0 min-h-full flex items-center justify-center w-full mt-[5rem] lg:mt-[3rem] xl:mt-[7rem] xl:mb-[2rem]">
+      <div className="py-0 md:py-0 min-h-full flex items-center justify-center w-full mt-[3rem] mb-[1rem] md:mt-[5rem] lg:mt-[3rem] xl:mt-[7rem] xl:mb-[2rem]">
         <CardStack items={cards} />
       </div>
     </div>

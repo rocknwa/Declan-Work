@@ -13,7 +13,7 @@ function HomePg() {
         <LandingPg2 />
         <LandingPg3 />
         <LandingPg4 />
-        <LandingPg5 />
+        {/* <LandingPg5 /> */}
         <LandingPg6FAQ />
         <Footer />
     </div>

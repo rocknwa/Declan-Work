@@ -12,7 +12,7 @@ export default function AccountType({ setActive, accountType, setAccountType }) 
   const handleContinue = () => {
     if (accountType) {
       
-      setActive("sign-up");
+      setActive("setProfile");
     }
   };
 

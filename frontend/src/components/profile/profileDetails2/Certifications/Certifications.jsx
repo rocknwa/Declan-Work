@@ -5,48 +5,48 @@ import { showToast } from '@/components/Sonner';
 
 const Certifications = ({viewOnly}) => {
     const initialData= [
-        {
-            certName: "GRAPHIC DESIGN MASTERCLASS – LEARN GREAT DESIGN BY LINDSAY MARSH",
-            provider: "Udemy",
-            issueDate: {
-                year: 2021,
-                month: "January",
-            },
-            expirationDate: {
-                year: 2022,
-                month: "March"
-            },
-            certId: "UIDDD567903",
-            certUrl: "https://udemy/certificate/UIDDD567903",
-        },
-        {
-            certName: "GRAPHIC DESIGN MASTERCLASS – LEARN GREAT DESIGN BY LINDSAY MARSH",
-            provider: "Udemy",
-            issueDate: {
-                year: 2021,
-                month: "January",
-            },
-            expirationDate: {
-                year: 2022,
-                month: "March"
-            },
-            certId: "UIDDD567903",
-            certUrl: "https://udemy/certificate/UIDDD567903",
-        },
-        {
-            certName: "GRAPHIC DESIGN MASTERCLASS – LEARN GREAT DESIGN BY LINDSAY MARSH",
-            provider: "Udemy",
-            issueDate: {
-                year: 2021,
-                month: "January",
-            },
-            expirationDate: {
-                year: 2022,
-                month: "March"
-            },
-            certId: "UIDDD567903",
-            certUrl: "https://udemy/certificate/UIDDD567903",
-        },
+        // {
+        //     certName: "GRAPHIC DESIGN MASTERCLASS – LEARN GREAT DESIGN BY LINDSAY MARSH",
+        //     provider: "Udemy",
+        //     issueDate: {
+        //         year: 2021,
+        //         month: "January",
+        //     },
+        //     expirationDate: {
+        //         year: 2022,
+        //         month: "March"
+        //     },
+        //     certId: "UIDDD567903",
+        //     certUrl: "https://udemy/certificate/UIDDD567903",
+        // },
+        // {
+        //     certName: "GRAPHIC DESIGN MASTERCLASS – LEARN GREAT DESIGN BY LINDSAY MARSH",
+        //     provider: "Udemy",
+        //     issueDate: {
+        //         year: 2021,
+        //         month: "January",
+        //     },
+        //     expirationDate: {
+        //         year: 2022,
+        //         month: "March"
+        //     },
+        //     certId: "UIDDD567903",
+        //     certUrl: "https://udemy/certificate/UIDDD567903",
+        // },
+        // {
+        //     certName: "GRAPHIC DESIGN MASTERCLASS – LEARN GREAT DESIGN BY LINDSAY MARSH",
+        //     provider: "Udemy",
+        //     issueDate: {
+        //         year: 2021,
+        //         month: "January",
+        //     },
+        //     expirationDate: {
+        //         year: 2022,
+        //         month: "March"
+        //     },
+        //     certId: "UIDDD567903",
+        //     certUrl: "https://udemy/certificate/UIDDD567903",
+        // },
     ];
     const [certificationData, setCertificationData] = useState(initialData);
     const [certName, setCertName] = useState("");
