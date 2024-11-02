@@ -10,12 +10,12 @@ export default function DashboardNav() {
   const location = useLocation();
   const navigate = useNavigate();
   return (
-    <nav className="fixed top-0 left-0 right-0 z-20 bg-white border-b border-[#E9E9E9]">
-      <div className="max-w-full mx-auto px-2 md:px-4 lg:px-8">
+    <nav className="fixed top-0 left-0 right-0 z-20 bg-white border-[#E9E9E9]">
+      <div className="max-w-full mx-auto px-1 sm:px-2 md:px-4 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <NavLink to="/Home" className="flex-shrink-0 flex items-center">
-              <img src="/icons/declan-logo-dashboard.svg" className='h-[55px] w-auto' alt="Declan logo" />
+            <NavLink to="/Home" className=" flex items-center">
+              <img src="/icons/declan-logo-dashboard.svg" className='h-[55px] w-auto shrink' alt="Declan logo" />
             </NavLink>
           <div className="hidden space-x-1 md:ml-1 md:space-x-3 lg:ml-3 md:flex lg:space-x-5 lg:ml-5 xl:space-x-7">
             <NavLink
@@ -50,7 +50,7 @@ export default function DashboardNav() {
             </NavLink>
           </div>
           </div>
-          <div className='sm:flex justify-between items-center space-x-2 md:space-x-4 md:ml-6 '>
+          <div className='sm:flex justify-between items-center space-x-1 sm:space-x-2 md:space-x-4 md:ml-6 '>
            <NavLink 
             to="/signin"
             className="inline-flex font-bold items-center text-sm text-[#0E4C25]">Login</NavLink>
