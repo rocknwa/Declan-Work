@@ -44,14 +44,14 @@ function LandingPg4() {
   const currentItem = navItems[currentIndex];
 
   return (
-    <div id='how-it-works' className='w-full h-full px-4 md:px-10 lg:px-14 bg-[#21B557] flex flex-col justify-around items-center'>
+    <div className='w-full h-full px-4 md:px-10 lg:px-14 bg-[#21B557] flex flex-col justify-around items-center'>
         <div className='w-full py-10'>
             <span className='text-4xl text-[#093218] font-bold'>How it works</span>
         </div>
         <HowItWorksNav selectedItemTitle={currentItem.title} setSelectedItemTitle={handleNavSelection} />
         <div className='flex [&>*]:min-w-[100%] md:[&>*]:min-w-[unset] flex-col-reverse md:flex-row justify- items-center text-[#093218] font-bold text-5xl w-full'>
           <div className='w-7/12 p-4'>
-          <div key={currentItem.title} className='w-full md:w-4/5 text-xl sm:text-2xl md:text-4xl leading-8 md:leading-[3rem]'>
+          <div key={currentItem.title} className='w-full md:w-4/5 text-2xl md:text-4xl leading-8 md:leading-[3rem]'>
               {currentItem.content}
             </div>
           </div>
@@ -59,7 +59,7 @@ function LandingPg4() {
           <img 
             src={currentItem.title === 'signup' ? '/icons/sign-in-icon.svg' : '/icons/bitcoin-wallet.svg'}
             alt={currentItem.title === 'signup' ? 'Sign in icon' : 'Bitcoin wallet logo'}
-            className="block max-w-full transition-opacity duration-300 shrink"
+            className="block max-w-full transition-opacity duration-300"
           />
           </div>
         </div>
