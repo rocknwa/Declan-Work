@@ -6,7 +6,7 @@ function LP1Content() {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col justify-center items-center h-full text-center my-auto sm:mb-10">
-      <div className="px-0 w-full md:w-4/5 lg:w-2/3">
+      <div className="px-0 w-full md:w-4/5 lg:w-2/3 flex flex-col align-center justify-center">
         {/*text-4xl md:text-5xl lg:text-7xl */}
         <div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl  text-[#0E4C25] font-bold">Building Bridges Between Talents and Employers</h1>
