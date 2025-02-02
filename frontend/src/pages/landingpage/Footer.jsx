@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#21B257] to-[#E9F8EE] rounded-t-3xl p-8 w-11/12">
+    <footer className="bg-gradient-to-b from-[#21B257] to-[#E9F8EE] rounded-t-3xl p-4 lg:p-8 mx-2 lg:mx-0 lg:w-11/12">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div className="text-2xl font-bold mb-4 md:mb-0 grow">
@@ -23,22 +23,22 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div className="text-left">
+        <div className="grid grid-cols-2 justify-items-start lg:justify-items-stretch md:grid-cols-3 gap-8 mb-8">
+          <div className="lg:text-left">
             <h3 className=" mb-2 text-sm md:text-base lg:text-lg">Candidate</h3>
             <ul className="space-y-2 font-bold">
               <li><NavLink to='#how-it-works' onClick={()=>document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="hover:underline">Learn How It works</NavLink></li>
               <li><NavLink to='#' className="hover:underline">How to Earn</NavLink></li>
             </ul>
           </div>
-          <div className="text-center">
+          <div className="lg:text-center">
             <h3 className=" mb-2">Employers</h3>
             <ul className="space-y-2 font-bold">
               <li><NavLink to='#how-it-works' onClick={()=>document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="hover:underline">How it Works</NavLink></li>
               <li><NavLink to='#' className="hover:underline">On-chain Payments</NavLink></li>
             </ul>
           </div>
-          <div className="text-right">
+          <div className="lg:text-right">
             <h3 className=" mb-2">More</h3>
             <ul className="space-y-2 font-bold">
               <li><NavLink to='#' className="hover:underline">Tokenomics</NavLink></li>
