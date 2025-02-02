@@ -6,12 +6,12 @@ function LP1Content() {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col justify-center items-center h-full text-center my-auto sm:mb-10">
-      <div className="px-0 w-full md:w-4/5 lg:w-2/3 flex flex-col items-center justify-center">
+      <div className="px-4 w-full md:w-4/5 lg:w-2/3 flex flex-col items-center justify-center">
         {/*text-4xl md:text-5xl lg:text-7xl */}
         <div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl  text-[#0E4C25] font-bold">Building Bridges Between Talents and Employers</h1>
         </div>
-        <div className="text-gray-500 text-sm sm:text-lg lg:text-xl mt-2 lg:mt-5 w-3/5">
+        <div className="text-gray-500 text-sm sm:text-lg lg:text-xl mt-2 lg:mt-5 lg:w-3/5">
           <p>Discover a new way to work with Declanwork, the Web3-focused freelance platform designed to connect you with forward-thinking clients. Unlock opportunities, showcase your skills, and get paid securely—all in one place.</p>
         </div>
         <div className="flex items-center mt-3 lg:mt-5">
