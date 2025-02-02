@@ -24,7 +24,7 @@ const accordionItems = [
   },
   {
     question: "What are the benefits of using Declanwork?",
-    content: "Our primary competitors are Asana, Trello, and Monday.com. These platforms offer similar project management tools and have a large user base."
+    content: "Declanwork provides need a platform for Hirers to connect with global talents in the Web3 space and freelance talents to land their next gig."
   },
 ];
 function LandingPg6FAQ() {
