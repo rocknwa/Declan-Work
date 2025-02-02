@@ -29,12 +29,12 @@ const accordionItems = [
 ];
 function LandingPg6FAQ() {
   return (
-    <div id='faq' className='w-full h-full  p-2 md:px-4 md:py-6 lg:px-10 lg:py-12 flex flex-col justify-center items-around gap-3'>
-      <div className='w-full flex flex-col justify-center items-center font-bold text-center'>
+    <div id='faq' className='w-full h-full  p-2 md:px-4 md:py-6 lg:px-10 py-12 lg:py-14 flex flex-col justify-center items-around gap-3'>
+      <div className='w-full flex flex-col mb-6 justify-center items-center font-bold text-center'>
         <h1 className='text-3xl text-[#0E4C25] p-1'>FAQs</h1>
-        <div className='p-1 w-1/2 md:w-1/4'>We’ve compiled the most often-asked questions that we hear and compiled those answers here.</div>
+        <div className='p-1 md:w-1/4'>We’ve compiled the most often-asked questions that we hear and compiled those answers here.</div>
       </div>
-      <div className='flex flex-col justify-center items-center w-full px-5'>
+      <div className='flex flex-col justify-center items-center w-full px-2 sm:px-5'>
         <CustomAccordion items={accordionItems} />
       </div>
     </div>
