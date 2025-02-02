@@ -9,7 +9,7 @@ function HowItWorksNav({selectedItemTitle, setSelectedItemTitle}) {
     }, [setSelectedItemTitle])
 
   return (
-    <nav className='w-full flex flex-wrap justify-center sm:justify-around items-center overflow-x-auto rounded-full bg-white py-2 px-1'>
+    <nav className='flex lg:flex-wrap lg:justify-center items-center overflow-x-hidden gap-x-1 lg:gap-x-2 rounded-full bg-white lg:py-2 px-1'>
         <Button className={`bg-transparent hover:bg-[#BAE8CB] px-2 py-1 m-1 sm:m-0 sm:px-4 ${selectedItemTitle === 'signup' ? 'bg-[#BAE8CB]' : ''}`} onClick={()=>handleClickedItem('signup')}>
           <NavLink className={`py-2 min-h-[1900px]:px-2 text-[#093218] text-xs md:text-[1.1em] rounded-full`}>Sign Up and Create Profile</NavLink>
         </Button>

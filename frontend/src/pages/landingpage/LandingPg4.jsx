@@ -44,7 +44,7 @@ function LandingPg4() {
   const currentItem = navItems[currentIndex];
 
   return (
-    <div className='w-full h-full px-4 md:px-10 lg:px-14 bg-[#21B557] flex flex-col justify-around items-center'>
+    <div className='w-full lg:w-auto h-full px-4 md:px-10 py-10 lg:px-14 bg-[#21B557] flex flex-col justify-around items-center lg:items-start'>
         <div className='w-full py-10'>
             <span className='text-4xl text-[#093218] font-bold'>How it works</span>
         </div>

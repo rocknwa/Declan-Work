@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 function LandingPg2() {
   const navigate = useNavigate()
   return (
-    <div className='flex flex-col justify-between items-center w-full px-5 py-2 h-fit'>
+    <div className='flex flex-col justify-between items-center w-full px-5 py-10 lg:py-5 h-fit'>
       <TestimonialCarousel />
       <div className='px-8 md:p-4 flex flex-col lg:flex-row justify-center items-center gap-4 md:gap-2 lg:gap-4'>
         <div className='flex flex-col justify-center items-center w-full md:w-3/5'>
