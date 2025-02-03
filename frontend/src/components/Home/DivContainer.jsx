@@ -137,7 +137,7 @@ function DivContainer() {
   }, []);
 
   return (
-    <div className="relative w-full h-full flex justify-center items-center mt-28">
+    <div className="relative w-full h-full flex justify-center items-center mt-10 lg:mt-28">
       <div className="w-full h-full">
         {divs.map((div, index) => {
           const { positions } = div;
