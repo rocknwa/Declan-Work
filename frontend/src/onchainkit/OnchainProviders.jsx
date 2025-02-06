@@ -1,4 +1,5 @@
-import { CDP_API_KEY } from '@/config';
+
+import { CDP_API_KEY } from '@/lib/config';
 import { useWagmiConfig } from '@/wagmi';
 import { OnchainKitProvider } from '@coinbase/onchainkit';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';

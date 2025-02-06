@@ -34,6 +34,7 @@
     "lucide-react": "^0.439.0",
     "next-themes": "^0.3.0",
     "notistack": "^3.0.1",
+    "pinata-web3": "^0.5.4",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",

@@ -5,7 +5,7 @@ import {
 import { useMemo } from 'react';
 import { http, createConfig } from 'wagmi';
 import { base, baseSepolia } from 'wagmi/chains';
-import { WC_PROJECT_ID } from './config';
+import { WC_PROJECT_ID } from '@/lib/config';
 
 
 export function useWagmiConfig() {

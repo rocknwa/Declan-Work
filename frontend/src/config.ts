@@ -1,7 +1,7 @@
 import { http, createConfig } from 'wagmi'
 import { base, liskSepolia, mainnet, optimism } from 'wagmi/chains'
 import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors'
-import { projectId } from './Constants'
+import { projectId } from '@/lib/constants'
 
 
 export const config = createConfig({

@@ -1,5 +1,5 @@
 import { useWriteContract, useAccount } from "wagmi";
-import { contractAddress, ABI } from "./Constants";
+import { contractAddress, ABI } from "@/lib/constants";
 import { liskSepolia } from "viem/chains";
 
 class WalletService {
