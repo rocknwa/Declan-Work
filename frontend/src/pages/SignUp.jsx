@@ -10,6 +10,7 @@ import { setUser, setWalletConnected } from "@/redux/slices/userSlice";
 import { SignUpButton } from "@/onchainkit/LoginButton";
 import { SignUpOnboard } from "./PrevSignUp";
 import { updateProfile } from "@/api/profileService";
+import MetaMask from "@/components/authentication/Metamask";
 
 export default function SignupPage() {
   const [firstName, setFirstName] = useState("");
@@ -123,6 +124,10 @@ export default function SignupPage() {
           Create your account
         </p>
       </div>
+
+      {/* <div>
+        <MetaMask />
+      </div> */}
 
       <div className="space-y-4 flex items-center w-full">
           <div className="flex items-center mx-auto relative">
