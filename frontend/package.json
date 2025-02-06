@@ -47,7 +47,8 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",
-    "wagmi": "^2.12.20"
+    "wagmi": "^2.12.20",
+    "web3": "^4.16.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
