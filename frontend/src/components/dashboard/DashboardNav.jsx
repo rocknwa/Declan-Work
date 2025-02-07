@@ -22,7 +22,7 @@ export default function DashboardNav() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <NavLink to="/dashboard" className="flex-shrink-0">
-              <img src="/icons/declan-logo-dashboard.svg" alt="Declan logo" />
+              <img src="/icons/declan-logo-dashboard.svg" className='xl:w-[150px]' alt="Declan logo" />
             </NavLink>
           </div>
           <div className="hidden lg:ml-6 lg:flex sm:space-x-8">

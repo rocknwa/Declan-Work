@@ -6,7 +6,7 @@ import { useAccount } from 'wagmi';
 import { setUser, setWalletConnected } from "@/redux/slices/userSlice";
 import { SignUpOnboard } from "./SignUpOnboard";
 import MetaMask from "@/components/authentication/Metamask";
-import { signUp } from "@/api/authService";
+import { signIn, signUp } from "@/api/authService";
 import { convertKeysToSnakeCase } from "@/utils/caseConverters";
 
 export default function SignupPage() {

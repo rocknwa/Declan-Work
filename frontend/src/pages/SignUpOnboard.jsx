@@ -16,11 +16,6 @@ export const SignUpOnboard = ({
   handleSignUp
 }) => {
   const [active, setActive] = useState("accountType");
-    // useEffect(()=> {
-    //   if(isAuthenticated) {
-    //     navigate(location.state?.from || "/dashboard", { replace: true }) //reroute if the user is signed in already
-    //    }
-    // }, [isAuthenticated, location, navigate]);
 
   return (
     <div className="min-h-screen bg-[#fafafa] flex flex-col">
