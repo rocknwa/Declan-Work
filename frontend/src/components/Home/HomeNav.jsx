@@ -14,12 +14,12 @@ export default function DashboardNav() {
       <div className="max-w-full w-full mx-auto sm:px-2 md:px-4 lg:px-8">
         <div className="flex justify-between h-16 px-4 lg:px-0 items-center">
           <div className="flex items-center">
-            <NavLink to="/Home" className="flex-shrink-0 flex items-center">
+            <NavLink to="/home" className="flex-shrink-0 flex items-center">
               <img src="/icons/declan-logo-dashboard.svg" className='h-[55px] w-auto' alt="Declan logo" />
             </NavLink>
           <div className="hidden space-x-1 md:ml-1 md:space-x-3 md:flex lg:space-x-5 lg:ml-5 xl:space-x-7">
             <NavLink
-              to="/Home"
+              to="/home"
                 className= "inline-flex font-bold items-center text-xs lg:text-sm text-[#0E4C25]"
               >
               Home

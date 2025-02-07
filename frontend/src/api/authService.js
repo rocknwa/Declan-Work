@@ -52,48 +52,13 @@ export const verifyAccessToken = async () => {
 
 
 // Function to sign up a new user
-// export const signUp = async (formData) => {
-//   try {
-//     const response = await apiClient.post("/api/auth/users/", formData, {
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//       },
-//     });
-//     return response.data;
-//   } catch (err) {
-//     handleError(err);
-//   }
-// };
-
-export const signUp = async (
-  email,
-  first_name,
-  last_name,
-  password,
-  type = "freelancer",   // Default value for type
-  profession,       // Default value for profession
-  city,             // Default value for city
-  country,
-  bio_title,
-  bio_description,
-  status = "available"    
-) => {
-  const userData = {
-    email,
-    first_name,
-    last_name,
-    password,
-    type,
-    profession,
-    city,
-    country,
-    bio_title,
-    bio_description,
-    status,
-  };
-
+export const signUp = async (userData) => {
   try {
-    const response = await apiClient.post("/api/auth/users/", userData);
+    const response = await apiClient.post("/api/auth/users/", userData, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
     return response.data;
   } catch (err) {
     handleError(err);

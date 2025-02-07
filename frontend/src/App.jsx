@@ -37,7 +37,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./api/userService";
 import { useAuth } from "./hooks/useAuth";
-import { SignUpOnboard } from "./pages/PrevSignUp";
+import { SignUpOnboard } from "./pages/SignUpOnboard";
 
 function App() {
 	const dispatch = useDispatch();
@@ -56,11 +56,11 @@ function App() {
 					{/* Routes for unauthenticated pages */}
 					<Route element={<HomePage />}>
 						<Route path="/" element={<div>Loading</div>} />
-						<Route path="/Home" element={<HomePg />} />
+						<Route path="/home" element={<HomePg />} />
 					</Route>
 					<Route element={<PublicPages />}>
 						<Route path="/signup" element={<SignupPage />} />
-						<Route path="/signup/onboarding" element={<SignUpOnboard />} />
+						{/* <Route path="/signup/onboarding" element={<SignUpOnboard />} /> */}
 						<Route path="/signin" element={<SignInPage />} />
 						<Route path="/forgot-password" element={<ForgotPassword />} />
 						<Route path="/new-password" element={<NewPassword />} />
@@ -109,7 +109,7 @@ function HomePage() {
 	useEffect(() => {
 		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
 		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
-		if (!isAuthenticated) navigate("/Home");
+		if (!isAuthenticated) navigate("/home");
 	}, [isAuthenticated, navigate, isWalletConnected]);
 	return (
 		<>

@@ -452,6 +452,5 @@ SetProfile.propTypes = {
 	profilePic: PropTypes.string,
 	setProfilePic: PropTypes.func.isRequired,
 	isLoading: PropTypes.bool.isRequired,
-	setIsLoading: PropTypes.func.isRequired,
 	handleSignUp: PropTypes.func.isRequired,
 };

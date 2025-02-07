@@ -57,7 +57,7 @@ function Payments() {
 
   return (
     <div className='w-full min-h-[calc(100vh-4rem)] max-w-screen-2xl px-7 mx-auto flex flex-col justify-start items-around gap-4 md:text-lg lg:text-xl'>
-        <BreadCrumb path={`/Home${location.pathname}`} className='w-full mt-2 ml-2 place-self-start'/>
+        <BreadCrumb path={`/home${location.pathname}`} className='w-full mt-2 ml-2 place-self-start'/>
         <div className='w-full flex flex-col justify-between items-center gap-10 xl:flex-row'>
           <div className='w-full h-10/12 flex flex-col justify-between items-center '>
             <form className='w-full flex flex-col justify-between items-center gap-2' onSubmit={handleSubmit(formSubmit)}>

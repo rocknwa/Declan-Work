@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-export default function SignUp({
+export default function SignUpComponent({
   setActive,
   firstName,
   setFirstName,
@@ -157,7 +157,7 @@ export default function SignUp({
   );
 }
 
-SignUp.propTypes = {
+SignUpComponent.propTypes = {
   setActive: PropTypes.func.isRequired,
   firstName: PropTypes.string.isRequired,
   setFirstName: PropTypes.func.isRequired,
