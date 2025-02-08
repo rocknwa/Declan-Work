@@ -9,8 +9,15 @@ export const AuthProvider = ({ children }) => {
 	const checkAuthStatus = async () => {
 		const token = getAuthToken();
 		if (token) {
-			const isValid = await verifyAccessToken();
-			setIsAuthenticated(isValid);
+			try{ 
+				await verifyAccessToken();
+				setIsAuthenticated(true);
+			} catch {
+				setIsAuthenticated(false);
+				console.log("get out of here");
+				localStorage.removeItem("accessToken");
+				localStorage.removeItem("refreshToken");
+			}
 		} else {
 			setIsAuthenticated(false);
 		}
@@ -19,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 	//check auth status status on mount
 	useEffect(() => {
 		checkAuthStatus();
-	}, []);
+	}, [isAuthenticated]);
 
 	return (
 		<AuthContext.Provider

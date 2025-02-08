@@ -4,7 +4,6 @@ import {
 	Routes,
 	Outlet,
 	useNavigate,
-	useLocation,
 } from "react-router-dom";
 import SignupPage from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
@@ -28,16 +27,15 @@ import NewPassword from "./pages/NewPassword";
 import Header from "./components/authentication/Header";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { AuthProvider } from "./context/AuthContext";
 import HomeNav from "./components/Home/HomeNav";
 import HomePg from "./pages/landingpage/HomePg";
 import Payments from "./pages/Payments";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getUser } from "./api/userService";
-import { useAuth } from "./hooks/useAuth";
-import { SignUpOnboard } from "./pages/SignUpOnboard";
+import { getUser } from "@/api/userService";
+import { useAuth } from "@/hooks/useAuth";
+import Providers from "@/context/Providers";
 
 function App() {
 	const dispatch = useDispatch();
@@ -50,11 +48,11 @@ function App() {
 	}, [isAuthenticated, dispatch]);
 
 	return (
-		<AuthProvider>
+		<Providers>
 			<Router>
 				<Routes>
 					{/* Routes for unauthenticated pages */}
-					<Route element={<HomePage />}>
+					<Route element={<HomePage />}>	
 						<Route path="/" element={<div>Loading</div>} />
 						<Route path="/home" element={<HomePg />} />
 					</Route>
@@ -96,7 +94,7 @@ function App() {
 					</Route>
 				</Routes>
 			</Router>
-		</AuthProvider>
+		</Providers>
 	);
 }
 

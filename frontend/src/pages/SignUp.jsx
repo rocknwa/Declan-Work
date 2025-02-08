@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAccount } from 'wagmi';
 import { setUser, setWalletConnected } from "@/redux/slices/userSlice";
 import { SignUpOnboard } from "./SignUpOnboard";
-import MetaMask from "@/components/authentication/Metamask";
 import { signIn, signUp } from "@/api/authService";
-import { convertKeysToSnakeCase } from "@/utils/caseConverters";
 
 export default function SignupPage() {
   const [userDetails, setUserDetails] = useState({

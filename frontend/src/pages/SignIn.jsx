@@ -85,7 +85,7 @@ export default function SignInPage() {
 
 
         {/* Wallet Sign In */}  
-        <div className="space-y-4 mb-3 lg:mb-6 flex items-center w-full">
+        {/* <div className="space-y-4 mb-3 lg:mb-6 flex items-center w-full">
           <div className="flex items-center mx-auto relative">
             { !account  && <img src="/icons/wallet.svg" className="absolute sm:hidden hidden md:block lg:block z-30 md:left-[33%]" alt="" /> }
           <LoginButton text="Sign in with a Wallet"/></div>
@@ -95,7 +95,7 @@ export default function SignInPage() {
           <div className="h-[1px] bg-[#E9E9E9] flex-1"></div>
           <p className="text-[#202020] flex-1">OR CONTINUE WITH</p>
           <div className="h-[1px] bg-[#E9E9E9] w-full flex-1"></div>
-        </div>
+        </div> */}
 
         {/* Email and Password Input Fields */}
         <form onSubmit={handleSubmit}>

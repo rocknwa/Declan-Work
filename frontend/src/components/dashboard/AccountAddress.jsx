@@ -12,17 +12,9 @@ import { cn, shortenAddress } from "@/lib/utils";
 import { signOut } from "@/api/authService";
 import { useAuth } from "@/hooks/useAuth";
 import { useAccount } from 'wagmi';
-import {
-    Address,
-    Avatar,
-    EthBalance,
-    Identity,
-    Name,
-  } from '@coinbase/onchainkit/identity';
-import LoginButton from "@/onchainkit/LoginButton";
-import WalletWrapper from "@/onchainkit/WalletWrapper";
 import { useSelector } from "react-redux";
 import defaultImage from "@/assets/sample.png";
+import MetaMask from "../authentication/Metamask";
 
 const AccountAddress = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -50,11 +42,7 @@ const AccountAddress = () => {
             </Button>
         </DropdownMenuTrigger>
         {!address && 
-            <WalletWrapper
-                className="min-w-full flex items-center font-normal justify-center gap-3 py-2 border border-gray-300 rounded-full"
-                text="Connect Wallet"
-                withWalletAggregator={true}
-            />
+            <MetaMask />
         }
         <DropdownMenuContent
             align="end"

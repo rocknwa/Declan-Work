@@ -66,14 +66,15 @@ function MetaMask() {
     }
 
     const disconnectWallet = () => {
-        // setAccount(null);
-        // setConnected(false);
-        // setContract(null);
+        setAccount(null);
+        setConnected
+        (false);
+        setContract(null);
     };
 
     return (
         <>
-            <div id="warn" style={{ color: 'red' }}>
+            {/* <div id="warn" style={{ color: 'red' }}>
                 {warning}
             </div>
             <div id="provider">{provider}</div>
@@ -88,7 +89,7 @@ function MetaMask() {
                 >
                     Request MetaMask Accounts
                 </button>
-            </div>
+            </div> */}
             {accountButtonDisabled ? (
                 <Button onClick={disconnectWallet} variant="contained">Disconnect</Button>
             ) : (
