@@ -7,19 +7,19 @@ import {
 
   const cards =[
     {name: "Near", image: "/icons/near-company-icon.svg"},
-    {name: "Nadabot", image: "/icons/nadabot-company-icon.svg"},
+    {name: "Lisk", image: "/icons/lisk-logo.svg"},
     {name: "Near", image: "/icons/near-company-icon.svg"},
-    {name: "Nadabot", image: "/icons/nadabot-company-icon.svg"},
+    {name: "Lisk", image: "/icons/lisk-logo.svg"},
     {name: "Near", image: "/icons/near-company-icon.svg"},
-    {name: "Nadabot", image: "/icons/nadabot-company-icon.svg"},
+    {name: "Lisk", image: "/icons/lisk-logo.svg"},
     {name: "Near", image: "/icons/near-company-icon.svg"},
-    {name: "Nadabot", image: "/icons/nadabot-company-icon.svg"},
+    {name: "Lisk", image: "/icons/lisk-logo.svg"},
     {name: "Near", image: "/icons/near-company-icon.svg"},
-    {name: "Nadabot", image: "/icons/nadabot-company-icon.svg"},
+    {name: "Lisk", image: "/icons/lisk-logo.svg"},
     {name: "Near", image: "/icons/near-company-icon.svg"},
-    {name: "Nadabot", image: "/icons/nadabot-company-icon.svg"},
+    {name: "Lisk", image: "/icons/lisk-logo.svg"},
     {name: "Near", image: "/icons/near-company-icon.svg"},
-    {name: "Nadabot", image: "/icons/nadabot-company-icon.svg"},
+    {name: "Lisk", image: "/icons/lisk-logo.svg"},
   ]
 
 function Card({name, image}){

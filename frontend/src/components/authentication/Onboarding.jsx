@@ -8,7 +8,7 @@ export default function Onboarding({handleSignIn}) {
   const handleSubmit= async () => {
     try {
       setIsLoading(true);
-      const response = await handleSignIn();
+      await handleSignIn();
     } catch (error) {
        showToast({type: "error", message: "An error occured!"});
     } finally {

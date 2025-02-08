@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from 'wagmi';
-import { setUser, setWalletConnected } from "@/redux/slices/userSlice";
 import { SignUpOnboard } from "./SignUpOnboard";
 import { signIn, signUp } from "@/api/authService";
 
@@ -26,7 +25,7 @@ export default function SignupPage() {
 //  const [resume, setResume] = useState(null); // Resume file upload
   });
 
-
+  const [user, setUser] = useState(null);
   const [passwordValidation, setPasswordValidation] = useState({
     isLengthValid: false,
     hasNumber: false,
@@ -91,7 +90,6 @@ export default function SignupPage() {
   const handleSignUp = async () => {
     setUiState(prev => ({ ...prev, isError: false, isLoading: true }));
     try {
-      // Format data exactly as API expects
       const dataToSend = {
         email: userDetails.email,
         first_name: userDetails.firstName,
@@ -108,10 +106,9 @@ export default function SignupPage() {
         // skills: userDetails.skills || []
       };
 
-      console.log('Sending signup data:', dataToSend); // Debug log
       const userInfo = await signUp(dataToSend);
-      console.log('Signup response:', userInfo);
-
+      setUser(userInfo);
+      setUiState(prev => ({ ...prev, isLoading: false }));
     } catch (err) {
       setUiState(prev => ({
         ...prev,
@@ -119,6 +116,8 @@ export default function SignupPage() {
         errorMessage: err.message || "Signup failed. Please check your details.",
         isLoading: false
       }));
+      console.log("na me", err) 
+      throw new Error(err.message);
     }
   };
 
@@ -127,40 +126,38 @@ export default function SignupPage() {
       const user = await signIn(userDetails.email, userDetails.password, dispatch);
       setIsAuthenticated(true);
       dispatch(setUser(user));
-      setTimeout(() => {
-        navigate("/profile");
-      }, 100);
+      navigate("/profile");
     } catch (err) {
       setIsAuthenticated(false);
       console.error('Login failed:', err.message);
     }
   };
 
-  const handleSignUpWithWallet = async () => {
-    try {
-      setUserDetails(prev => ({
-        ...prev,
-        email: `${walletAddress}@declanwork.xyz`,
-        password: "Nonepassword"
-      }));
-    } catch (err) {
-      setIsAuthenticated(false);
-      setUiState(prev => ({
-        ...prev,
-        isError: true,
-        errorMessage: err.message,
-        isLoading: false
-      }));
-      throw new Error(err.message);
-    }
-  };
+  // const handleSignUpWithWallet = async () => {
+  //   try {
+  //     setUserDetails(prev => ({
+  //       ...prev,
+  //       email: `${walletAddress}@declanwork.xyz`,
+  //       password: "Nonepassword"
+  //     }));
+  //   } catch (err) {
+  //     setIsAuthenticated(false);
+  //     setUiState(prev => ({
+  //       ...prev,
+  //       isError: true,
+  //       errorMessage: err.message,
+  //       isLoading: false
+  //     }));
+  //     throw new Error(err.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (isConnected && address) {
-      dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
-      handleSignUpWithWallet(); // Proceed with wallet signup if connected
-    }
-  }, [isConnected, address, dispatch]);
+  // useEffect(() => {
+  //   if (isConnected && address) {
+  //     dispatch(setWalletConnected({ walletAddress: address })); // Dispatch wallet connected action
+  //     handleSignUpWithWallet(); // Proceed with wallet signup if connected
+  //   }
+  // }, [isConnected, address, dispatch]);
   
   return (
     <div>
@@ -272,6 +269,7 @@ export default function SignupPage() {
         </div>
       ) : (
         <SignUpOnboard
+          uid={user?.id}
           userDetails={userDetails}
           onInputChange={handleInputChange}
           onProfilePicChange={handleProfilePicChange}

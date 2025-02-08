@@ -7,7 +7,7 @@ export const getAccessToken = async (email, password) => {
   try {
     const response = await apiClient.post("/api/auth/jwt/create", {
       email,
-      password,
+      password
     });
     const { access, refresh } = response.data;
     localStorage.setItem("accessToken", access);
@@ -65,6 +65,16 @@ export const signUp = async (userData) => {
   }
 };
 
+// Function to verify user email
+export const verifyEmail = async (uid, email, password) => {
+  try {
+    const token = await getAccessToken(email, password);
+    const response = await apiClient.post("/api/auth/users/activation/", {uid, token});
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
+};
 
 // Function to sign in a user
 export const signIn = async (email, password, dispatch) => {

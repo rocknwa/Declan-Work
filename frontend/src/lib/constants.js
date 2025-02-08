@@ -1,3 +1,6 @@
+export const BACKEND_API_BASE_URL = "https://declanwork-backend.onrender.com";
+export const PASSPORT_API_BASE_URL = "https://api.passport.xyz";
+
 export const contractAddress = "0xEd27133B24A9cDf08E2a9F05D4ba2B5f323E2dE1";
 
 export const projectId = "b3013a5aee77ad1242d4649eb78e10dc";

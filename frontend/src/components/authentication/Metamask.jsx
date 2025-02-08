@@ -66,9 +66,8 @@ function MetaMask() {
     }
 
     const disconnectWallet = () => {
-        setAccount(null);
-        setConnected
-        (false);
+        setAccounts(null);
+        setConnectedAccount(null);
         setContract(null);
     };
 

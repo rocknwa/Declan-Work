@@ -118,24 +118,24 @@ export default function SetProfile({
 	const [signUpError, setSignUpError] = useState("");
 	const handleSubmit = async () => {
 		setSignUpError("");
-		if (jobRole == "") {
-			setErrorMessage((prev) => ({ ...prev, jobRole: true }));
-		}
-		if (headline == "") {
-			setErrorMessage((prev) => ({ ...prev, headline: true }));
-		}
-		if (country == "") {
-			setErrorMessage((prev) => ({ ...prev, country: true }));
-		}
-		if (city == "") {
-			setErrorMessage((prev) => ({ ...prev, city: true }));
-		}
-		if (bio == "" || bio.length < 100) {
-			setErrorMessage((prev) => ({ ...prev, bio: true }));
-		}
+		const validations = {
+			jobRole: jobRole !== "",
+			headline: headline !== "",
+			country: country !== "",
+			city: city !== "",
+			bio: bio !== "" && bio.length >= 100
+		};
+
+		setErrorMessage(prev => ({
+			...prev,
+			...Object.entries(validations).reduce((acc, [key, isValid]) => ({
+				...acc,
+				[key]: !isValid
+			}), {})
+		}));
 		if (allCriteriaMet) {
 			try {
-				const response = await handleSignUp();
+				await handleSignUp();
 				setActive("verifyEmail");
 			} catch (error) {
 				setSignUpError(error.message);

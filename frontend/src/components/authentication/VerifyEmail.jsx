@@ -1,13 +1,19 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { verifyEmail } from "@/api/authService";
 
-export default function VerifyEmail({ setActive }) {
+export default function VerifyEmail({ uid, setActive, email, password }) {
   // State to track email verification status
   const [isVerified, setIsVerified] = useState(false);
 
   // Function to simulate email verification process
-  const verifyEmail = () => {
-    setIsVerified(true);
+  const handleVerifyEmail = async () => {
+    try{
+      // await verifyEmail(uid, email, password);
+      setIsVerified(true);
+    } catch (error) {
+      setIsVerified(false);
+    }
   };
 
   return (
@@ -48,7 +54,7 @@ export default function VerifyEmail({ setActive }) {
             We sent a verification link to goody22@gmail.com.
           </p>
           <button
-            onClick={verifyEmail}
+            onClick={handleVerifyEmail}
             className="bg-green-500 md:w-[300px] text-white px-4 py-2 rounded-full"
           >
             Verify Email

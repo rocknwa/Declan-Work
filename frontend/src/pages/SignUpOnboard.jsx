@@ -6,7 +6,8 @@ import AccountType from "@/components/authentication/AccountType";
 import Sidebar from "@/components/authentication/Sidebar";
 import VerifyEmail from "@/components/authentication/VerifyEmail";
 
-export const SignUpOnboard = ({ 
+export const SignUpOnboard = ({
+  uid,
   userDetails, 
   onInputChange, 
   onProfilePicChange, 
@@ -72,7 +73,7 @@ export const SignUpOnboard = ({
               />
           )}
 
-          {active === "verifyEmail" && <VerifyEmail setActive={setActive} />}
+          {active === "verifyEmail" && <VerifyEmail email={userDetails.email} password={userDetails.password} uid={uid} setActive={setActive} />}
 
           {active === "onboarding" && 
             <Onboarding handleSignIn={handleSignIn} />}
