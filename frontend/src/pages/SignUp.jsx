@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAccount } from 'wagmi';
 import { SignUpOnboard } from "./SignUpOnboard";
 import { signIn, signUp } from "@/api/authService";
+import { setUser } from "@/redux/slices/userSlice";
 
 export default function SignupPage() {
   const [userDetails, setUserDetails] = useState({
@@ -25,7 +26,7 @@ export default function SignupPage() {
 //  const [resume, setResume] = useState(null); // Resume file upload
   });
 
-  const [user, setUser] = useState(null);
+  const [userResponse, setUserResponse] = useState(null);
   const [passwordValidation, setPasswordValidation] = useState({
     isLengthValid: false,
     hasNumber: false,
@@ -107,7 +108,7 @@ export default function SignupPage() {
       };
 
       const userInfo = await signUp(dataToSend);
-      setUser(userInfo);
+      setUserResponse(userInfo);
       setUiState(prev => ({ ...prev, isLoading: false }));
     } catch (err) {
       setUiState(prev => ({
@@ -269,7 +270,7 @@ export default function SignupPage() {
         </div>
       ) : (
         <SignUpOnboard
-          uid={user?.id}
+          uid={userResponse?.id}
           userDetails={userDetails}
           onInputChange={handleInputChange}
           onProfilePicChange={handleProfilePicChange}
