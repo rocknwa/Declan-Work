@@ -132,7 +132,7 @@ export const HomePage = () => {
     	    ))}
 
 			{/* I used the p tag below to prevent footer from covering part of last item on the list */}
-			<p style={{margin: 50}}></p>
+			<p style={{margin: 50}}>End of List</p>
     	  </div>
 
 

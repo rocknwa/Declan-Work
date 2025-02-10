@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/Shared/Footer/Footer";
+import { WalletConn } from "@/components/Shared/Header/WalletConnectHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,19 +18,16 @@ export const metadata = {
   description: "Declan Web3 Project...",
 };
 
-import "@rainbow-me/rainbowkit/styles.css";
-import { Providers } from "./providers";
-
-function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        {/* <WalletConn/> */}
+        {children}
+        {/* <Footer/> */}
       </body>
     </html>
   );
 }
-
-export default RootLayout;
