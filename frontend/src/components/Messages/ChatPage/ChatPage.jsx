@@ -69,7 +69,6 @@ export const ChatPage = () => {
     	        <i className='fa-solid fa-paper-plane text-xl'></i>
     	      </button>
     	    </div>
-			
     	  </footer>
     	</div> 
     </div>
