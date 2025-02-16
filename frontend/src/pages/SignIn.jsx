@@ -1,6 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
-import LoginButton from "@/onchainkit/LoginButton";
 import { setUser } from "@/redux/slices/userSlice";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";

@@ -51,7 +51,7 @@ export default function DashboardNav() {
           </div>
           </div>
           <div className='sm:flex justify-between items-center space-x-2 md:space-x-4 md:ml-6 '>
-            <Button className='text-black text-sm rounded-full bg-[#21B557] size-22' onClick={()=>navigate('/app')}>Launch App</Button>
+            <Button className='text-black text-sm rounded-full bg-[#21B557] size-22' onClick={() => window.open('/app', '_blank')}>Launch App</Button>
           </div>
         </div>
       </div>
