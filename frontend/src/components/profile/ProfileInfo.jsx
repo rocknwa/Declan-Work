@@ -5,7 +5,6 @@ import SelectAvailability from "./SelectAvailability";
 import Location from "./Location/Location";
 import { showToast } from '../Sonner';
 import { Button } from '../ui/button';
-import { updateProfile } from '@/api/profileService';
 import defaultImage from "@/assets/sample.png";
 
 const ProfileInfo = ({ viewOnly }) => {
@@ -30,9 +29,6 @@ const ProfileInfo = ({ viewOnly }) => {
       setAvailable(newAvailableStatus); // Update local state
       showToast({ type: "success", message: "Availability successfully updated" });
       // Call updateProfile with new status
-      await updateProfile(dispatch, {
-        status: updatedStatus,
-      });
       
     } catch (error) {
       showToast({ type: "error", message: "Something went wrong" });

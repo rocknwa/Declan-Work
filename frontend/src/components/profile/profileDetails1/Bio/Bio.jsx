@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import { showToast } from '@/components/Sonner';
 import BioBody from './BioBody';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProfile } from '@/api/profileService';
-import { getUser } from '@/api/userService';
 
 const Bio = ({ viewOnly }) => {
   const user = useSelector(state => state.user);
@@ -27,16 +25,11 @@ const Bio = ({ viewOnly }) => {
         setOneLineHeader(newOneLineHeader);
 
         // Perform the API update
-        await updateProfile(dispatch, {
-          bio_title: newOneLineHeader,
-          bio_description: newAbout,
-        });
 
         // Show success toast after successful API response
         showToast({ type: "success", message: "Bio saved successfully!" });
       } catch (error) {
         // refresh user data after failure
-        await getUser(dispatch);
 
         // Show error toast
         showToast({ type: "error", message: "Something went wrong. Please try again." });

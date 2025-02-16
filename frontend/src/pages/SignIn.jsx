@@ -1,4 +1,3 @@
-import { signIn } from "@/api/authService";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import LoginButton from "@/onchainkit/LoginButton";
@@ -28,7 +27,6 @@ export default function SignInPage() {
     setErrorMessage(""); 
     setIsError(false);// Start loading state
     try {
-      const user = await signIn(email, password, dispatch);
       setIsAuthenticated(true);
       dispatch(setUser(user));
       navigate("/dashboard");

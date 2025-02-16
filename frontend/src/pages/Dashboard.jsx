@@ -2,7 +2,6 @@ import Overview from '@/components/dashboard/Overview'
 import { DashboardBarchart } from '@/components/dashboard/DashboardBarchart'
 import DashboardTable from '@/components/dashboard/DashboardTable'
 import { useEffect } from 'react'
-import { getUser } from '@/api/userService'
 import { useDispatch } from 'react-redux'
 import ComingSoon from '@/components/ComingSoon'
 
@@ -11,7 +10,7 @@ const Dashboard = () => {
     useEffect(()=> {
         const fetchUserData = async () => {
             try {
-              await getUser(dispatch); // Pass dispatch to getUser
+              // await getUser(dispatch); // Pass dispatch to getUser
             } catch (error) {
               console.error("Error fetching user data:", error);
             }

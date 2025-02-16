@@ -6,7 +6,6 @@ import { Toaster } from '@/components/ui/sonner';
 import { showToast } from '@/components/Sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { updateProfile } from '@/api/profileService';
 
 const Location = ({viewOnly}) => {
   const user = useSelector((state) => state.user);
@@ -19,10 +18,6 @@ const Location = ({viewOnly}) => {
   const handleSave = async (newCountry, newCity) => {
     if(newCountry.length != 0 && newCity.length !=0 && newCountry != "" && newCity != "") {
       try {
-        await updateProfile(dispatch, {
-          country: newCountry,
-          city: newCity
-        })
         setCountry(newCountry);
         setCity(newCity);
         showToast({type: "success", message:"Location successfully changed"});

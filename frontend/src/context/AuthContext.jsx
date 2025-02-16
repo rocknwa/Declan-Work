@@ -1,33 +1,25 @@
-import { getAuthToken, verifyAccessToken } from "@/api/authService";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const { isConnected } = useAccount();
 
-	const checkAuthStatus = async () => {
-		const token = getAuthToken();
-		if (token) {
-			try{ 
-				await verifyAccessToken();
+	const checkAuthStatus = useCallback(async () => {
+		if (isConnected) {
 				setIsAuthenticated(true);
-			} catch {
-				setIsAuthenticated(false);
-				console.log("get out of here");
-				localStorage.removeItem("accessToken");
-				localStorage.removeItem("refreshToken");
-			}
 		} else {
 			setIsAuthenticated(false);
 		}
-	};
+	}, [isConnected, setIsAuthenticated]);
 
-	//check auth status status on mount
+	// Update auth status when wallet connection changes
 	useEffect(() => {
 		checkAuthStatus();
-	}, [isAuthenticated]);
-
+	}, [isConnected, checkAuthStatus]);
+	
 	return (
 		<AuthContext.Provider
 			value={{ isAuthenticated, checkAuthStatus, setIsAuthenticated }}

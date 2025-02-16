@@ -31,22 +31,11 @@ import HomeNav from "./components/Home/HomeNav";
 import HomePg from "./pages/landingpage/HomePg";
 import Payments from "./pages/Payments";
 
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getUser } from "@/api/userService";
 import { useAuth } from "@/hooks/useAuth";
 import Providers from "@/context/Providers";
 
 function App() {
-	const dispatch = useDispatch();
-	const { isAuthenticated } = useAuth();
-
-	useEffect(() => {
-		if (isAuthenticated) {
-			getUser(dispatch);
-		}
-	}, [isAuthenticated, dispatch]);
-
 	return (
 		<Providers>
 			<Router>
@@ -56,16 +45,10 @@ function App() {
 						<Route path="/" element={<div>Loading</div>} />
 						<Route path="/home" element={<HomePg />} />
 					</Route>
-					<Route element={<PublicPages />}>
-						<Route path="/signup" element={<SignupPage />} />
-						<Route path="/signin" element={<SignInPage />} />
-						<Route path="/forgot-password" element={<ForgotPassword />} />
-						<Route path="/new-password" element={<NewPassword />} />
-					</Route>
 					{/* Routes for authenticated pages */}
-					<Route element={<SignedInPages />}>
-						<Route path="/" element={<Dashboard />} />
-						<Route path="/dashboard" element={<Dashboard />} />
+					<Route path="/app" element={<AuthenticatedPages />}>
+						<Route index element={<Dashboard />} />
+						<Route path="dashboard" element={<Dashboard />} />
 						<Route path="jobs" element={<JobListings />} />
 						<Route path="jobs/:companyName" element={<JobListings />} />
 						<Route path="jobs/:companyName/:jobId" element={<JobDetails />} />
@@ -101,13 +84,10 @@ function App() {
 function HomePage() {
 	const navigate = useNavigate();
 	const { isAuthenticated } = useAuth();
-	const { walletAddress, isWalletConnected } = useSelector((state) => state.user);
 
 	useEffect(() => {
-		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
-		if (isAuthenticated && isWalletConnected ) navigate("/signup/onboarding");
 		if (!isAuthenticated) navigate("/home");
-	}, [isAuthenticated, navigate, isWalletConnected]);
+	}, [isAuthenticated, navigate]);
 	return (
 		<>
 			<HomeNav />
@@ -116,16 +96,25 @@ function HomePage() {
 	);
 }
 
-function SignedInPages() {
+function AuthenticatedPages() {
+	const {isAuthenticated } = useAuth();
 	return (
 		<>
-			<ProtectedRoute>
-				<DashboardNav />
-				<Outlet />
-			</ProtectedRoute>
+			<DashboardNav />
+			{ isAuthenticated ?
+				<ProtectedRoute>
+					<Outlet />
+				</ProtectedRoute>
+				:
+				<div className="p-20 py-24 text-center">
+					Please connect your wallet
+				</div>
+			}
 		</>
 	);
 }
+
+
 function PublicPages() {
 	return (
 		<div className="bg-[#fafafa]">

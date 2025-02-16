@@ -26,7 +26,7 @@ function JobListings() {
 
   return (
     <div className='min-h-screen'>
-      <SearchJobsForm jobs={jobs} setJobs={setJobs}/>
+      {/* <SearchJobsForm jobs={jobs} setJobs={setJobs}/> */}
       <div className='mx-5 md:mx-10  grid grid-cols-1 sm:grid-cols-2 gap-4'>
         {currentJobs.map(job => (
             <JobCard key={job.id} {...job} />

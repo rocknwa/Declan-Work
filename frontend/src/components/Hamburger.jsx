@@ -1,7 +1,7 @@
-import { signOut } from "@/api/authService";
 import { useAuth } from "@/hooks/useAuth";
 import { LogOut, X } from "lucide-react"
 import { NavLink, useNavigate } from "react-router-dom"
+import { useDisconnect } from "wagmi";
 
 function Hamburger() {
   return (
@@ -26,10 +26,12 @@ function Hamburger() {
 export function MobileNav ({setIsHamburgerOpen}) {
     const {setIsAuthenticated} = useAuth();
     const navigate = useNavigate();
+    const { disconnect } = useDisconnect();
     const handleLogOut = () => {
-      signOut();
+      disconnect();
+      localStorage.clear();
       setIsAuthenticated(false);
-      navigate("/signin");
+      navigate("/app");
     }
   return (
     <div className="fixed md:hidden m-0 top-0 left-0 p-4 z-30 w-screen h-screen overflow-hidden bg-white">
@@ -39,7 +41,7 @@ export function MobileNav ({setIsHamburgerOpen}) {
       </div>
       <div className="flex mt-5 flex-col gap-4">
         <NavLink
-              to="/dashboard"
+              to="dashboard"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-lg tracking-tight  font-medium text-[#000]" : "inline-flex items-center text-lg tracking-tight  font-medium text-[#989898]"
               }
@@ -48,7 +50,7 @@ export function MobileNav ({setIsHamburgerOpen}) {
               Dashboard
         </NavLink>
         <NavLink
-              to="/jobs"
+              to="jobs"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-lg tracking-tight  font-medium text-[#000]" : "inline-flex items-center text-lg tracking-tight  font-medium text-[#989898]"
               }
@@ -57,7 +59,7 @@ export function MobileNav ({setIsHamburgerOpen}) {
               Job Matches
         </NavLink>
         <NavLink
-              to="/projects"
+              to="projects"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-lg tracking-tight  font-medium text-[#000]" : "inline-flex items-center text-lg tracking-tight  font-medium text-[#989898]"
               }
@@ -66,7 +68,7 @@ export function MobileNav ({setIsHamburgerOpen}) {
               My Projects
         </NavLink>
         <NavLink
-              to="/profile"
+              to="profile"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-lg tracking-tight  font-medium text-[#000]" : "inline-flex items-center text-lg tracking-tight  font-medium text-[#989898]"
               }

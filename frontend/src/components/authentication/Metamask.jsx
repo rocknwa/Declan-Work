@@ -90,9 +90,9 @@ function MetaMask() {
                 </button>
             </div> */}
             {accountButtonDisabled ? (
-                <Button onClick={disconnectWallet} variant="contained">Disconnect</Button>
+                <Button onClick={disconnectWallet} variant="outline">Disconnect</Button>
             ) : (
-                <Button onClick={connectWallet} variant="contained">Connect Wallet</Button>
+                <Button onClick={connectWallet} variant="outline">Connect Wallet</Button>
             )}
         </>
     );

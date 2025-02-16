@@ -11,7 +11,7 @@ export default function DashboardNav() {
   const navigate = useNavigate();
   return (
     <nav className="sticky lg:fixed top-0 sm:left-0 sm:right-0 z-20 w-full bg-white border-b border-[#E9E9E9]">
-      <div className="max-w-full w-full mx-auto sm:px-2 md:px-4 lg:px-8">
+      <div className="max-w-full xl:max-w-screen-2xl w-full mx-auto sm:px-2 md:px-4 lg:px-8">
         <div className="flex justify-between h-16 px-4 lg:px-0 items-center">
           <div className="flex items-center">
             <NavLink to="/home" className="flex-shrink-0 flex items-center">
@@ -51,10 +51,7 @@ export default function DashboardNav() {
           </div>
           </div>
           <div className='sm:flex justify-between items-center space-x-2 md:space-x-4 md:ml-6 '>
-           <NavLink 
-            to="/signin"
-            className="inline-flex font-bold items-center text-sm text-[#0E4C25]">Login</NavLink>
-            <Button className='text-black text-sm rounded-full bg-[#21B557] size-22' onClick={()=>navigate('/signup')}>Get Started</Button>
+            <Button className='text-black text-sm rounded-full bg-[#21B557] size-22' onClick={()=>navigate('/app')}>Launch App</Button>
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from 'wagmi';
 import { SignUpOnboard } from "./SignUpOnboard";
-import { signIn, signUp } from "@/api/authService";
 import { setUser } from "@/redux/slices/userSlice";
 
 export default function SignupPage() {
@@ -107,8 +106,8 @@ export default function SignupPage() {
         // skills: userDetails.skills || []
       };
 
-      const userInfo = await signUp(dataToSend);
-      setUserResponse(userInfo);
+      // const userInfo = await signUp(dataToSend);
+      // setUserResponse(userInfo);
       setUiState(prev => ({ ...prev, isLoading: false }));
     } catch (err) {
       setUiState(prev => ({
@@ -124,9 +123,9 @@ export default function SignupPage() {
 
   const handleSignIn = async () => {
     try {
-      const user = await signIn(userDetails.email, userDetails.password, dispatch);
-      setIsAuthenticated(true);
-      dispatch(setUser(user));
+      // const user = await signIn(userDetails.email, userDetails.password, dispatch);
+      // setIsAuthenticated(true);
+      // dispatch(setUser(user));
       navigate("/profile");
     } catch (err) {
       setIsAuthenticated(false);

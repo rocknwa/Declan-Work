@@ -1,4 +1,3 @@
-import { getUser } from '@/api/userService'
 import Bio from '@/components/profile/profileDetails1/Bio/Bio'
 import Education from '@/components/profile/profileDetails1/Education/Education'
 import Resume from '@/components/profile/profileDetails1/Resume'
@@ -18,7 +17,7 @@ const Freelancer = () => {
         setIsLoading(true)
         const fetchUserData = async () => {
             try {
-              await getUser(dispatch); // Pass dispatch to 
+              // await getUser(dispatch); // Pass dispatch to 
               setIsLoading(false);
             } catch (error) {
               setError(error.message)

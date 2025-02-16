@@ -10,24 +10,27 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import Hamburger, { MobileNav } from '../Hamburger';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function DashboardNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const location = useLocation();
+  const {isAuthenticated} = useAuth();
   return (
     <nav className="bg-white border-b border-[#E9E9E9]">
       {/* <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-[1400px]"> */}
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <NavLink to="/dashboard" className="flex-shrink-0">
+            <NavLink to="/app" className="flex-shrink-0">
               <img src="/icons/declan-logo-dashboard.svg" className='xl:w-[150px]' alt="Declan logo" />
             </NavLink>
           </div>
-          <div className="hidden lg:ml-6 lg:flex sm:space-x-8">
+          { isAuthenticated &&
+            <div className="hidden lg:ml-6 lg:flex sm:space-x-8">
             <NavLink
-              to="/dashboard"
+              to="dashboard"
               end
               className={({ isActive }) =>
                 isActive
@@ -63,7 +66,7 @@ export default function DashboardNav() {
                   className={({ isActive }) =>
                     isActive ? " text-[#000]" : ""
                   }
-                  to="/jobs"
+                  to="jobs"
                 >
                 <DropdownMenuItem className="focus:bg-[#f0f0f0] rounded-xl hover:cursor-pointer hover:bg-slate-300">
                     <img src="/icons/profile-ma.svg" className="mr-2 h-4 w-4" alt="Job Listings icon" />
@@ -75,7 +78,7 @@ export default function DashboardNav() {
                     className={({ isActive }) =>
                       isActive ? "flex items-center text-[#000]" : "flex items-center"
                     }
-                    to="/job-listings-ai"
+                    to="job-listings-ai"
                   >
                     <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" alt="AI Job Listings icon" />
                     <span className="text-zinc-950 font-normal">Job Listings (AI)</span>
@@ -86,7 +89,7 @@ export default function DashboardNav() {
                     className={({ isActive }) =>
                       isActive ? "flex items-center text-[#000]" : "flex items-center"
                     }
-                    to="/manage-projects"
+                    to="manage-projects"
                   >
                     <img src="/icons/logout-03.svg" className="mr-2 h-4 w-4" alt="Manage Projects icon" />
                     <span className="text-zinc-950 font-normal">Manage Projects</span>
@@ -96,7 +99,7 @@ export default function DashboardNav() {
             </DropdownMenu>
 
             <NavLink
-              to="/projects"
+              to="projects"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
@@ -104,7 +107,7 @@ export default function DashboardNav() {
               My Projects
             </NavLink>
             <NavLink
-              to="/about-us"
+              to="about-us"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
@@ -112,7 +115,7 @@ export default function DashboardNav() {
               About Us
             </NavLink>
             <NavLink
-              to="/messages"
+              to="messages"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
@@ -120,7 +123,7 @@ export default function DashboardNav() {
               Messages
             </NavLink>
             <NavLink
-              to="/my-wallet"
+              to="my-wallet"
               className={({ isActive }) =>
                 isActive ? "inline-flex items-center text-base font-medium text-[#000]" : "inline-flex items-center text-base font-medium text-[#989898]"
               }
@@ -128,6 +131,7 @@ export default function DashboardNav() {
               My Wallet
             </NavLink>
           </div>
+          }
           
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex sm:items-center sm:space-x-4">

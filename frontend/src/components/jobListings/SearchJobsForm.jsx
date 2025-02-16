@@ -1,13 +1,12 @@
 import {useState, useRef} from 'react'
 import { Button } from "@/components/ui/button"
 import { Search, MapPin } from "lucide-react"
-import { getAllJobTitles, getAllLocations } from '../../api/jobService'
-import {jobData, locationData} from '../../api/jobService'
 import { LoaderCircle } from 'lucide-react';
 import CustomInputDropdown from '../CustomInputDropdown';
 import CustomDropdown from '../CustomDropdown';
 import CustomDatePicker from '../CustomDatePicker';
 import { useForm, Controller } from 'react-hook-form';
+
 
 function SearchJobsForm({jobs, setJobs, className}) {
     const {control, handleSubmit, reset} = useForm()

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { verifyEmail } from "@/api/authService";
 
 export default function VerifyEmail({ uid, setActive, email, password }) {
   // State to track email verification status
