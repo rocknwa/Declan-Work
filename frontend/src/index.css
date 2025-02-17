@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: 'Open Sauce Sans', sans-serif;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(103, 101, 101);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(143, 143, 143);
+  border-radius: 10px;
+}
+
+/* CUSTOM STYLES */
+
+.box-shadow {
+  box-shadow: 0px 0.5px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.box-shadow-soft {
+  box-shadow: 0px 0.5px 4px 0px rgb(0 0 0 / 6%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+
+/* CUSTOM STYLES */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary-400: 155 100% 47%;
+    --neutral-800: 0 0% 15%;
+    --neutral-600: 0 0% 31%;
+    --neutral-300: 0 0% 55%;
+    --grey-400: 0 0% 100%;
+    --grey-50: 0, 0%, 91%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --success-strong: 161 94% 30%;
+    --accent: 210 40% 96.1%;
+    --accent-success: 142 69% 38%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    
+    /* --ock-font-family: 'Open Sauce Sans';
+    --ock-border-radius: 17.5rem !important;
+    --ock-text-inverse: #202020 !important;
+    --ock-bg-default: inherit !important;
+    --ock-bg-primary: inherit;
+    --ock-bg-primary-active: inherit;
+    --ock-bg-secondary: #BAE8CB; */
+    
+    /* 
+    --ock-border-radius-inner: 'your-custom-value';
+    --ock-text-foreground-muted: 'your-custom-value';
+    --ock-text-error: 'your-custom-value';
+    --ock-text-primary: 'your-custom-value';
+    --ock-text-success: 'your-custom-value';
+    --ock-text-warning: 'your-custom-value';
+    --ock-text-disabled: 'your-custom-value';
+ 
+ 
+    --ock-bg-alternate: 'your-custom-value';
+    --ock-bg-alternate-active: 'your-custom-value';
+    --ock-bg-inverse: 'your-custom-value';
+    --ock-bg-inverse-hover: 'your-custom-value';
+    --ock-bg-inverse-active: 'your-custom-value';
+    --ock-bg-primary-washed: 'your-custom-value';
+    --ock-bg-primary-disabled: 'your-custom-value';
+    --ock-bg-secondary-hover: 'your-custom-value';
+    --ock-bg-secondary-active: 'your-custom-value';
+    --ock-bg-error: 'your-custom-value';
+    --ock-bg-warning: 'your-custom-value';
+    --ock-bg-success: 'your-custom-value';
+    --ock-bg-default-reverse: 'your-custom-value';
+ 
+    --ock-icon-color-primary: 'your-custom-value';
+    --ock-icon-color-foreground-muted: 'your-custom-value';
+    --ock-icon-color-inverse: 'your-custom-value';
+    --ock-icon-color-error: 'your-custom-value';
+    --ock-icon-color-success: 'your-custom-value';
+    --ock-icon-color-warning: 'your-custom-value';
+ 
+    --ock-line-primary: 'your-custom-value';
+    --ock-line-default: 'your-custom-value';
+    --ock-line-heavy: 'your-custom-value';
+    --ock-line-inverse: 'your-custom-value'; */
+  }
+
+  .dark, .default-dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+
+    --ock-font-family: 'Open Sauce Sans';
+    --ock-border-radius: 17.5rem ;
+    --ock-text-inverse: #151515;
+    --ock-bg-default: #f4f5f7 ;
+    --ock-bg-default-hover: #d8d8d8;
+    --ock-bg-default-active: #d8d8d8;
+    --ock-bg-primary: white ;
+    --ock-bg-primary-hover: #d8d8d8;
+    --ock-bg-primary-active: inherit;
+    --ock-bg-secondary: white;
+    --ock-bg-secondary-hover: #d8d8d8;
+    --ock-bg-secondary-active: #d8d8d8;
+    --ock-text-foreground: #151515;
+    --ock-icon-color-foreground: #1a1919;
+    /* --ock-bg-alternate-hover: yellow; */
+  }
+
+
+  .light, .default-light {
+    --ock-font-family: 'Open Sauce Sans';
+    --ock-border-radius: 17.5rem ;
+    --ock-text-inverse: #151515;
+    --ock-bg-default: #f4f5f7 ;
+    --ock-bg-default-hover: #d8d8d8;
+    --ock-bg-default-active: #d8d8d8;
+    --ock-bg-primary: white ;
+    --ock-bg-primary-hover: #d8d8d8;
+    --ock-bg-primary-active: inherit;
+    --ock-bg-secondary: white;
+    --ock-bg-secondary-hover: #d8d8d8;
+    --ock-bg-secondary-active: #d8d8d8;
+    --ock-text-foreground: #151515;
+    --ock-icon-color-foreground: #1a1919;
+  }
+  
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
